@@ -10,5 +10,9 @@
   "item.minecraftfarmertechmod.gold_bit": "Gold Bit",
   "item.minecraftfarmertechmod.copper_bit": "Copper Bit",
   "item.minecraftfarmertechmod.diamond_bit": "Diamond Bit",
-  "item.minecraftfarmertechmod.netherite_bit": "Netherite Bit"
+  "item.minecraftfarmertechmod.netherite_bit": "Netherite Bit",
+
+  "item.minecraftfarmertechmod.basic_circuit_board": "Tier 1 Circuit Board",
+  "item.minecraftfarmertechmod.advanced_circuit_board": "Tier 2 Circuit Board",
+  "item.minecraftfarmertechmod.fusion_circuit_board": "Tier 3 Circuit Board"
 }
