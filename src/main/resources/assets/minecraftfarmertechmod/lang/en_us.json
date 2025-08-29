@@ -4,5 +4,11 @@
   "item.minecraftfarmertechmod.raw_zinc": "Raw Zinc",
   "item.minecraftfarmertechmod.zinc_alloy": "Zinc Alloy",
   "item.minecraftfarmertechmod.andesite_alloy": "Andesite Alloy",
-  "item.minecraftfarmertechmod.brass": "Brass"
+  "item.minecraftfarmertechmod.brass": "Brass",
+
+  "item.minecraftfarmertechmod.iron_bit": "Iron Bit",
+  "item.minecraftfarmertechmod.gold_bit": "Gold Bit",
+  "item.minecraftfarmertechmod.copper_bit": "Copper Bit",
+  "item.minecraftfarmertechmod.diamond_bit": "Diamond Bit",
+  "item.minecraftfarmertechmod.netherite_bit": "Netherite Bit"
 }

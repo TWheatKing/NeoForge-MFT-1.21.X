@@ -56,12 +56,20 @@ public class MinecraftFarmerTechMod {
     // Add the example block item to the building blocks tab
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
         if(event.getTabKey() == CreativeModeTabs.INGREDIENTS){
+            //food related ingot
             event.accept(ModItems.WHEAT_INGOT);
+            //machine related items
             event.accept(ModItems.ZINC_INGOT);
             event.accept(ModItems.RAW_ZINC);
             event.accept(ModItems.ZINC_ALLOY);
             event.accept(ModItems.BRASS);
             event.accept(ModItems.ANDESITE_ALLOY);
+            //bits
+            event.accept(ModItems.IRON_BIT);
+            event.accept(ModItems.GOLD_BIT);
+            event.accept(ModItems.COPPER_BIT);
+            event.accept(ModItems.DIAMOND_BIT);
+            event.accept(ModItems.NETHERITE_BIT);
         }
     }
 
