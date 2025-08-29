@@ -14,5 +14,16 @@
 
   "item.minecraftfarmertechmod.basic_circuit_board": "Tier 1 Circuit Board",
   "item.minecraftfarmertechmod.advanced_circuit_board": "Tier 2 Circuit Board",
-  "item.minecraftfarmertechmod.fusion_circuit_board": "Tier 3 Circuit Board"
+  "item.minecraftfarmertechmod.fusion_circuit_board": "Tier 3 Circuit Board",
+  "item.minecraftfarmertechmod.basic_blade": "Tier 1 Blade",
+  "item.minecraftfarmertechmod.advanced_blade": "Tier 2 Blade",
+  "item.minecraftfarmertechmod.grate": "Grate",
+
+  "item.minecraftfarmertechmod.iron_plate": "Iron Plate",
+  "item.minecraftfarmertechmod.gold_plate": "Gold Plate",
+  "item.minecraftfarmertechmod.brass_plate": "Brass Plate",
+  "item.minecraftfarmertechmod.diamond_plate": "Diamond Plate",
+  "item.minecraftfarmertechmod.netherite_plate": "Netherite Plate",
+  "item.minecraftfarmertechmod.wisk": "Wisk",
+  "item.minecraftfarmertechmod.ram": "Ram"
 }

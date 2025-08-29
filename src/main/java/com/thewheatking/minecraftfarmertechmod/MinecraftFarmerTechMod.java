@@ -74,10 +74,18 @@ public class MinecraftFarmerTechMod {
             event.accept(ModItems.BASIC_CIRCUIT_BOARD);
             event.accept(ModItems.ADVANCED_CIRCUIT_BOARD);
             event.accept(ModItems.FUSION_CIRCUIT_BOARD);
-            //blades and grate
+            //machine parts
             event.accept(ModItems.BASIC_BLADE);
             event.accept(ModItems.ADVANCED_BLADE);
             event.accept(ModItems.GRATE);
+            event.accept(ModItems.WISK);
+            event.accept(ModItems.RAM);
+            //plates
+            event.accept(ModItems.IRON_PLATE);
+            event.accept(ModItems.GOLD_PLATE);
+            event.accept(ModItems.BRASS_PLATE);
+            event.accept(ModItems.DIAMOND_PLATE);
+            event.accept(ModItems.NETHERITE_PLATE);
         }
     }
 

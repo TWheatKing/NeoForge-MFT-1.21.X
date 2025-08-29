@@ -44,8 +44,23 @@ public class ModItems {
             () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> ADVANCED_BLADE = ITEMS.register("advanced_blade",
             () -> new Item(new Item.Properties()));
-    //grate
+    //machine parts
     public static final DeferredItem<Item> GRATE = ITEMS.register("grate",
+            () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> WISK = ITEMS.register("wisk",
+            () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> RAM = ITEMS.register("ram",
+            () -> new Item(new Item.Properties()));
+    //plates
+    public static final DeferredItem<Item> IRON_PLATE = ITEMS.register("iron_plate",
+            () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> GOLD_PLATE = ITEMS.register("gold_plate",
+            () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> BRASS_PLATE = ITEMS.register("brass_plate",
+            () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> DIAMOND_PLATE = ITEMS.register("diamond_plate",
+            () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> NETHERITE_PLATE = ITEMS.register("netherite_plate",
             () -> new Item(new Item.Properties()));
 
     public static void register(IEventBus eventBus){
