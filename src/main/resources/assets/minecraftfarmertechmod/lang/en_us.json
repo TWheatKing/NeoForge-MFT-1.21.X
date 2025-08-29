@@ -25,5 +25,9 @@
   "item.minecraftfarmertechmod.diamond_plate": "Diamond Plate",
   "item.minecraftfarmertechmod.netherite_plate": "Netherite Plate",
   "item.minecraftfarmertechmod.wisk": "Wisk",
-  "item.minecraftfarmertechmod.ram": "Ram"
+  "item.minecraftfarmertechmod.ram": "Ram",
+
+
+
+  "block.minecraftfarmertechmod.zinc_ore": "Zinc Ore"
 }

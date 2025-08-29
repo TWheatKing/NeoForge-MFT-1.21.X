@@ -1,5 +1,6 @@
 package com.thewheatking.minecraftfarmertechmod;
 
+import com.thewheatking.minecraftfarmertechmod.block.ModBlocks;
 import com.thewheatking.minecraftfarmertechmod.item.ModItems;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.item.CreativeModeTab;
@@ -41,6 +42,7 @@ public class MinecraftFarmerTechMod {
         NeoForge.EVENT_BUS.register(this);
 
         ModItems.register(modEventBus);
+        ModBlocks.register(modEventBus);
 
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
@@ -86,6 +88,9 @@ public class MinecraftFarmerTechMod {
             event.accept(ModItems.BRASS_PLATE);
             event.accept(ModItems.DIAMOND_PLATE);
             event.accept(ModItems.NETHERITE_PLATE);
+        }
+        if(event.getTabKey() ==CreativeModeTabs.NATURAL_BLOCKS){
+            event.accept(ModBlocks.ZINC_ORE);
         }
     }
 
