@@ -1,5 +1,6 @@
-package net.thewheatking.minecraftfarmertechmod;
+package com.thewheatking.minecraftfarmertechmod;
 
+import net.minecraft.client.Minecraft;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -64,9 +65,9 @@ public class MinecraftFarmerTechMod {
     static class ClientModEvents {
         @SubscribeEvent
         static void onClientSetup(FMLClientSetupEvent event) {
-            // Some client setup code
-            //LOGGER.info("HELLO FROM CLIENT SETUP");
-            //LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
+             //Some client setup code
+            LOGGER.info("HELLO FROM CLIENT SETUP");
+            LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
         }
     }
 }

@@ -1,4 +1,4 @@
-package net.thewheatking.minecraftfarmertechmod;
+package com.thewheatking.minecraftfarmertechmod;
 
 import java.util.List;
 
