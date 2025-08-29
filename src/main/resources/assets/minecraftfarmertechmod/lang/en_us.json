@@ -1,4 +1,6 @@
 {
   "item.minecraftfarmertechmod.wheat_ingot": "Wheat Ingot",
-  "item.minecraftfarmertechmod.zinc_ingot": "Zinc Ingot"
+  "item.minecraftfarmertechmod.zinc_ingot": "Zinc",
+  "item.minecraftfarmertechmod.raw_zinc": "Raw Zinc",
+  "item.minecraftfarmertechmod.brass": "Brass"
 }

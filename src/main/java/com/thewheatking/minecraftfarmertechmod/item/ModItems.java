@@ -13,6 +13,14 @@ public class ModItems {
             () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> ZINC_INGOT = ITEMS.register("zinc_ingot",
             () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> RAW_ZINC = ITEMS.register("raw_zinc",
+            () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> BRASS = ITEMS.register("brass",
+            () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> ZINC_ALLOY = ITEMS.register("zinc_alloy",
+            () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> ANDESITE_ALLOY = ITEMS.register("andesite_alloy",
+            () -> new Item(new Item.Properties()));
 
     public static void register(IEventBus eventBus){
         ITEMS.register(eventBus);

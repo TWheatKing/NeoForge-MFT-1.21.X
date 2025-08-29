@@ -58,6 +58,10 @@ public class MinecraftFarmerTechMod {
         if(event.getTabKey() == CreativeModeTabs.INGREDIENTS){
             event.accept(ModItems.WHEAT_INGOT);
             event.accept(ModItems.ZINC_INGOT);
+            event.accept(ModItems.RAW_ZINC);
+            event.accept(ModItems.ZINC_ALLOY);
+            event.accept(ModItems.BRASS);
+            event.accept(ModItems.ANDESITE_ALLOY);
         }
     }
 
