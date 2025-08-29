@@ -21,6 +21,7 @@ public class ModItems {
             () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> ANDESITE_ALLOY = ITEMS.register("andesite_alloy",
             () -> new Item(new Item.Properties()));
+    //Bits
     public static final DeferredItem<Item> IRON_BIT = ITEMS.register("iron_bit",
             () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> GOLD_BIT = ITEMS.register("gold_bit",
@@ -30,6 +31,13 @@ public class ModItems {
     public static final DeferredItem<Item> DIAMOND_BIT = ITEMS.register("diamond_bit",
             () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> NETHERITE_BIT = ITEMS.register("netherite_bit",
+            () -> new Item(new Item.Properties()));
+    //CBS
+    public static final DeferredItem<Item> BASIC_CIRCUIT_BOARD = ITEMS.register("basic_circuit_board",
+            () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> ADVANCED_CIRCUIT_BOARD = ITEMS.register("advanced_circuit_board",
+            () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> FUSION_CIRCUIT_BOARD = ITEMS.register("fusion_circuit_board",
             () -> new Item(new Item.Properties()));
 
     public static void register(IEventBus eventBus){

@@ -70,6 +70,10 @@ public class MinecraftFarmerTechMod {
             event.accept(ModItems.COPPER_BIT);
             event.accept(ModItems.DIAMOND_BIT);
             event.accept(ModItems.NETHERITE_BIT);
+            //cbs
+            event.accept(ModItems.BASIC_CIRCUIT_BOARD);
+            event.accept(ModItems.ADVANCED_CIRCUIT_BOARD);
+            event.accept(ModItems.FUSION_CIRCUIT_BOARD);
         }
     }
 
