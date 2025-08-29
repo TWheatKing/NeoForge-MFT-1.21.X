@@ -74,6 +74,10 @@ public class MinecraftFarmerTechMod {
             event.accept(ModItems.BASIC_CIRCUIT_BOARD);
             event.accept(ModItems.ADVANCED_CIRCUIT_BOARD);
             event.accept(ModItems.FUSION_CIRCUIT_BOARD);
+            //blades and grate
+            event.accept(ModItems.BASIC_BLADE);
+            event.accept(ModItems.ADVANCED_BLADE);
+            event.accept(ModItems.GRATE);
         }
     }
 

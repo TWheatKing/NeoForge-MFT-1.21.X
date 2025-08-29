@@ -39,6 +39,14 @@ public class ModItems {
             () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> FUSION_CIRCUIT_BOARD = ITEMS.register("fusion_circuit_board",
             () -> new Item(new Item.Properties()));
+    //fan blades
+    public static final DeferredItem<Item> BASIC_BLADE = ITEMS.register("basic_blade",
+            () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> ADVANCED_BLADE = ITEMS.register("advanced_blade",
+            () -> new Item(new Item.Properties()));
+    //grate
+    public static final DeferredItem<Item> GRATE = ITEMS.register("grate",
+            () -> new Item(new Item.Properties()));
 
     public static void register(IEventBus eventBus){
         ITEMS.register(eventBus);
