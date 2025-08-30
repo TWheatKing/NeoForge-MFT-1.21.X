@@ -54,6 +54,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModBlocks.ZINC_DEEPSLATE_ORE);
                         //custom items
                         output.accept(ModItems.WRENCH);
+                        output.accept(ModItems.CHISEL);
 
                     }).build());
 
