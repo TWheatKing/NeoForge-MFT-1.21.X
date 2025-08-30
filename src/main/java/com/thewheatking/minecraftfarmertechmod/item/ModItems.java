@@ -1,6 +1,7 @@
 package com.thewheatking.minecraftfarmertechmod.item;
 
 import com.thewheatking.minecraftfarmertechmod.MinecraftFarmerTechMod;
+import com.thewheatking.minecraftfarmertechmod.item.custom.WrenchItem;
 import net.minecraft.world.item.Item;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
@@ -62,6 +63,10 @@ public class ModItems {
             () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> NETHERITE_PLATE = ITEMS.register("netherite_plate",
             () -> new Item(new Item.Properties()));
+
+    //custom items
+    public static final DeferredItem<Item> WRENCH = ITEMS.register("wrench",
+            () -> new WrenchItem(new Item.Properties()));
 
     public static void register(IEventBus eventBus){
         ITEMS.register(eventBus);
