@@ -34,5 +34,8 @@
 
 
 
-  "creativetab.minecraftfarmertechmod.minecraft_farmer_tech": "Minecraft Farmer Tech"
+  "creativetab.minecraftfarmertechmod.minecraft_farmer_tech": "Minecraft Farmer Tech",
+
+  "tooltip.minecraftfarmertechmod.wrench.line1": "§7Shift + Left-click: Rotate blocks",
+  "tooltip.minecraftfarmertechmod.wrench.line2": "§7Shift + Right-click: Dismantle crafted blocks only"
 }

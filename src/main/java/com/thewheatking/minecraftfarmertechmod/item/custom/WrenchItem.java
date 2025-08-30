@@ -2,6 +2,7 @@ package com.thewheatking.minecraftfarmertechmod.item.custom;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionResult;
@@ -9,6 +10,7 @@ import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -45,11 +47,17 @@ public class WrenchItem extends Item {
         }
     }
 
+    @Override
+    public boolean canAttackBlock(BlockState state, Level level, BlockPos pos, Player player) {
+        // Never break blocks with the wrench
+        return false;
+    }
+
     private InteractionResult handleDismantleBlock(Level level, BlockPos pos, BlockState state, Player player) {
         Block block = state.getBlock();
 
         // Don't allow dismantling of certain blocks
-        if (isBlockDismantlable(state)) {
+        if (isBlockDismantlable(state) && isPlayerPlacedBlock(state)){
             // Get the drops for this block
             List<ItemStack> drops = Block.getDrops(state, level.getServer().overworld(), pos, level.getBlockEntity(pos));
 
@@ -75,7 +83,38 @@ public class WrenchItem extends Item {
 
         return InteractionResult.PASS;
     }
+    private boolean isPlayerPlacedBlock(BlockState state) {
+        Block block = state.getBlock();
 
+        // Only allow dismantling of clearly crafted/manufactured blocks
+        // Exclude all natural blocks like ores, logs, stone, etc.
+        return block == Blocks.FURNACE ||
+                block == Blocks.BLAST_FURNACE ||
+                block == Blocks.SMOKER ||
+                block == Blocks.CHEST ||
+                block == Blocks.BARREL ||
+                block == Blocks.CRAFTING_TABLE ||
+                block == Blocks.DISPENSER ||
+                block == Blocks.DROPPER ||
+                block == Blocks.HOPPER ||
+                block == Blocks.PISTON ||
+                block == Blocks.STICKY_PISTON ||
+                block == Blocks.OBSERVER ||
+                block == Blocks.REDSTONE_LAMP ||
+                block == Blocks.REDSTONE_BLOCK ||
+                block == Blocks.TARGET ||
+                block == Blocks.LECTERN ||
+                block == Blocks.ENCHANTING_TABLE ||
+                block == Blocks.ANVIL ||
+                block == Blocks.CHIPPED_ANVIL ||
+                block == Blocks.DAMAGED_ANVIL ||
+                // Add more crafted blocks as needed
+                // Stairs, slabs, and other crafted building blocks
+                block.getName().getString().contains("stairs") ||
+                block.getName().getString().contains("slab") ||
+                block.getName().getString().contains("wall") ||
+                block.getName().getString().contains("fence");
+    }
     private InteractionResult handleRotateBlock(Level level, BlockPos pos, BlockState state, UseOnContext context) {
         BlockState newState = getRotatedState(state, context.getClickedFace());
 
@@ -100,6 +139,12 @@ public class WrenchItem extends Item {
                 block != Blocks.END_PORTAL &&
                 block != Blocks.NETHER_PORTAL &&
                 block != Blocks.SPAWNER &&
+                block != Blocks.BARRIER &&
+                block != Blocks.COMMAND_BLOCK &&
+                block != Blocks.CHAIN_COMMAND_BLOCK &&
+                block != Blocks.REPEATING_COMMAND_BLOCK &&
+                block != Blocks.STRUCTURE_BLOCK &&
+                block != Blocks.JIGSAW &&
                 !state.isAir();
     }
 
@@ -186,6 +231,13 @@ public class WrenchItem extends Item {
             case Y -> Direction.Axis.Z;
             case Z -> Direction.Axis.X;
         };
+    }
+
+    @Override
+    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+        tooltipComponents.add(Component.translatable("tooltip.minecraftfarmertechmod.wrench.line1"));
+        tooltipComponents.add(Component.translatable("tooltip.minecraftfarmertechmod.wrench.line2"));
+        super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
     }
 
     @Override
