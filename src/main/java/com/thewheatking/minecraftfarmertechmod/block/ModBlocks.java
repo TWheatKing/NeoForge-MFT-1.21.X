@@ -5,9 +5,7 @@ import com.thewheatking.minecraftfarmertechmod.item.ModItems;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.DropExperienceBlock;
-import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
@@ -30,7 +28,8 @@ public class ModBlocks {
                     .randomTicks()
                     .strength(3.0F, 3.0F)
             )
-    );public static final DeferredBlock<Block> ZINC_DEEPSLATE_ORE = registerBlock("zinc_deepslate_ore",
+    );
+    public static final DeferredBlock<Block> ZINC_DEEPSLATE_ORE = registerBlock("zinc_deepslate_ore",
             () -> new DropExperienceBlock(UniformInt.of(3,6),
                     BlockBehaviour.Properties.of()
                     .mapColor(MapColor.DEEPSLATE)
@@ -40,6 +39,12 @@ public class ModBlocks {
                     .strength(4.0F, 3.0F)
             )
     );
+    // Register your Iron Furnace block
+    //public static final DeferredBlock<IronFurnaceBlock> IRON_FURNACE_BLOCK = BLOCKS.register("iron_furnace",
+            //() -> new IronFurnaceBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK)
+                    //.requiresCorrectToolForDrops()
+                    //.strength(5.0F, 6.0F)
+                    //.lightLevel(state -> state.getValue(IronFurnaceBlock.LIT) ? 13 : 0)));
 
 
 

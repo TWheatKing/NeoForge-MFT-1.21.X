@@ -55,6 +55,8 @@ public class ModCreativeModeTabs {
                         //custom items
                         output.accept(ModItems.WRENCH);
                         output.accept(ModItems.CHISEL);
+                        //custom blocks
+                        //output.accept(ModBlocks.IRON_FURNACE_BLOCK);
 
                     }).build());
 
