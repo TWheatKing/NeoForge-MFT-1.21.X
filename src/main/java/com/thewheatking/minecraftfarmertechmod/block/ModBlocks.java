@@ -30,6 +30,15 @@ public class ModBlocks {
                     .randomTicks()
                     .strength(3.0F, 3.0F)
             )
+    );public static final DeferredBlock<Block> ZINC_DEEPSLATE_ORE = registerBlock("zinc_deepslate_ore",
+            () -> new DropExperienceBlock(UniformInt.of(3,6),
+                    BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.DEEPSLATE)
+                    .instrument(NoteBlockInstrument.BASEDRUM)
+                    .requiresCorrectToolForDrops()
+                    .randomTicks()
+                    .strength(4.0F, 3.0F)
+            )
     );
 
 

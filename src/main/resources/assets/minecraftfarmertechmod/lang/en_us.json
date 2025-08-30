@@ -29,5 +29,10 @@
 
 
 
-  "block.minecraftfarmertechmod.zinc_ore": "Zinc Ore"
+  "block.minecraftfarmertechmod.zinc_ore": "Zinc Ore",
+  "block.minecraftfarmertechmod.zinc_deepslate_ore": "Zinc Deepslate Ore",
+
+
+
+  "creativetab.minecraftfarmertechmod.minecraft_farmer_tech": "Minecraft Farmer Tech"
 }
