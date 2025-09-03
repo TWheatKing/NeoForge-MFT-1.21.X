@@ -1,4 +1,4 @@
-Minecraft Farmer Tech Mod
+Minecraft Farmer Tech
 =======
 
 I was annoyed that the tech mods out there generate power but don't have much machines to build farms. So I built my own. This mod is for all the people who want to build farms and explore different ways to farm for almost every item in Minecraft. 
