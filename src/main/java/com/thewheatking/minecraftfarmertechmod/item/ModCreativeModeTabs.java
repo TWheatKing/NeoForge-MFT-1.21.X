@@ -60,7 +60,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.WRENCH);
                         output.accept(ModItems.CHISEL);
                         //custom blocks
-                        //output.accept(ModBlocks.IRON_FURNACE_BLOCK);
+                        output.accept(ModBlocks.IRON_FURNACE);
                         output.accept(ModBlocks.ZINC_CASING);
 
                     }).build());

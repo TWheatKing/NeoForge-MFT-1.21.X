@@ -1,6 +1,8 @@
 package com.thewheatking.minecraftfarmertechmod.block;
 
 import com.thewheatking.minecraftfarmertechmod.MinecraftFarmerTechMod;
+import com.thewheatking.minecraftfarmertechmod.block.custom.AndesiteCasingBlock;
+import com.thewheatking.minecraftfarmertechmod.block.custom.IronFurnaceBlock;
 import com.thewheatking.minecraftfarmertechmod.item.ModItems;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.item.BlockItem;
@@ -42,15 +44,12 @@ public class ModBlocks {
     );
     //custom blocks
     // Register your Iron Furnace block
-    //public static final DeferredBlock<IronFurnaceBlock> IRON_FURNACE_BLOCK = BLOCKS.register("iron_furnace",
-            //() -> new IronFurnaceBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK)
-                    //.requiresCorrectToolForDrops()
-                    //.strength(5.0F, 6.0F)
-                    //.lightLevel(state -> state.getValue(IronFurnaceBlock.LIT) ? 13 : 0)));
+    public static final DeferredBlock<Block> IRON_FURNACE = registerBlock("iron_furnace",
+            () -> new IronFurnaceBlock());
     public static final DeferredBlock<Block> ZINC_CASING = registerBlock("zinc_casing",
             ZincCasingBlock::new);
     public static final DeferredBlock<Block> ANDESITE_CASING = registerBlock("andesite_casing",
-            ZincCasingBlock::new);
+            AndesiteCasingBlock::new);
 
 
 

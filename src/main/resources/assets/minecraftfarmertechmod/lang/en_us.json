@@ -36,15 +36,17 @@
 
   "block.minecraftfarmertechmod.zinc_ore": "Zinc Ore",
   "block.minecraftfarmertechmod.zinc_deepslate_ore": "Zinc Deepslate Ore",
-  "block.minecraftfarmertechmod.iron_furnace_block": "Iron Furnace",
   "block.minecraftfarmertechmod.zinc_casing": "Zinc Casing",
   "block.minecraftfarmertechmod.andesite_casing": "Andesite Casing",
   "block.minecraftfarmertechmod.zinc_casing.tooltip": "A sturdy casing made from zinc alloy",
+  "block.minecraftfarmertechmod.iron_furnace": "Iron Furnace",
 
 
 
   "creativetab.minecraftfarmertechmod.minecraft_farmer_tech": "Minecraft Farmer Tech",
 
   "tooltip.minecraftfarmertechmod.wrench.line1": "§7Shift + Left-click: Rotate blocks",
-  "tooltip.minecraftfarmertechmod.wrench.line2": "§7Shift + Right-click: Dismantle crafted blocks only"
+  "tooltip.minecraftfarmertechmod.wrench.line2": "§7Shift + Right-click: Dismantle crafted blocks only",
+
+  "container.minecraftfarmertechmod.iron_furnace": "Iron Furnace"
 }

@@ -1,8 +1,10 @@
 package com.thewheatking.minecraftfarmertechmod;
 
 import com.thewheatking.minecraftfarmertechmod.block.ModBlocks;
+import com.thewheatking.minecraftfarmertechmod.block.entity.ModBlockEntities;
 import com.thewheatking.minecraftfarmertechmod.item.ModCreativeModeTabs;
 import com.thewheatking.minecraftfarmertechmod.item.ModItems;
+import com.thewheatking.minecraftfarmertechmod.screen.ModMenuTypes;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
@@ -46,6 +48,9 @@ public class MinecraftFarmerTechMod {
 
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
+        // Register the new block entities and menu types
+        ModBlockEntities.register(modEventBus);
+        ModMenuTypes.register(modEventBus);
 
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
