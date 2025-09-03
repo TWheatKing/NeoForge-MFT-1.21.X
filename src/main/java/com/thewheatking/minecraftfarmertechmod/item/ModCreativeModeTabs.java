@@ -43,6 +43,10 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.GRATE);
                         output.accept(ModItems.WISK);
                         output.accept(ModItems.RAM);
+                        output.accept(ModItems.EMPTY_COIL);
+                        output.accept(ModItems.COPPER_COIL);
+                        output.accept(ModItems.GOLD_COIL);
+                        output.accept(ModItems.DIAMOND_COIL);
                         //plates
                         output.accept(ModItems.IRON_PLATE);
                         output.accept(ModItems.GOLD_PLATE);
@@ -57,6 +61,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.CHISEL);
                         //custom blocks
                         //output.accept(ModBlocks.IRON_FURNACE_BLOCK);
+                        output.accept(ModBlocks.ZINC_CASING);
 
                     }).build());
 

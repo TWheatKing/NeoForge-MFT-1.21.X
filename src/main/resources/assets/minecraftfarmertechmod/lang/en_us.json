@@ -26,6 +26,10 @@
   "item.minecraftfarmertechmod.netherite_plate": "Netherite Plate",
   "item.minecraftfarmertechmod.wisk": "Wisk",
   "item.minecraftfarmertechmod.ram": "Ram",
+  "item.minecraftfarmertechmod.empty_coil": "Empty Coil",
+  "item.minecraftfarmertechmod.copper_coil": "Copper Coil",
+  "item.minecraftfarmertechmod.gold_coil": "Gold Coil",
+  "item.minecraftfarmertechmod.diamond_coil": "Diamond Coil",
 
   "item.minecraftfarmertechmod.wrench": "Wrench",
   "item.minecraftfarmertechmod.chisel": "Chisel",
@@ -33,6 +37,9 @@
   "block.minecraftfarmertechmod.zinc_ore": "Zinc Ore",
   "block.minecraftfarmertechmod.zinc_deepslate_ore": "Zinc Deepslate Ore",
   "block.minecraftfarmertechmod.iron_furnace_block": "Iron Furnace",
+  "block.minecraftfarmertechmod.zinc_casing": "Zinc Casing",
+  "block.minecraftfarmertechmod.andesite_casing": "Andesite Casing",
+  "block.minecraftfarmertechmod.zinc_casing.tooltip": "A sturdy casing made from zinc alloy",
 
 
 

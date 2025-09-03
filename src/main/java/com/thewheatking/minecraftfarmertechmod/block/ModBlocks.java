@@ -12,6 +12,7 @@ import net.minecraft.world.level.material.MapColor;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
+import com.thewheatking.minecraftfarmertechmod.block.custom.ZincCasingBlock;
 
 import java.util.function.Supplier;
 
@@ -39,13 +40,17 @@ public class ModBlocks {
                     .strength(4.0F, 3.0F)
             )
     );
+    //custom blocks
     // Register your Iron Furnace block
     //public static final DeferredBlock<IronFurnaceBlock> IRON_FURNACE_BLOCK = BLOCKS.register("iron_furnace",
             //() -> new IronFurnaceBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK)
                     //.requiresCorrectToolForDrops()
                     //.strength(5.0F, 6.0F)
                     //.lightLevel(state -> state.getValue(IronFurnaceBlock.LIT) ? 13 : 0)));
-
+    public static final DeferredBlock<Block> ZINC_CASING = registerBlock("zinc_casing",
+            ZincCasingBlock::new);
+    public static final DeferredBlock<Block> ANDESITE_CASING = registerBlock("andesite_casing",
+            ZincCasingBlock::new);
 
 
 

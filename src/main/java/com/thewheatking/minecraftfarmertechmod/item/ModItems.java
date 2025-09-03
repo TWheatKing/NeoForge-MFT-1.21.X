@@ -1,8 +1,10 @@
 package com.thewheatking.minecraftfarmertechmod.item;
 
 import com.thewheatking.minecraftfarmertechmod.MinecraftFarmerTechMod;
+import com.thewheatking.minecraftfarmertechmod.item.custom.AndesiteAlloyItem;
 import com.thewheatking.minecraftfarmertechmod.item.custom.ChiselItem;
 import com.thewheatking.minecraftfarmertechmod.item.custom.WrenchItem;
+import com.thewheatking.minecraftfarmertechmod.item.custom.ZincAlloyItem;
 import net.minecraft.world.item.Item;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
@@ -18,10 +20,6 @@ public class ModItems {
     public static final DeferredItem<Item> RAW_ZINC = ITEMS.register("raw_zinc",
             () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> BRASS = ITEMS.register("brass",
-            () -> new Item(new Item.Properties()));
-    public static final DeferredItem<Item> ZINC_ALLOY = ITEMS.register("zinc_alloy",
-            () -> new Item(new Item.Properties()));
-    public static final DeferredItem<Item> ANDESITE_ALLOY = ITEMS.register("andesite_alloy",
             () -> new Item(new Item.Properties()));
     //Bits
     public static final DeferredItem<Item> IRON_BIT = ITEMS.register("iron_bit",
@@ -53,6 +51,14 @@ public class ModItems {
             () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> RAM = ITEMS.register("ram",
             () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> EMPTY_COIL = ITEMS.register("empty_coil",
+            () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> COPPER_COIL = ITEMS.register("copper_coil",
+            () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> GOLD_COIL = ITEMS.register("gold_coil",
+            () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> DIAMOND_COIL = ITEMS.register("diamond_coil",
+            () -> new Item(new Item.Properties()));
     //plates
     public static final DeferredItem<Item> IRON_PLATE = ITEMS.register("iron_plate",
             () -> new Item(new Item.Properties()));
@@ -70,6 +76,10 @@ public class ModItems {
             () -> new WrenchItem(new Item.Properties()));
     public static final DeferredItem<Item> CHISEL = ITEMS.register("chisel",
             () -> new ChiselItem(new Item.Properties().durability(32)));
+    public static final DeferredItem<Item> ZINC_ALLOY = ITEMS.register("zinc_alloy",
+            () -> new ZincAlloyItem(new Item.Properties()));
+    public static final DeferredItem<Item> ANDESITE_ALLOY = ITEMS.register("andesite_alloy",
+            () -> new AndesiteAlloyItem(new Item.Properties()));
 
     public static void register(IEventBus eventBus){
         ITEMS.register(eventBus);
