@@ -62,6 +62,10 @@ public class ModCreativeModeTabs {
                         //custom blocks
                         output.accept(ModBlocks.IRON_FURNACE);
                         output.accept(ModBlocks.ZINC_CASING);
+                        // Energy System Blocks
+                        output.accept(ModBlocks.ENERGY_CABLE);
+                        output.accept(ModBlocks.COAL_GENERATOR);
+                        output.accept(ModBlocks.ENERGY_BATTERY);
 
                     }).build());
 

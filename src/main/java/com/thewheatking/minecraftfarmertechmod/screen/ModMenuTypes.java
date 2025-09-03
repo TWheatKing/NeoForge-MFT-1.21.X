@@ -17,6 +17,10 @@ public class ModMenuTypes {
             MENUS.register("iron_furnace_menu", () ->
                     IMenuTypeExtension.create((containerId, inventory, data) ->
                             new IronFurnaceMenu(containerId, inventory, data)));
+    public static final Supplier<MenuType<CoalGeneratorMenu>> COAL_GENERATOR_MENU =
+            MENUS.register("coal_generator_menu", () ->
+                    IMenuTypeExtension.create((containerId, inventory, data) ->
+                            new CoalGeneratorMenu(containerId, inventory, data)));
 
     public static void register(IEventBus eventBus) {
         MENUS.register(eventBus);

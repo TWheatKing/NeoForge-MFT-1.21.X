@@ -1,6 +1,7 @@
 package com.thewheatking.minecraftfarmertechmod.event;
 
 import com.thewheatking.minecraftfarmertechmod.MinecraftFarmerTechMod;
+import com.thewheatking.minecraftfarmertechmod.screen.CoalGeneratorScreen;
 import com.thewheatking.minecraftfarmertechmod.screen.IronFurnaceScreen;
 import com.thewheatking.minecraftfarmertechmod.screen.ModMenuTypes;
 import net.neoforged.api.distmarker.Dist;
@@ -20,5 +21,6 @@ public class ClientModEvents {
     @SubscribeEvent
     public static void registerScreens(RegisterMenuScreensEvent event) {
         event.register(ModMenuTypes.IRON_FURNACE_MENU.get(), IronFurnaceScreen::new);
+        event.register(ModMenuTypes.COAL_GENERATOR_MENU.get(), CoalGeneratorScreen::new);
     }
 }

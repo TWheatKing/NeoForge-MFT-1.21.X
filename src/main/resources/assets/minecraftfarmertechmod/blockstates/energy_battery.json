@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "minecraftfarmertechmod:block/energy_battery"
+    }
+  }
+}

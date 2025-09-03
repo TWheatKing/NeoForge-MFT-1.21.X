@@ -40,6 +40,9 @@
   "block.minecraftfarmertechmod.andesite_casing": "Andesite Casing",
   "block.minecraftfarmertechmod.zinc_casing.tooltip": "A sturdy casing made from zinc alloy",
   "block.minecraftfarmertechmod.iron_furnace": "Iron Furnace",
+  "block.minecraftfarmertechmod.energy_cable": "Energy Cable",
+  "block.minecraftfarmertechmod.coal_generator": "Coal Generator",
+  "block.minecraftfarmertechmod.energy_battery": "Energy Battery",
 
 
 
@@ -48,5 +51,6 @@
   "tooltip.minecraftfarmertechmod.wrench.line1": "§7Shift + Left-click: Rotate blocks",
   "tooltip.minecraftfarmertechmod.wrench.line2": "§7Shift + Right-click: Dismantle crafted blocks only",
 
-  "container.minecraftfarmertechmod.iron_furnace": "Iron Furnace"
+  "container.minecraftfarmertechmod.iron_furnace": "Iron Furnace",
+  "container.minecraftfarmertechmod.coal_generator": "Coal Generator"
 }

@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "IRI",
+    "RFR",
+    "IZI"
+  ],
+  "key": {
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    },
+    "F": {
+      "item": "minecraft:furnace"
+    },
+    "Z": {
+      "item": "minecraftfarmertechmod:zinc_alloy"
+    }
+  },
+  "result": {
+    "item": "minecraftfarmertechmod:coal_generator",
+    "count": 1
+  }
+}

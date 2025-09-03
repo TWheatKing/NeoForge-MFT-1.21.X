@@ -17,6 +17,21 @@ public class ModBlockEntities {
             BLOCK_ENTITIES.register("iron_furnace", () ->
                     BlockEntityType.Builder.of(IronFurnaceBlockEntity::new,
                             ModBlocks.IRON_FURNACE.get()).build(null));
+    // Energy System Block Entities
+    public static final Supplier<BlockEntityType<EnergyCableBlockEntity>> ENERGY_CABLE =
+            BLOCK_ENTITIES.register("energy_cable", () ->
+                    BlockEntityType.Builder.of(EnergyCableBlockEntity::new,
+                            ModBlocks.ENERGY_CABLE.get()).build(null));
+
+    public static final Supplier<BlockEntityType<CoalGeneratorBlockEntity>> COAL_GENERATOR =
+            BLOCK_ENTITIES.register("coal_generator", () ->
+                    BlockEntityType.Builder.of(CoalGeneratorBlockEntity::new,
+                            ModBlocks.COAL_GENERATOR.get()).build(null));
+
+    public static final Supplier<BlockEntityType<EnergyBatteryBlockEntity>> ENERGY_BATTERY =
+            BLOCK_ENTITIES.register("energy_battery", () ->
+                    BlockEntityType.Builder.of(EnergyBatteryBlockEntity::new,
+                            ModBlocks.ENERGY_BATTERY.get()).build(null));
 
     public static void register(IEventBus eventBus) {
         BLOCK_ENTITIES.register(eventBus);

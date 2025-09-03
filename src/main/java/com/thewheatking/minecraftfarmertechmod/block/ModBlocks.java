@@ -1,8 +1,7 @@
 package com.thewheatking.minecraftfarmertechmod.block;
 
 import com.thewheatking.minecraftfarmertechmod.MinecraftFarmerTechMod;
-import com.thewheatking.minecraftfarmertechmod.block.custom.AndesiteCasingBlock;
-import com.thewheatking.minecraftfarmertechmod.block.custom.IronFurnaceBlock;
+import com.thewheatking.minecraftfarmertechmod.block.custom.*;
 import com.thewheatking.minecraftfarmertechmod.item.ModItems;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.item.BlockItem;
@@ -14,7 +13,6 @@ import net.minecraft.world.level.material.MapColor;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
-import com.thewheatking.minecraftfarmertechmod.block.custom.ZincCasingBlock;
 
 import java.util.function.Supplier;
 
@@ -50,7 +48,15 @@ public class ModBlocks {
             ZincCasingBlock::new);
     public static final DeferredBlock<Block> ANDESITE_CASING = registerBlock("andesite_casing",
             AndesiteCasingBlock::new);
+    // Energy System Blocks
+    public static final DeferredBlock<Block> ENERGY_CABLE = registerBlock("energy_cable",
+            () -> new EnergyCableBlock());
 
+    public static final DeferredBlock<Block> COAL_GENERATOR = registerBlock("coal_generator",
+            () -> new CoalGeneratorBlock());
+
+    public static final DeferredBlock<Block> ENERGY_BATTERY = registerBlock("energy_battery",
+            () -> new EnergyBatteryBlock());
 
 
 
