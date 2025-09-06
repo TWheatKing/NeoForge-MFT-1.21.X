@@ -1,25 +1,12 @@
-
-Installation information
+Minecraft Farmer Tech
 =======
 
-This template repository can be directly cloned to get you started with a new
-mod. Simply create a new repository cloned from this one, by following the
-instructions provided by [GitHub](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template).
+I was annoyed that the tech mods out there generate power but don't have much machines to build farms. So I built my own. This mod is for all the people who want to build farms and explore different ways to farm for almost every item in Minecraft. 
 
-Once you have your clone, simply open the repository in the IDE of your choice. The usual recommendation for an IDE is either IntelliJ IDEA or Eclipse.
+I'm a solo developer starting out hope you enjoy my mod. 
 
-If at any point you are missing libraries in your IDE, or you've run into problems you can
-run `gradlew --refresh-dependencies` to refresh the local cache. `gradlew clean` to reset everything 
-{this does not affect your code} and then start the process again.
+This mod I hope that it stays relatively vanilla plus feeling. 
 
-Mapping Names:
-============
-By default, the MDK is configured to use the official mapping names from Mojang for methods and fields 
-in the Minecraft codebase. These names are covered by a specific license. All modders should be aware of this
-license. For the latest license text, refer to the mapping file itself, or the reference copy here:
-https://github.com/NeoForged/NeoForm/blob/main/Mojang.md
+Feel free to add this to your modpack just make sure you credit my work. 
 
-Additional Resources: 
-==========
-Community Documentation: https://docs.neoforged.net/  
-NeoForged Discord: https://discord.neoforged.net/
+Also if you have any ideas for new features do let me know and I'll try my best 👌 
