@@ -50,9 +50,13 @@ public class CoalGeneratorMenu extends AbstractContainerMenu {
     public int getScaledEnergyProgress() {
         int energy = this.data.get(2);
         int maxEnergy = this.data.get(3);
-        int energyBarHeight = 52; // Height of energy bar
+        int energyBarHeight = 52;
 
-        return maxEnergy != 0 ? energy * energyBarHeight / maxEnergy : 0;
+        if (maxEnergy == 0) return 0;
+
+        // Ensure at least 1 pixel shows when there's any energy
+        long scaledEnergy = (long)energy * energyBarHeight / maxEnergy;
+        return energy > 0 ? Math.max(1, (int)scaledEnergy) : 0;
     }
 
     public int getEnergyStored() {

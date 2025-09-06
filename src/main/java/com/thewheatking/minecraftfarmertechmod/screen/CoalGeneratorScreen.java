@@ -41,17 +41,26 @@ public class CoalGeneratorScreen extends AbstractContainerScreen<CoalGeneratorMe
         if (menu.isBurning()) {
             int burnProgress = menu.getScaledBurnProgress();
             // Render fire icon below the fuel slot
-            guiGraphics.blit(TEXTURE, x + 81, y + 37 + 14 - burnProgress,
+            guiGraphics.blit(TEXTURE, x + 81, y + 54 + 14 - burnProgress,
                     176, 14 - burnProgress, 14, burnProgress);
         }
     }
 
     private void renderEnergyBar(GuiGraphics guiGraphics, int x, int y) {
         int energyHeight = menu.getScaledEnergyProgress();
+
+        // Debug: Keep this line temporarily to verify height is still working
+        //System.out.println("Energy Height: " + energyHeight);
+
         if (energyHeight > 0) {
-            // Render energy bar on the right side
-            guiGraphics.blit(TEXTURE, x + 152, y + 18 + 52 - energyHeight,
-                    190, 52 - energyHeight, 16, energyHeight);
+            // Render the actual energy bar texture (removed the green rectangle)
+            guiGraphics.blit(TEXTURE,
+                    x + 152,                    // X position in GUI
+                    y + 18 + (52 - energyHeight), // Y position (bottom up)
+                    176,                        // Texture X
+                    16 + (52 - energyHeight),   // Texture Y
+                    16,                         // Width
+                    energyHeight);              // Height
         }
     }
 
