@@ -2,26 +2,23 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "pattern": [
-    "IRI",
-    "RFR",
-    "IZI"
+    "CCC",
+    "IZI",
+    "CCC"
   ],
   "key": {
+    "C": {
+      "item": "minecraft:copper_ingot"
+    },
     "I": {
       "item": "minecraft:iron_ingot"
-    },
-    "R": {
-      "item": "minecraft:redstone"
-    },
-    "F": {
-      "item": "minecraft:furnace"
     },
     "Z": {
       "item": "minecraftfarmertechmod:zinc_alloy"
     }
   },
   "result": {
-    "id": "minecraftfarmertechmod:coal_generator",
-    "count": 1
+    "id": "minecraftfarmertechmod:energy_cable",
+    "count": 8
   }
 }

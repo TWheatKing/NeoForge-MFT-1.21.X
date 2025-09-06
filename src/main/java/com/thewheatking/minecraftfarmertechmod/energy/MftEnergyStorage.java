@@ -6,26 +6,26 @@ import net.minecraft.nbt.CompoundTag;
  * Default implementation of IEnergyStorage.
  * This is the basic energy storage implementation that most blocks will use.
  */
-public class EnergyStorage implements IEnergyStorage {
+public class MftEnergyStorage implements IEnergyStorage {
 
     protected int energy;
     protected int capacity;
     protected int maxReceive;
     protected int maxExtract;
 
-    public EnergyStorage(int capacity) {
+    public MftEnergyStorage(int capacity) {
         this(capacity, capacity, capacity, 0);
     }
 
-    public EnergyStorage(int capacity, int maxTransfer) {
+    public MftEnergyStorage(int capacity, int maxTransfer) {
         this(capacity, maxTransfer, maxTransfer, 0);
     }
 
-    public EnergyStorage(int capacity, int maxReceive, int maxExtract) {
+    public MftEnergyStorage(int capacity, int maxReceive, int maxExtract) {
         this(capacity, maxReceive, maxExtract, 0);
     }
 
-    public EnergyStorage(int capacity, int maxReceive, int maxExtract, int energy) {
+    public MftEnergyStorage(int capacity, int maxReceive, int maxExtract, int energy) {
         this.capacity = capacity;
         this.maxReceive = maxReceive;
         this.maxExtract = maxExtract;
@@ -67,6 +67,12 @@ public class EnergyStorage implements IEnergyStorage {
     public int getMaxEnergyStored() {
         return capacity;
     }
+    /**
+     * Sets the energy stored to the given amount
+     */
+    public void setEnergyStored(int energy) {
+        this.energy = Math.max(0, Math.min(capacity, energy));
+    }
 
     @Override
     public boolean canExtract() {
@@ -76,13 +82,6 @@ public class EnergyStorage implements IEnergyStorage {
     @Override
     public boolean canReceive() {
         return this.maxReceive > 0;
-    }
-
-    /**
-     * Sets the energy stored to the given amount
-     */
-    public void setEnergyStored(int energy) {
-        this.energy = Math.max(0, Math.min(capacity, energy));
     }
 
     /**

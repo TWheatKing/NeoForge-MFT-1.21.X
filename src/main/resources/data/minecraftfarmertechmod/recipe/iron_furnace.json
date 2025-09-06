@@ -15,7 +15,7 @@
     }
   },
   "result": {
-    "item": "minecraftfarmertechmod:iron_furnace",
+    "id": "minecraftfarmertechmod:iron_furnace",
     "count": 1
   }
 }

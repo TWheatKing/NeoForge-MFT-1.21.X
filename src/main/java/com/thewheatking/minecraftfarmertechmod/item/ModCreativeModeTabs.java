@@ -20,52 +20,55 @@ public class ModCreativeModeTabs {
                     .title(Component.translatable("creativetab.minecraftfarmertechmod.minecraft_farmer_tech"))
                     .displayItems((itemDisplayParameters, output) -> {
                         //food related ingot
-                        output.accept(ModItems.WHEAT_INGOT);
+                        output.accept(ModItems.WHEAT_INGOT.get());
                         //machine related items
-                        output.accept(ModItems.ZINC_INGOT);
-                        output.accept(ModItems.RAW_ZINC);
-                        output.accept(ModItems.ZINC_ALLOY);
-                        output.accept(ModItems.BRASS);
-                        output.accept(ModItems.ANDESITE_ALLOY);
+                        output.accept(ModItems.ZINC_INGOT.get());
+                        output.accept(ModItems.RAW_ZINC.get());
+                        output.accept(ModItems.ZINC_ALLOY.get());
+                        output.accept(ModItems.BRASS.get());
+                        output.accept(ModItems.ANDESITE_ALLOY.get());
                         //bits
-                        output.accept(ModItems.IRON_BIT);
-                        output.accept(ModItems.GOLD_BIT);
-                        output.accept(ModItems.COPPER_BIT);
-                        output.accept(ModItems.DIAMOND_BIT);
-                        output.accept(ModItems.NETHERITE_BIT);
+                        output.accept(ModItems.IRON_BIT.get());
+                        output.accept(ModItems.GOLD_BIT.get());
+                        output.accept(ModItems.COPPER_BIT.get());
+                        output.accept(ModItems.DIAMOND_BIT.get());
+                        output.accept(ModItems.NETHERITE_BIT.get());
                         //cbs
-                        output.accept(ModItems.BASIC_CIRCUIT_BOARD);
-                        output.accept(ModItems.ADVANCED_CIRCUIT_BOARD);
-                        output.accept(ModItems.FUSION_CIRCUIT_BOARD);
+                        output.accept(ModItems.BASIC_CIRCUIT_BOARD.get());
+                        output.accept(ModItems.ADVANCED_CIRCUIT_BOARD.get());
+                        output.accept(ModItems.FUSION_CIRCUIT_BOARD.get());
                         //machine parts
-                        output.accept(ModItems.BASIC_BLADE);
-                        output.accept(ModItems.ADVANCED_BLADE);
-                        output.accept(ModItems.GRATE);
-                        output.accept(ModItems.WISK);
-                        output.accept(ModItems.RAM);
-                        output.accept(ModItems.EMPTY_COIL);
-                        output.accept(ModItems.COPPER_COIL);
-                        output.accept(ModItems.GOLD_COIL);
-                        output.accept(ModItems.DIAMOND_COIL);
+                        output.accept(ModItems.BASIC_BLADE.get());
+                        output.accept(ModItems.ADVANCED_BLADE.get());
+                        output.accept(ModItems.GRATE.get());
+                        output.accept(ModItems.WISK.get());
+                        output.accept(ModItems.RAM.get());
+                        output.accept(ModItems.EMPTY_COIL.get());
+                        output.accept(ModItems.COPPER_COIL.get());
+                        output.accept(ModItems.GOLD_COIL.get());
+                        output.accept(ModItems.DIAMOND_COIL.get());
                         //plates
-                        output.accept(ModItems.IRON_PLATE);
-                        output.accept(ModItems.GOLD_PLATE);
-                        output.accept(ModItems.BRASS_PLATE);
-                        output.accept(ModItems.DIAMOND_PLATE);
-                        output.accept(ModItems.NETHERITE_PLATE);
+                        output.accept(ModItems.IRON_PLATE.get());
+                        output.accept(ModItems.GOLD_PLATE.get());
+                        output.accept(ModItems.BRASS_PLATE.get());
+                        output.accept(ModItems.DIAMOND_PLATE.get());
+                        output.accept(ModItems.NETHERITE_PLATE.get());
                         //blocks
-                        output.accept(ModBlocks.ZINC_ORE);
-                        output.accept(ModBlocks.ZINC_DEEPSLATE_ORE);
+                        output.accept(ModBlocks.ZINC_ORE.get());
+                        output.accept(ModBlocks.ZINC_DEEPSLATE_ORE.get());
                         //custom items
-                        output.accept(ModItems.WRENCH);
-                        output.accept(ModItems.CHISEL);
+                        output.accept(ModItems.WRENCH.get());
+                        output.accept(ModItems.CHISEL.get());
+                        output.accept(ModItems.BIO_FUEL_BUCKET.get());
                         //custom blocks
-                        output.accept(ModBlocks.IRON_FURNACE);
-                        output.accept(ModBlocks.ZINC_CASING);
+                        output.accept(ModBlocks.IRON_FURNACE.get());
+                        output.accept(ModBlocks.ZINC_CASING.get());
                         // Energy System Blocks
-                        output.accept(ModBlocks.ENERGY_CABLE);
-                        output.accept(ModBlocks.COAL_GENERATOR);
-                        output.accept(ModBlocks.ENERGY_BATTERY);
+                        output.accept(ModBlocks.ENERGY_CABLE.get());
+                        output.accept(ModBlocks.COAL_GENERATOR.get());
+                        output.accept(ModBlocks.ENERGY_BATTERY.get());
+                        output.accept(ModBlocks.BIO_GENERATOR.get());
+                        output.accept(ModBlocks.LIQUIFIER.get());
 
                     }).build());
 

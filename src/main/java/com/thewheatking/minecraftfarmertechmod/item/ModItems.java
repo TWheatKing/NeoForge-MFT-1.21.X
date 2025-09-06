@@ -1,12 +1,15 @@
 package com.thewheatking.minecraftfarmertechmod.item;
 
 import com.thewheatking.minecraftfarmertechmod.MinecraftFarmerTechMod;
-import com.thewheatking.minecraftfarmertechmod.item.custom.AndesiteAlloyItem;
-import com.thewheatking.minecraftfarmertechmod.item.custom.ChiselItem;
-import com.thewheatking.minecraftfarmertechmod.item.custom.WrenchItem;
-import com.thewheatking.minecraftfarmertechmod.item.custom.ZincAlloyItem;
+import com.thewheatking.minecraftfarmertechmod.block.ModBlocks;
+import com.thewheatking.minecraftfarmertechmod.fluid.ModFluids;
+import com.thewheatking.minecraftfarmertechmod.item.custom.*;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import net.neoforged.bus.api.IEventBus;
+import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -80,6 +83,12 @@ public class ModItems {
             () -> new ZincAlloyItem(new Item.Properties()));
     public static final DeferredItem<Item> ANDESITE_ALLOY = ITEMS.register("andesite_alloy",
             () -> new AndesiteAlloyItem(new Item.Properties()));
+    public static final DeferredItem<Item> BIO_FUEL_BUCKET = ITEMS.register("bio_fuel_bucket",
+            () -> new BucketItem(ModFluids.BIOFUEL.get(), new Item.Properties()
+                    .craftRemainder(Items.BUCKET)
+                    .stacksTo(1)));
+    public static final DeferredHolder<Item, Item> BIO_FUEL = ITEMS.register("bio_fuel",
+            () -> new Item(new Item.Properties()));
 
     public static void register(IEventBus eventBus){
         ITEMS.register(eventBus);

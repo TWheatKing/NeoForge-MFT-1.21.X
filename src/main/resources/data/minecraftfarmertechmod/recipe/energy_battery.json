@@ -18,7 +18,7 @@
     }
   },
   "result": {
-    "item": "minecraftfarmertechmod:energy_battery",
+    "id": "minecraftfarmertechmod:energy_battery",
     "count": 1
   }
 }

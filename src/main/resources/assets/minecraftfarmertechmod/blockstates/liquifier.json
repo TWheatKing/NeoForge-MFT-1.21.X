@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "minecraftfarmertechmod:block/liquifier" },
+    "facing=south": { "model": "minecraftfarmertechmod:block/liquifier", "y": 180 },
+    "facing=west":  { "model": "minecraftfarmertechmod:block/liquifier", "y": 270 },
+    "facing=east":  { "model": "minecraftfarmertechmod:block/liquifier", "y": 90 }
+  }
+}

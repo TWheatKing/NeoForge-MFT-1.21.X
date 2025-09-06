@@ -11,7 +11,7 @@ import java.util.*;
  * Handles energy distribution between connected machines and cables.
  * This system finds connected networks and distributes power automatically.
  */
-public class EnergyNetwork {
+public class MftEnergyNetwork {
 
     private final Level level;
     private final Set<BlockPos> networkNodes = new HashSet<>();
@@ -19,7 +19,7 @@ public class EnergyNetwork {
     private final Set<BlockPos> energyConsumers = new HashSet<>();
     private final Set<BlockPos> cables = new HashSet<>();
 
-    public EnergyNetwork(Level level) {
+    public MftEnergyNetwork(Level level) {
         this.level = level;
     }
 

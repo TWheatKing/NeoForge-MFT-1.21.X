@@ -1,9 +1,8 @@
 package com.thewheatking.minecraftfarmertechmod.block.entity;
 
 import com.thewheatking.minecraftfarmertechmod.block.custom.CoalGeneratorBlock;
-import com.thewheatking.minecraftfarmertechmod.energy.EnergyStorage;
+import com.thewheatking.minecraftfarmertechmod.energy.MftEnergyStorage;
 import com.thewheatking.minecraftfarmertechmod.energy.IEnergyStorage;
-import com.thewheatking.minecraftfarmertechmod.energy.ModEnergyCapabilities;
 import com.thewheatking.minecraftfarmertechmod.screen.CoalGeneratorMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -46,7 +45,7 @@ public class CoalGeneratorBlockEntity extends BlockEntity implements MenuProvide
     };
 
     // Energy storage: 50,000 RF capacity, generates 20 RF/tick
-    private final IEnergyStorage energyStorage = new EnergyStorage(50000, 100, 100, 0);
+    private final IEnergyStorage energyStorage = new MftEnergyStorage(50000, 100, 100, 0);
 
     protected final ContainerData data;
     private int burnTime = 0;
@@ -76,7 +75,7 @@ public class CoalGeneratorBlockEntity extends BlockEntity implements MenuProvide
                 switch (pIndex) {
                     case 0 -> CoalGeneratorBlockEntity.this.burnTime = pValue;
                     case 1 -> CoalGeneratorBlockEntity.this.maxBurnTime = pValue;
-                    case 2 -> ((EnergyStorage)CoalGeneratorBlockEntity.this.energyStorage).setEnergyStored(pValue);
+                    case 2 -> ((MftEnergyStorage)CoalGeneratorBlockEntity.this.energyStorage).setEnergyStored(pValue);
                 }
             }
 
@@ -187,7 +186,7 @@ public class CoalGeneratorBlockEntity extends BlockEntity implements MenuProvide
     protected void saveAdditional(CompoundTag pTag, HolderLookup.Provider pRegistries) {
         super.saveAdditional(pTag, pRegistries);
         pTag.put("inventory", itemHandler.serializeNBT(pRegistries));
-        pTag.put("energy", ((EnergyStorage)energyStorage).serializeNBT());
+        pTag.put("energy", ((MftEnergyStorage)energyStorage).serializeNBT());
         pTag.putInt("burn_time", burnTime);
         pTag.putInt("max_burn_time", maxBurnTime);
         pTag.putInt("energy_generated", energyGenerated);
@@ -198,7 +197,7 @@ public class CoalGeneratorBlockEntity extends BlockEntity implements MenuProvide
         super.loadAdditional(pTag, pRegistries);
         itemHandler.deserializeNBT(pRegistries, pTag.getCompound("inventory"));
         if (pTag.contains("energy")) {
-            ((EnergyStorage)energyStorage).deserializeNBT(pTag.getCompound("energy"));
+            ((MftEnergyStorage)energyStorage).deserializeNBT(pTag.getCompound("energy"));
         }
         burnTime = pTag.getInt("burn_time");
         maxBurnTime = pTag.getInt("max_burn_time");

@@ -2,6 +2,7 @@ package com.thewheatking.minecraftfarmertechmod.block;
 
 import com.thewheatking.minecraftfarmertechmod.MinecraftFarmerTechMod;
 import com.thewheatking.minecraftfarmertechmod.block.custom.*;
+import com.thewheatking.minecraftfarmertechmod.fluid.ModFluids;
 import com.thewheatking.minecraftfarmertechmod.item.ModItems;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.item.BlockItem;
@@ -10,8 +11,10 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
+import net.minecraft.world.level.material.PushReaction;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredBlock;
+import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.function.Supplier;
@@ -41,13 +44,29 @@ public class ModBlocks {
             )
     );
     //custom blocks
-    // Register your Iron Furnace block
     public static final DeferredBlock<Block> IRON_FURNACE = registerBlock("iron_furnace",
             () -> new IronFurnaceBlock());
     public static final DeferredBlock<Block> ZINC_CASING = registerBlock("zinc_casing",
-            ZincCasingBlock::new);
+            () -> new ZincCasingBlock());
     public static final DeferredBlock<Block> ANDESITE_CASING = registerBlock("andesite_casing",
-            AndesiteCasingBlock::new);
+            () -> new AndesiteCasingBlock());
+    public static final DeferredBlock<Block> LIQUIFIER = registerBlock("liquifier",
+            () -> new LiquifierBlock(BlockBehaviour.Properties.of().strength(3.0f, 3.0f).requiresCorrectToolForDrops()));
+    public static final DeferredBlock<Block> BIO_GENERATOR = registerBlock("bio_generator",
+            () -> new BioGeneratorBlock(BlockBehaviour.Properties.of().strength(3.0f, 3.0f).requiresCorrectToolForDrops()));
+
+    public static final DeferredHolder<Block, LiquidBlock> BIO_FUEL_BLOCK = BLOCKS.register("biofuel_block",
+            () -> new BioFuelBlock(ModFluids.BIOFUEL,
+                    BlockBehaviour.Properties.of()
+                            .mapColor(MapColor.COLOR_GREEN)
+                            .replaceable()
+                            .noCollission()
+                            .strength(100.0F)
+                            .pushReaction(PushReaction.DESTROY)
+                            .noLootTable()
+                            .liquid()
+                            .sound(SoundType.EMPTY)));
+
     // Energy System Blocks
     public static final DeferredBlock<Block> ENERGY_CABLE = registerBlock("energy_cable",
             () -> new EnergyCableBlock());

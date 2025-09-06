@@ -1,9 +1,8 @@
 package com.thewheatking.minecraftfarmertechmod.block.entity;
 
-import com.thewheatking.minecraftfarmertechmod.energy.EnergyNetwork;
-import com.thewheatking.minecraftfarmertechmod.energy.EnergyStorage;
+import com.thewheatking.minecraftfarmertechmod.energy.MftEnergyNetwork;
+import com.thewheatking.minecraftfarmertechmod.energy.MftEnergyStorage;
 import com.thewheatking.minecraftfarmertechmod.energy.IEnergyStorage;
-import com.thewheatking.minecraftfarmertechmod.energy.ModEnergyCapabilities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
@@ -20,14 +19,14 @@ import org.jetbrains.annotations.Nullable;
 public class EnergyCableBlockEntity extends BlockEntity {
 
     private final IEnergyStorage energyStorage;
-    private EnergyNetwork network;
+    private MftEnergyNetwork network;
     private int tickCounter = 0;
 
     public EnergyCableBlockEntity(BlockPos pPos, BlockState pBlockState) {
         super(ModBlockEntities.ENERGY_CABLE.get(), pPos, pBlockState);
 
         // Cables have small buffer and high transfer rate
-        this.energyStorage = new EnergyStorage(1000, 1000, 1000, 0);
+        this.energyStorage = new MftEnergyStorage(1000, 1000, 1000, 0);
     }
 
     public static void tick(Level pLevel, BlockPos pPos, BlockState pState, EnergyCableBlockEntity pBlockEntity) {
@@ -42,7 +41,7 @@ public class EnergyCableBlockEntity extends BlockEntity {
         // Update network every 20 ticks (1 second)
         if (tickCounter % 20 == 0) {
             if (network == null) {
-                network = new EnergyNetwork(pLevel);
+                network = new MftEnergyNetwork(pLevel);
             }
             network.discoverNetwork(pPos);
             network.distributeEnergy();
@@ -56,14 +55,14 @@ public class EnergyCableBlockEntity extends BlockEntity {
     @Override
     protected void saveAdditional(CompoundTag pTag, HolderLookup.Provider pRegistries) {
         super.saveAdditional(pTag, pRegistries);
-        pTag.put("energy", ((EnergyStorage)energyStorage).serializeNBT());
+        pTag.put("energy", ((MftEnergyStorage)energyStorage).serializeNBT());
     }
 
     @Override
     protected void loadAdditional(CompoundTag pTag, HolderLookup.Provider pRegistries) {
         super.loadAdditional(pTag, pRegistries);
         if (pTag.contains("energy")) {
-            ((EnergyStorage)energyStorage).deserializeNBT(pTag.getCompound("energy"));
+            ((MftEnergyStorage)energyStorage).deserializeNBT(pTag.getCompound("energy"));
         }
     }
 

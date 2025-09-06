@@ -5,6 +5,7 @@ import com.thewheatking.minecraftfarmertechmod.block.ModBlocks;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.neoforged.bus.api.IEventBus;
+import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.function.Supplier;
@@ -32,6 +33,16 @@ public class ModBlockEntities {
             BLOCK_ENTITIES.register("energy_battery", () ->
                     BlockEntityType.Builder.of(EnergyBatteryBlockEntity::new,
                             ModBlocks.ENERGY_BATTERY.get()).build(null));
+
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<LiquifierBlockEntity>> LIQUIFIER =
+            BLOCK_ENTITIES.register("liquifier", () ->
+                    BlockEntityType.Builder.of(LiquifierBlockEntity::new,
+                            ModBlocks.LIQUIFIER.get()).build(null));
+
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<BioGeneratorBlockEntity>> BIO_GENERATOR =
+            BLOCK_ENTITIES.register("bio_generator", () ->
+                    BlockEntityType.Builder.of(BioGeneratorBlockEntity::new,
+                            ModBlocks.BIO_GENERATOR.get()).build(null));
 
     public static void register(IEventBus eventBus) {
         BLOCK_ENTITIES.register(eventBus);

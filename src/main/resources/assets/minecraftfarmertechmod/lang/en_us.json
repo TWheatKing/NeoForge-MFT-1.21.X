@@ -33,6 +33,7 @@
 
   "item.minecraftfarmertechmod.wrench": "Wrench",
   "item.minecraftfarmertechmod.chisel": "Chisel",
+  "item.minecraftfarmertechmod.bio_fuel_bucket": "Bio Fuel",
 
   "block.minecraftfarmertechmod.zinc_ore": "Zinc Ore",
   "block.minecraftfarmertechmod.zinc_deepslate_ore": "Zinc Deepslate Ore",
@@ -43,6 +44,8 @@
   "block.minecraftfarmertechmod.energy_cable": "Energy Cable",
   "block.minecraftfarmertechmod.coal_generator": "Coal Generator",
   "block.minecraftfarmertechmod.energy_battery": "Energy Battery",
+  "block.minecraftfarmertechmod.bio_generator": "Bio Generator",
+  "block.minecraftfarmertechmod.liquifier": "Liquifier",
 
 
 
@@ -52,5 +55,6 @@
   "tooltip.minecraftfarmertechmod.wrench.line2": "§7Shift + Right-click: Dismantle crafted blocks only",
 
   "container.minecraftfarmertechmod.iron_furnace": "Iron Furnace",
-  "container.minecraftfarmertechmod.coal_generator": "Coal Generator"
+  "container.minecraftfarmertechmod.coal_generator": "Coal Generator",
+  "container.minecraftfarmertechmod.bio_generator": "Bio Generator"
 }
