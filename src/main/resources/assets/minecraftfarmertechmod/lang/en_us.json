@@ -56,5 +56,9 @@
 
   "container.minecraftfarmertechmod.iron_furnace": "Iron Furnace",
   "container.minecraftfarmertechmod.coal_generator": "Coal Generator",
-  "container.minecraftfarmertechmod.bio_generator": "Bio Generator"
+  "container.minecraftfarmertechmod.bio_generator": "Bio Generator",
+  "death.attack.bio_fuel_drowning": "%1$s died taking in too much green",
+  "death.attack.bio_fuel_drowning.player": "%1$s died taking in too much green whilst trying to escape %2$s",
+  "advancement.minecraftfarmertechmod.green_plunged": "Green Plunged",
+  "advancement.minecraftfarmertechmod.green_plunged.description": "Drown in bio fuel"
 }

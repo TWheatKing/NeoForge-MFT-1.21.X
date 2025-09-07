@@ -1,6 +1,52 @@
 {
   "variants": {
-    "": {
-      "model": "minecraftfarmertechmod:block/bio_fuel" }
+    "level=0": {
+      "model": "minecraftfarmertechmod:block/bio_fuel_block"
+    },
+    "level=1": {
+      "model": "minecraftfarmertechmod:block/bio_fuel_block"
+    },
+    "level=2": {
+      "model": "minecraftfarmertechmod:block/bio_fuel_block"
+    },
+    "level=3": {
+      "model": "minecraftfarmertechmod:block/bio_fuel_block"
+    },
+    "level=4": {
+      "model": "minecraftfarmertechmod:block/bio_fuel_block"
+    },
+    "level=5": {
+      "model": "minecraftfarmertechmod:block/bio_fuel_block"
+    },
+    "level=6": {
+      "model": "minecraftfarmertechmod:block/bio_fuel_block"
+    },
+    "level=7": {
+      "model": "minecraftfarmertechmod:block/bio_fuel_block"
+    },
+    "level=8": {
+      "model": "minecraftfarmertechmod:block/bio_fuel_block"
+    },
+    "level=9": {
+      "model": "minecraftfarmertechmod:block/bio_fuel_block"
+    },
+    "level=10": {
+      "model": "minecraftfarmertechmod:block/bio_fuel_block"
+    },
+    "level=11": {
+      "model": "minecraftfarmertechmod:block/bio_fuel_block"
+    },
+    "level=12": {
+      "model": "minecraftfarmertechmod:block/bio_fuel_block"
+    },
+    "level=13": {
+      "model": "minecraftfarmertechmod:block/bio_fuel_block"
+    },
+    "level=14": {
+      "model": "minecraftfarmertechmod:block/bio_fuel_block"
+    },
+    "level=15": {
+      "model": "minecraftfarmertechmod:block/bio_fuel_block"
+    }
   }
 }
