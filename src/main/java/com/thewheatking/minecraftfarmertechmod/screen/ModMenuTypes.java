@@ -36,6 +36,9 @@ public class ModMenuTypes {
                     IMenuTypeExtension.create((containerId, inventory, data) ->
                             new BioGeneratorMenu(containerId, inventory, data)));
 
+    public static final DeferredHolder<MenuType<?>, MenuType<SideConfigMenu>> SIDE_CONFIG_MENU =
+            MENUS.register("side_config_menu", () -> IMenuTypeExtension.create(SideConfigMenu::new));
+
     public static void register(IEventBus eventBus) {
         MENUS.register(eventBus);
     }

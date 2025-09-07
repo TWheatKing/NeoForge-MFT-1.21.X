@@ -17,6 +17,7 @@ import net.neoforged.bus.api.EventPriority;
 import net.neoforged.fml.common.EventBusSubscriber;
 import com.thewheatking.minecraftfarmertechmod.screen.LiquifierScreen;
 import com.thewheatking.minecraftfarmertechmod.screen.BioGeneratorScreen;
+import com.thewheatking.minecraftfarmertechmod.screen.SideConfigScreen;
 
 @EventBusSubscriber(modid = MinecraftFarmerTechMod.MOD_ID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class ClientModEvents {
@@ -34,5 +35,6 @@ public class ClientModEvents {
         event.register(ModMenuTypes.COAL_GENERATOR_MENU.get(), CoalGeneratorScreen::new);
         event.register(ModMenuTypes.BIO_GENERATOR_MENU.get(), BioGeneratorScreen::new);
         event.register(ModMenuTypes.LIQUIFIER_MENU.get(), LiquifierScreen::new);
+        event.register(ModMenuTypes.SIDE_CONFIG_MENU.get(), SideConfigScreen::new);
     }
 }

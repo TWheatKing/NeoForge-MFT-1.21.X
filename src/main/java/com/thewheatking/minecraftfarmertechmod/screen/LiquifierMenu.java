@@ -20,13 +20,13 @@ public class LiquifierMenu extends AbstractContainerMenu {
     private final ContainerData data;
 
     public LiquifierMenu(int pContainerId, Inventory inv, FriendlyByteBuf extraData) {
-        this(pContainerId, inv, inv.player.level().getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(4));
+        this(pContainerId, inv, inv.player.level().getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(6));
     }
 
     public LiquifierMenu(int pContainerId, Inventory inv, BlockEntity entity, ContainerData data) {
         super(ModMenuTypes.LIQUIFIER_MENU.get(), pContainerId);
         checkContainerSize(inv, 4);
-        checkContainerDataCount(data, 4);
+        checkContainerDataCount(data, 6); // Updated to 6 for energy data
         blockEntity = ((LiquifierBlockEntity) entity);
         this.level = inv.player.level();
         this.data = data;
@@ -63,6 +63,14 @@ public class LiquifierMenu extends AbstractContainerMenu {
         return data.get(3);
     }
 
+    public int getEnergyAmount() {
+        return data.get(4);
+    }
+
+    public int getMaxEnergyAmount() {
+        return data.get(5);
+    }
+
     public int getScaledWaterLevel() {
         int waterLevel = getWaterAmount();
         int maxWaterLevel = 10000; // As defined in the Block Entity
@@ -77,6 +85,20 @@ public class LiquifierMenu extends AbstractContainerMenu {
         int barHeight = 52; // Height of the fluid bar in the GUI
 
         return maxBioFuelLevel != 0 ? (int)(((long)bioFuelLevel * barHeight) / maxBioFuelLevel) : 0;
+    }
+
+    public int getScaledEnergyLevel() {
+        int energyLevel = getEnergyAmount();
+        int maxEnergyLevel = getMaxEnergyAmount();
+        int barHeight = 52; // Height of the energy bar in the GUI
+
+        return maxEnergyLevel != 0 ? (int)(((long)energyLevel * barHeight) / maxEnergyLevel) : 0;
+    }
+
+    public float getEnergyPercentage() {
+        int energyLevel = getEnergyAmount();
+        int maxEnergyLevel = getMaxEnergyAmount();
+        return maxEnergyLevel != 0 ? (float)energyLevel / (float)maxEnergyLevel : 0.0f;
     }
 
     private static final int HOTBAR_SLOT_COUNT = 9;

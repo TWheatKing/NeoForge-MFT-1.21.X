@@ -1,6 +1,7 @@
 package com.thewheatking.minecraftfarmertechmod.block.entity;
 
 import com.thewheatking.minecraftfarmertechmod.block.custom.CoalGeneratorBlock;
+import com.thewheatking.minecraftfarmertechmod.energy.MftEnergyNetwork;
 import com.thewheatking.minecraftfarmertechmod.energy.MftEnergyStorage;
 import com.thewheatking.minecraftfarmertechmod.energy.IEnergyStorage;
 import com.thewheatking.minecraftfarmertechmod.screen.CoalGeneratorMenu;
@@ -111,6 +112,13 @@ public class CoalGeneratorBlockEntity extends BlockEntity implements MenuProvide
         // Update block state if lit status changed
         if (wasLit != isGenerating) {
             pLevel.setBlock(pPos, pState.setValue(CoalGeneratorBlock.LIT, isGenerating), 3);
+        }
+
+        // Add this to the end of serverTick() in CoalGeneratorBlockEntity
+        if (isGenerating) {
+            MftEnergyNetwork network = new MftEnergyNetwork(pLevel);
+            network.discoverNetwork(pPos);
+            network.distributeEnergy();
         }
 
         // Mark changed for data sync

@@ -158,9 +158,9 @@ public class MftEnergyNetwork {
     }
 
     private boolean isEnergyConsumer(BlockEntity blockEntity) {
-        // Check if this is a machine that consumes energy
         String className = blockEntity.getClass().getSimpleName();
-        return className.contains("Machine") || className.contains("Battery") || className.contains("Storage");
+        return className.contains("Machine") || className.contains("Battery") ||
+                className.contains("Storage") || className.contains("Liquifier");
     }
 
     private boolean isEnergyCable(BlockEntity blockEntity) {
