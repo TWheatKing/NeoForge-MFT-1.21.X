@@ -1,0 +1,6 @@
+// 1.21	2025-09-18T21:08:03.9259436	Tags for minecraft:block mod id minecraftfarmertechmod
+67e8b9a65cb124ee3e2359f9acd30f9e29168482 data/minecraft/tags/block/fences.json
+ce8f8b6f43fb6d02854763c75a459b41ade52886 data/minecraft/tags/block/fence_gates.json
+6aadad3eefdb783cc26e256f01872f2ee463578c data/minecraft/tags/block/mineable/pickaxe.json
+67f31d2919b9ea17c643e6960f89002fbf0b09c4 data/minecraft/tags/block/needs_iron_tool.json
+9fcacef040a681157feed6b98e2c9bd40a31a482 data/minecraft/tags/block/walls.json

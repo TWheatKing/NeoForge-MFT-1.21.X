@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "redstone",
+  "group": "zinc",
+  "ingredients": [
+    {
+      "item": "minecraftfarmertechmod:zinc_ingot"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "minecraftfarmertechmod:zinc_button"
+  }
+}

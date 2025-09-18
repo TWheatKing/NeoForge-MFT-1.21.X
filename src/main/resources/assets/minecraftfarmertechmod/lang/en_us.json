@@ -1,5 +1,6 @@
 {
   "item.minecraftfarmertechmod.wheat_ingot": "Wheat Ingot",
+  "item.minecraftfarmertechmod.wheat_ingot_block": "Wheat Ingot Block",
   "item.minecraftfarmertechmod.zinc_ingot": "Zinc",
   "item.minecraftfarmertechmod.raw_zinc": "Raw Zinc",
   "item.minecraftfarmertechmod.zinc_alloy": "Zinc Alloy",
@@ -34,6 +35,7 @@
   "item.minecraftfarmertechmod.wrench": "Wrench",
   "item.minecraftfarmertechmod.chisel": "Chisel",
   "item.minecraftfarmertechmod.bio_fuel_bucket": "Bio Fuel",
+  "item.minecraftfarmertechmod.burger": "Burger",
 
   "block.minecraftfarmertechmod.zinc_ore": "Zinc Ore",
   "block.minecraftfarmertechmod.zinc_deepslate_ore": "Zinc Deepslate Ore",
@@ -47,6 +49,16 @@
   "block.minecraftfarmertechmod.bio_generator": "Bio Generator",
   "block.minecraftfarmertechmod.liquifier": "Liquifier",
 
+  "block.minecraftfarmertechmod.zinc_block": "Zinc Block",
+  "block.minecraftfarmertechmod.zinc_stairs": "Zinc Stairs",
+  "block.minecraftfarmertechmod.zinc_slab": "Zinc Slab",
+  "block.minecraftfarmertechmod.zinc_pressure_plate": "Zinc Pressure Plate",
+  "block.minecraftfarmertechmod.zinc_button": "Zinc Button",
+  "block.minecraftfarmertechmod.zinc_fence": "Zinc Fence",
+  "block.minecraftfarmertechmod.zinc_fence_gate": "Zinc Fence Gate",
+  "block.minecraftfarmertechmod.zinc_wall": "Zinc Wall",
+  "block.minecraftfarmertechmod.zinc_door": "Zinc Door",
+  "block.minecraftfarmertechmod.zinc_trapdoor": "Zinc Trapdoor",
 
 
   "creativetab.minecraftfarmertechmod.minecraft_farmer_tech": "Minecraft Farmer Tech",

@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "minecraftfarmertechmod:block/wheat_ingot_block"
+    }
+  }
+}

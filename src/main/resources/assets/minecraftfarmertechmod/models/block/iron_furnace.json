@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/orientable",
-  "textures": {
-    "top": "minecraftfarmertechmod:block/iron_furnace_top",
-    "front": "minecraftfarmertechmod:block/iron_furnace_front",
-    "side": "minecraftfarmertechmod:block/iron_furnace_side"
-  }
-}

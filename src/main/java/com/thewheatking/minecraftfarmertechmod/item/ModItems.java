@@ -90,6 +90,9 @@ public class ModItems {
     public static final DeferredHolder<Item, Item> BIO_FUEL = ITEMS.register("bio_fuel",
             () -> new Item(new Item.Properties()));
 
+    public static final DeferredItem<Item> BURGER = ITEMS.register("burger",
+            () -> new Item(new Item.Properties().food(ModFoodProperties.BURGER)));
+
     public static void register(IEventBus eventBus){
         ITEMS.register(eventBus);
 

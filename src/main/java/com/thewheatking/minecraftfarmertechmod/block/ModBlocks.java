@@ -9,7 +9,9 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
+import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 import net.neoforged.bus.api.IEventBus;
@@ -43,6 +45,48 @@ public class ModBlocks {
                     .strength(4.0F, 3.0F)
             )
     );
+    public static final DeferredBlock<Block> WHEAT_INGOT_BLOCK = registerBlock("wheat_ingot_block",
+            () -> new DropExperienceBlock(UniformInt.of(2,4),
+                    BlockBehaviour.Properties.of()
+                            .mapColor(MapColor.COLOR_BROWN)
+                            .instrument(NoteBlockInstrument.BASEDRUM)
+                            .requiresCorrectToolForDrops()
+                            .randomTicks()
+                            .strength(3.0F, 3.0F)
+            )
+    );public static final DeferredBlock<Block> ZINC_BLOCK = registerBlock("zinc_block",
+            () -> new DropExperienceBlock(UniformInt.of(2,4),
+                    BlockBehaviour.Properties.of()
+                            .mapColor(MapColor.COLOR_GREEN)
+                            .instrument(NoteBlockInstrument.BASEDRUM)
+                            .requiresCorrectToolForDrops()
+                            .randomTicks()
+                            .strength(3.0F, 3.0F)
+            )
+    );
+    public static final DeferredBlock<StairBlock> ZINC_STAIRS = registerBlock("zinc_stairs",
+            () -> new StairBlock(ModBlocks.ZINC_BLOCK.get().defaultBlockState(),
+                    BlockBehaviour.Properties.of().strength(3f).requiresCorrectToolForDrops()));
+    public static final DeferredBlock<SlabBlock> ZINC_SLAB = registerBlock("zinc_slab",
+            () -> new SlabBlock(BlockBehaviour.Properties.of().strength(3f).requiresCorrectToolForDrops()));
+
+    public static final DeferredBlock<PressurePlateBlock> ZINC_PRESSURE_PLATE = registerBlock("zinc_pressure_plate",
+            () -> new PressurePlateBlock(BlockSetType.IRON, BlockBehaviour.Properties.of().strength(3f).requiresCorrectToolForDrops()));
+    public static final DeferredBlock<ButtonBlock> ZINC_BUTTON = registerBlock("zinc_button",
+            () -> new ButtonBlock(BlockSetType.IRON, 40, BlockBehaviour.Properties.of().strength(3f).requiresCorrectToolForDrops().noCollission()));
+
+    public static final DeferredBlock<FenceBlock> ZINC_FENCE = registerBlock("zinc_fence",
+            () -> new FenceBlock(BlockBehaviour.Properties.of().strength(3f).requiresCorrectToolForDrops()));
+    public static final DeferredBlock<FenceGateBlock> ZINC_FENCE_GATE = registerBlock("zinc_fence_gate",
+            () -> new FenceGateBlock(WoodType.ACACIA, BlockBehaviour.Properties.of().strength(3f).requiresCorrectToolForDrops()));
+    public static final DeferredBlock<WallBlock> ZINC_WALL = registerBlock("zinc_wall",
+            () -> new WallBlock(BlockBehaviour.Properties.of().strength(3f).requiresCorrectToolForDrops()));
+
+    public static final DeferredBlock<DoorBlock> ZINC_DOOR = registerBlock("zinc_door",
+            () -> new DoorBlock(BlockSetType.IRON, BlockBehaviour.Properties.of().strength(3f).requiresCorrectToolForDrops().noOcclusion()));
+    public static final DeferredBlock<TrapDoorBlock> ZINC_TRAPDOOR = registerBlock("zinc_trapdoor",
+            () -> new TrapDoorBlock(BlockSetType.IRON, BlockBehaviour.Properties.of().strength(3f).requiresCorrectToolForDrops().noOcclusion()));
+
     //custom blocks
     public static final DeferredBlock<Block> IRON_FURNACE = registerBlock("iron_furnace",
             () -> new IronFurnaceBlock());

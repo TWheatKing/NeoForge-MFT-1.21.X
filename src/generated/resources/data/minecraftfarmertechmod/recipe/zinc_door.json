@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "group": "zinc",
+  "key": {
+    "#": {
+      "item": "minecraftfarmertechmod:zinc_ingot"
+    }
+  },
+  "pattern": [
+    "##",
+    "##",
+    "##"
+  ],
+  "result": {
+    "count": 3,
+    "id": "minecraftfarmertechmod:zinc_door"
+  }
+}

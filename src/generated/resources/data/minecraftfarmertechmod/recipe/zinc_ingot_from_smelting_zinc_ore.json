@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "cookingtime": 200,
+  "experience": 0.25,
+  "group": "zinc",
+  "ingredient": {
+    "item": "minecraftfarmertechmod:zinc_ore"
+  },
+  "result": {
+    "count": 1,
+    "id": "minecraftfarmertechmod:zinc_ingot"
+  }
+}

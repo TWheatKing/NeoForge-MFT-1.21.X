@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraftfarmertechmod:wheat_ingot_block"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "id": "minecraftfarmertechmod:wheat_ingot"
+  }
+}

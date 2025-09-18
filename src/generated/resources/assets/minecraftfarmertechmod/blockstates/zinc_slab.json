@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "minecraftfarmertechmod:block/zinc_slab"
+    },
+    "type=double": {
+      "model": "minecraftfarmertechmod:block/zinc_block"
+    },
+    "type=top": {
+      "model": "minecraftfarmertechmod:block/zinc_slab_top"
+    }
+  }
+}

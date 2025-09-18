@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "minecraftfarmertechmod:wheat_ingot"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_wheat_ingot_block": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraftfarmertechmod:wheat_ingot_block"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_wheat_ingot_block"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "minecraftfarmertechmod:wheat_ingot"
+    ]
+  }
+}

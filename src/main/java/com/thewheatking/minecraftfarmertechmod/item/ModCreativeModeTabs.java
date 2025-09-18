@@ -56,6 +56,8 @@ public class ModCreativeModeTabs {
                         //blocks
                         output.accept(ModBlocks.ZINC_ORE.get());
                         output.accept(ModBlocks.ZINC_DEEPSLATE_ORE.get());
+                        output.accept(ModBlocks.WHEAT_INGOT_BLOCK.get());
+                        output.accept(ModBlocks.ZINC_BLOCK.get());
                         //custom items
                         output.accept(ModItems.WRENCH.get());
                         output.accept(ModItems.CHISEL.get());
@@ -69,6 +71,21 @@ public class ModCreativeModeTabs {
                         output.accept(ModBlocks.ENERGY_BATTERY.get());
                         output.accept(ModBlocks.BIO_GENERATOR.get());
                         output.accept(ModBlocks.LIQUIFIER.get());
+                        //Foods
+                        output.accept(ModItems.BURGER.get());
+                        //Non-Block Blocks
+                        output.accept(ModBlocks.ZINC_STAIRS.get());
+                        output.accept(ModBlocks.ZINC_SLAB.get());
+
+                        output.accept(ModBlocks.ZINC_PRESSURE_PLATE.get());
+                        output.accept(ModBlocks.ZINC_BUTTON.get());
+
+                        output.accept(ModBlocks.ZINC_FENCE.get());
+                        output.accept(ModBlocks.ZINC_FENCE_GATE.get());
+                        output.accept(ModBlocks.ZINC_WALL.get());
+
+                        output.accept(ModBlocks.ZINC_DOOR.get());
+                        output.accept(ModBlocks.ZINC_TRAPDOOR.get());
 
                     }).build());
 
