@@ -1,0 +1,57 @@
+{
+  "multipart": [
+    {
+      "apply": {
+        "model": "minecraftfarmertechmod:block/energy_cable_core"
+      }
+    },
+    {
+      "apply": {
+        "model": "minecraftfarmertechmod:block/energy_cable_north"
+      },
+      "when": {
+        "north": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "minecraftfarmertechmod:block/energy_cable_south"
+      },
+      "when": {
+        "south": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "minecraftfarmertechmod:block/energy_cable_east"
+      },
+      "when": {
+        "east": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "minecraftfarmertechmod:block/energy_cable_west"
+      },
+      "when": {
+        "west": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "minecraftfarmertechmod:block/energy_cable_up"
+      },
+      "when": {
+        "up": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "minecraftfarmertechmod:block/energy_cable_down"
+      },
+      "when": {
+        "down": "true"
+      }
+    }
+  ]
+}

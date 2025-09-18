@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "front": "minecraftfarmertechmod:block/liquifier_front",
+    "side": "minecraftfarmertechmod:block/liquifier_side",
+    "top": "minecraftfarmertechmod:block/liquifier_top"
+  }
+}

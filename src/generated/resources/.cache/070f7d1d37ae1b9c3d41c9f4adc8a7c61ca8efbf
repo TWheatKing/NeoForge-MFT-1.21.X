@@ -1,4 +1,4 @@
-// 1.21	2025-09-18T21:08:03.9229335	Item Models: minecraftfarmertechmod
+// 1.21	2025-09-18T21:36:33.0772226	Item Models: minecraftfarmertechmod
 485209ba911a0962ed24803f737e5e19d3bb2e15 assets/minecraftfarmertechmod/models/item/advanced_blade.json
 ed1d6066dff2133b5b84644a7687902cfd65a183 assets/minecraftfarmertechmod/models/item/advanced_circuit_board.json
 15485155c16039e9568a95f20cdc41e64c292ea3 assets/minecraftfarmertechmod/models/item/andesite_alloy.json
@@ -33,4 +33,5 @@ e19fa0b519246819771b3e48ddfd76555a014e34 assets/minecraftfarmertechmod/models/it
 c60be26f339bc89971ea4a506f3a5c64bb8adc0a assets/minecraftfarmertechmod/models/item/zinc_button.json
 c3e5055273c49aaf50bacbe9aee9ef843d1bb2ad assets/minecraftfarmertechmod/models/item/zinc_door.json
 c1d9901b61b335a3a3fb2478da5a873310632e85 assets/minecraftfarmertechmod/models/item/zinc_fence.json
+ce2e8fc4933e61b5dfdbb17529fc0c9251ffbfa6 assets/minecraftfarmertechmod/models/item/zinc_ingot.json
 32daef63f0d86d6c16dc5785aceffea03aae0764 assets/minecraftfarmertechmod/models/item/zinc_wall.json

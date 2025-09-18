@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:block/orientable_with_bottom",
+  "textures": {
+    "bottom": "minecraftfarmertechmod:block/bio_generator_bottom",
+    "front": "minecraftfarmertechmod:block/bio_generator_front",
+    "side": "minecraftfarmertechmod:block/bio_generator_side",
+    "top": "minecraftfarmertechmod:block/bio_generator_top"
+  }
+}
