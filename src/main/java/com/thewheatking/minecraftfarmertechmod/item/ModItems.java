@@ -110,6 +110,19 @@ public class ModItems {
             () -> new ManualDrillItem(ModToolTiers.ZINC, new Item.Properties()
                     .attributes(PickaxeItem.createAttributes(ModToolTiers.ZINC, 6F, -2.5f))));
 
+    //armor items
+    public static final DeferredItem<ArmorItem> ZINC_HELMET = ITEMS.register("zinc_helmet",
+            () -> new ArmorItem(ModArmorMaterials.ZINC_ARMOR_MATERIAL, ArmorItem.Type.HELMET,
+                    new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(19))));
+    public static final DeferredItem<ArmorItem> ZINC_CHESTPLATE = ITEMS.register("zinc_chestplate",
+            () -> new ArmorItem(ModArmorMaterials.ZINC_ARMOR_MATERIAL, ArmorItem.Type.CHESTPLATE,
+                    new Item.Properties().durability(ArmorItem.Type.CHESTPLATE.getDurability(19))));
+    public static final DeferredItem<ArmorItem> ZINC_LEGGINGS = ITEMS.register("zinc_leggings",
+            () -> new ArmorItem(ModArmorMaterials.ZINC_ARMOR_MATERIAL, ArmorItem.Type.LEGGINGS,
+                    new Item.Properties().durability(ArmorItem.Type.LEGGINGS.getDurability(19))));
+    public static final DeferredItem<ArmorItem> ZINC_BOOTS = ITEMS.register("zinc_boots",
+            () -> new ArmorItem(ModArmorMaterials.ZINC_ARMOR_MATERIAL, ArmorItem.Type.BOOTS,
+                    new Item.Properties().durability(ArmorItem.Type.BOOTS.getDurability(19))));
 
     public static void register(IEventBus eventBus){
         ITEMS.register(eventBus);

@@ -40,5 +40,10 @@ public class ModItemTagProvider extends ItemTagsProvider {
         tag(ItemTags.HOES)
                 .add(ModItems.ZINC_HOE.get());
 
+        this.tag(ItemTags.TRIMMABLE_ARMOR)
+                .add(ModItems.ZINC_HELMET.get())
+                .add(ModItems.ZINC_CHESTPLATE.get())
+                .add(ModItems.ZINC_LEGGINGS.get())
+                .add(ModItems.ZINC_BOOTS.get());
     }
 }

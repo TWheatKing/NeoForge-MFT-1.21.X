@@ -59,6 +59,12 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.ZINC_SHOVEL);
                         output.accept(ModItems.ZINC_AXE);
                         output.accept(ModItems.ZINC_HOE);
+                        //armor
+                        output.accept(ModItems.ZINC_HELMET.get());
+                        output.accept(ModItems.ZINC_CHESTPLATE.get());
+                        output.accept(ModItems.ZINC_LEGGINGS.get());
+                        output.accept(ModItems.ZINC_BOOTS.get());
+
                         //blocks
                         output.accept(ModBlocks.ZINC_ORE.get());
                         output.accept(ModBlocks.ZINC_DEEPSLATE_ORE.get());
