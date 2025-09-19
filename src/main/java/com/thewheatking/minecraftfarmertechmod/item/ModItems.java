@@ -112,7 +112,7 @@ public class ModItems {
 
     //armor items
     public static final DeferredItem<ArmorItem> ZINC_HELMET = ITEMS.register("zinc_helmet",
-            () -> new ArmorItem(ModArmorMaterials.ZINC_ARMOR_MATERIAL, ArmorItem.Type.HELMET,
+            () -> new ModArmorItem(ModArmorMaterials.ZINC_ARMOR_MATERIAL, ArmorItem.Type.HELMET,
                     new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(19))));
     public static final DeferredItem<ArmorItem> ZINC_CHESTPLATE = ITEMS.register("zinc_chestplate",
             () -> new ArmorItem(ModArmorMaterials.ZINC_ARMOR_MATERIAL, ArmorItem.Type.CHESTPLATE,
