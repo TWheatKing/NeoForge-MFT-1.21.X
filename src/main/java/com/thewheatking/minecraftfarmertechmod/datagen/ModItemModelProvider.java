@@ -6,9 +6,11 @@ import com.thewheatking.minecraftfarmertechmod.item.ModItems;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
+import net.neoforged.neoforge.client.model.generators.ItemModelBuilder;
 import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.registries.DeferredBlock;
+import net.neoforged.neoforge.registries.DeferredItem;
 
 public class ModItemModelProvider extends ItemModelProvider {
     public ModItemModelProvider(PackOutput output, ExistingFileHelper existingFileHelper) {
@@ -51,6 +53,15 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.ZINC_ALLOY.get());
         basicItem(ModItems.BURGER.get());
 
+        //tools
+        handheldItem(ModItems.ZINC_SWORD);
+        handheldItem(ModItems.ZINC_PICKAXE);
+        handheldItem(ModItems.ZINC_SHOVEL);
+        handheldItem(ModItems.ZINC_AXE);
+        handheldItem(ModItems.ZINC_HOE);
+
+
+
         buttonItem(ModBlocks.ZINC_BUTTON, ModBlocks.ZINC_BLOCK);
         fenceItem(ModBlocks.ZINC_FENCE, ModBlocks.ZINC_BLOCK);
         wallItem(ModBlocks.ZINC_WALL, ModBlocks.ZINC_BLOCK);
@@ -74,5 +85,10 @@ public class ModItemModelProvider extends ItemModelProvider {
         this.withExistingParent(block.getId().getPath(), mcLoc("block/wall_inventory"))
                 .texture("wall",  ResourceLocation.fromNamespaceAndPath(MinecraftFarmerTechMod.MOD_ID,
                         "block/" + baseBlock.getId().getPath()));
+    }
+    private ItemModelBuilder handheldItem(DeferredItem<?> item) {
+        return withExistingParent(item.getId().getPath(),
+                ResourceLocation.parse("item/handheld")).texture("layer0",
+                ResourceLocation.fromNamespaceAndPath(MinecraftFarmerTechMod.MOD_ID, "item/" + item.getId().getPath()));
     }
 }

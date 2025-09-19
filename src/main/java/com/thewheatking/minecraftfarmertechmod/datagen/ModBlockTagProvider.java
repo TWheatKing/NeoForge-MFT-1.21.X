@@ -2,6 +2,7 @@ package com.thewheatking.minecraftfarmertechmod.datagen;
 
 import com.thewheatking.minecraftfarmertechmod.MinecraftFarmerTechMod;
 import com.thewheatking.minecraftfarmertechmod.block.ModBlocks;
+import com.thewheatking.minecraftfarmertechmod.util.ModTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
@@ -29,6 +30,13 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         tag(BlockTags.FENCES).add(ModBlocks.ZINC_FENCE.get());
         tag(BlockTags.FENCE_GATES).add(ModBlocks.ZINC_FENCE_GATE.get());
         tag(BlockTags.WALLS).add(ModBlocks.ZINC_WALL.get());
+
+        tag(ModTags.Blocks.NEEDS_ZINC_TOOL)
+                .addTag(BlockTags.NEEDS_IRON_TOOL);
+
+        tag(ModTags.Blocks.INCORRECT_FOR_ZINC_TOOL)
+                .addTag(BlockTags.INCORRECT_FOR_IRON_TOOL)
+                .remove(ModTags.Blocks.NEEDS_ZINC_TOOL);
 
     }
 }

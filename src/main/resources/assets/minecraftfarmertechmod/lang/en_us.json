@@ -61,6 +61,13 @@
   "block.minecraftfarmertechmod.zinc_trapdoor": "Zinc Trapdoor",
   "block.minecraftfarmertechmod.zinc_lamp": "Zinc Lamp",
 
+  "item.minecraftfarmertechmod.zinc_sword": "Zinc Sword",
+  "item.minecraftfarmertechmod.zinc_pickaxe": "Zinc Pickaxe",
+  "item.minecraftfarmertechmod.zinc_shovel": "Zinc Shovel",
+  "item.minecraftfarmertechmod.zinc_axe": "Zinc Axe",
+  "item.minecraftfarmertechmod.zinc_hoe": "Zinc Hoe",
+
+
 
   "creativetab.minecraftfarmertechmod.minecraft_farmer_tech": "Minecraft Farmer Tech",
 

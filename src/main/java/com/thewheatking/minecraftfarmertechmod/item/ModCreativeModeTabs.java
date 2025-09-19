@@ -53,6 +53,12 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.BRASS_PLATE.get());
                         output.accept(ModItems.DIAMOND_PLATE.get());
                         output.accept(ModItems.NETHERITE_PLATE.get());
+                        //custom tools
+                        output.accept(ModItems.ZINC_SWORD);
+                        output.accept(ModItems.ZINC_PICKAXE);
+                        output.accept(ModItems.ZINC_SHOVEL);
+                        output.accept(ModItems.ZINC_AXE);
+                        output.accept(ModItems.ZINC_HOE);
                         //blocks
                         output.accept(ModBlocks.ZINC_ORE.get());
                         output.accept(ModBlocks.ZINC_DEEPSLATE_ORE.get());

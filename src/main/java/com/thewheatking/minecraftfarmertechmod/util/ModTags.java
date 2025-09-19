@@ -10,6 +10,9 @@ import net.minecraft.world.level.block.Block;
 
 public class ModTags {
     public static class Blocks {
+        public static final TagKey<Block> NEEDS_ZINC_TOOL = createTag("needs_zinc_tool");
+        public static final TagKey<Block> INCORRECT_FOR_ZINC_TOOL = createTag("incorrect_for_zinc_tool");
+
 
         private static TagKey<Block> createTag(String name) {
             return BlockTags.create(ResourceLocation.fromNamespaceAndPath(MinecraftFarmerTechMod.MOD_ID, name));

@@ -4,10 +4,7 @@ import com.thewheatking.minecraftfarmertechmod.MinecraftFarmerTechMod;
 import com.thewheatking.minecraftfarmertechmod.block.ModBlocks;
 import com.thewheatking.minecraftfarmertechmod.fluid.ModFluids;
 import com.thewheatking.minecraftfarmertechmod.item.custom.*;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.BucketItem;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
+import net.minecraft.world.item.*;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredItem;
@@ -92,6 +89,23 @@ public class ModItems {
 
     public static final DeferredItem<Item> BURGER = ITEMS.register("burger",
             () -> new Item(new Item.Properties().food(ModFoodProperties.BURGER)));
+
+    public static final DeferredItem<SwordItem> ZINC_SWORD = ITEMS.register("bismuth_sword",
+            () -> new SwordItem(ModToolTiers.ZINC, new Item.Properties()
+                    .attributes(SwordItem.createAttributes(ModToolTiers.ZINC, 5, -2.4f))));
+    public static final DeferredItem<PickaxeItem> ZINC_PICKAXE = ITEMS.register("bismuth_pickaxe",
+            () -> new PickaxeItem(ModToolTiers.ZINC, new Item.Properties()
+                    .attributes(PickaxeItem.createAttributes(ModToolTiers.ZINC, 1.0F, -2.8f))));
+    public static final DeferredItem<ShovelItem> ZINC_SHOVEL = ITEMS.register("bismuth_shovel",
+            () -> new ShovelItem(ModToolTiers.ZINC, new Item.Properties()
+                    .attributes(ShovelItem.createAttributes(ModToolTiers.ZINC, 1.5F, -3.0f))));
+    public static final DeferredItem<AxeItem> ZINC_AXE = ITEMS.register("bismuth_axe",
+            () -> new AxeItem(ModToolTiers.ZINC, new Item.Properties()
+                    .attributes(AxeItem.createAttributes(ModToolTiers.ZINC, 6.0F, -3.2f))));
+    public static final DeferredItem<HoeItem> ZINC_HOE = ITEMS.register("bismuth_hoe",
+            () -> new HoeItem(ModToolTiers.ZINC, new Item.Properties()
+                    .attributes(HoeItem.createAttributes(ModToolTiers.ZINC, 0F, -3.0f))));
+
 
     public static void register(IEventBus eventBus){
         ITEMS.register(eventBus);
