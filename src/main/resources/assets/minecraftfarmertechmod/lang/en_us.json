@@ -59,12 +59,15 @@
   "block.minecraftfarmertechmod.zinc_wall": "Zinc Wall",
   "block.minecraftfarmertechmod.zinc_door": "Zinc Door",
   "block.minecraftfarmertechmod.zinc_trapdoor": "Zinc Trapdoor",
+  "block.minecraftfarmertechmod.zinc_lamp": "Zinc Lamp",
 
 
   "creativetab.minecraftfarmertechmod.minecraft_farmer_tech": "Minecraft Farmer Tech",
 
   "tooltip.minecraftfarmertechmod.wrench.line1": "§7Shift + Left-click: Rotate blocks",
   "tooltip.minecraftfarmertechmod.wrench.line2": "§7Shift + Right-click: Dismantle crafted blocks only",
+  "tooltip.minecraftfarmertechmod.chisel.shift_down": "This Item can chisel Blocks into Bricks",
+  "tooltip.minecraftfarmertechmod.chisel": "Press §eShift§r for more Information",
 
   "container.minecraftfarmertechmod.iron_furnace": "Iron Furnace",
   "container.minecraftfarmertechmod.coal_generator": "Coal Generator",

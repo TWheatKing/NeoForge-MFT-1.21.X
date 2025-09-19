@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "clicked=false": {
+      "model": "minecraftfarmertechmod:block/zinc_lamp_off"
+    },
+    "clicked=true": {
+      "model": "minecraftfarmertechmod:block/zinc_lamp_on"
+    }
+  }
+}

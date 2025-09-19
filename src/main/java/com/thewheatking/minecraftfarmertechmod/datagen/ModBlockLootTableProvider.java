@@ -55,6 +55,7 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         add(ModBlocks.ZINC_DEEPSLATE_ORE.get(),
                 block -> createMultipleOreDrops(ModBlocks.ZINC_DEEPSLATE_ORE.get(), ModItems.RAW_ZINC.get(), 2, 5));
 
+        dropSelf(ModBlocks.ZINC_LAMP.get());
 
     }
 

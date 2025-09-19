@@ -239,7 +239,25 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
         // Create item model using just the core
         simpleBlockItem(ModBlocks.ENERGY_CABLE.get(), coreModel);
+
+        customLamp();
     }
+
+    private void customLamp() {
+        getVariantBuilder(ModBlocks.ZINC_LAMP.get()).forAllStates(state -> {
+            if(state.getValue(ZincLampBlock.CLICKED)) {
+                return new ConfiguredModel[]{new ConfiguredModel(models().cubeAll("zinc_lamp_on",
+                        ResourceLocation.fromNamespaceAndPath(MinecraftFarmerTechMod.MOD_ID, "block/" + "zinc_lamp_on")))};
+            } else {
+                return new ConfiguredModel[]{new ConfiguredModel(models().cubeAll("zinc_lamp_off",
+                        ResourceLocation.fromNamespaceAndPath(MinecraftFarmerTechMod.MOD_ID, "block/" + "zinc_lamp_off")))};
+            }
+        });
+
+        simpleBlockItem(ModBlocks.ZINC_LAMP.get(), models().cubeAll("zinc_lamp_on",
+                ResourceLocation.fromNamespaceAndPath(MinecraftFarmerTechMod.MOD_ID, "block/" + "zinc_lamp_on")));
+    }
+
 
     // Helper method to get block name
     private String name(Block block) {

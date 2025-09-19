@@ -121,6 +121,11 @@ public class ModBlocks {
     public static final DeferredBlock<Block> ENERGY_BATTERY = registerBlock("energy_battery",
             () -> new EnergyBatteryBlock());
 
+    //Blockstates Example
+    public static final DeferredBlock<Block> ZINC_LAMP = registerBlock("zinc_lamp",
+            () -> new ZincLampBlock(BlockBehaviour.Properties.of().strength(2f)
+                    .requiresCorrectToolForDrops().lightLevel(state -> state.getValue(ZincLampBlock.CLICKED) ? 15 : 0)));
+
 
 
 

@@ -1,4 +1,4 @@
-// 1.21	2025-09-18T21:08:03.9214317	Loot Tables
+// 1.21	2025-09-19T18:59:36.9682391	Loot Tables
 98fc95b5cf526cd8882d33841edc2a467283dc9d data/minecraftfarmertechmod/loot_table/blocks/andesite_casing.json
 18f31184e4422bc256a2642d650d697e62e0b0b8 data/minecraftfarmertechmod/loot_table/blocks/bio_generator.json
 b50519717ab1b60316949312463d2d627ae7c828 data/minecraftfarmertechmod/loot_table/blocks/coal_generator.json
@@ -14,6 +14,7 @@ fa2e702e4e7cc08e794f072a22aec171c49432c2 data/minecraftfarmertechmod/loot_table/
 06c3aae708670584e771eb11f0d7a90d8c82d206 data/minecraftfarmertechmod/loot_table/blocks/zinc_door.json
 85d1e72de25bc3be04397a40623ce8c7ea12cfe5 data/minecraftfarmertechmod/loot_table/blocks/zinc_fence.json
 33d51102d66b4be5785dee05d2d9f3da59aa8a42 data/minecraftfarmertechmod/loot_table/blocks/zinc_fence_gate.json
+cd8c27c636466f5531b614ca8ab4ba546c4cebda data/minecraftfarmertechmod/loot_table/blocks/zinc_lamp.json
 a3804b7376eca76884ecdbc9ef01a4acd88454d0 data/minecraftfarmertechmod/loot_table/blocks/zinc_ore.json
 24e9e4a8ba49a8412e6c7bee9b21a7283f0a146f data/minecraftfarmertechmod/loot_table/blocks/zinc_pressure_plate.json
 b09fb51f5d87d598fcdb2e9ecd8261727200b596 data/minecraftfarmertechmod/loot_table/blocks/zinc_slab.json

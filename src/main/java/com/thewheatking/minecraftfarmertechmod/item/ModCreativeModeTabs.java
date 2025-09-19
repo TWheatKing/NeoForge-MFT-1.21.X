@@ -87,6 +87,8 @@ public class ModCreativeModeTabs {
                         output.accept(ModBlocks.ZINC_DOOR.get());
                         output.accept(ModBlocks.ZINC_TRAPDOOR.get());
 
+                        output.accept(ModBlocks.ZINC_LAMP.get());
+
                     }).build());
 
 

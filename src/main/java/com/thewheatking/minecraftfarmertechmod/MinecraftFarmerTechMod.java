@@ -2,6 +2,7 @@ package com.thewheatking.minecraftfarmertechmod;
 
 import com.thewheatking.minecraftfarmertechmod.block.ModBlocks;
 import com.thewheatking.minecraftfarmertechmod.block.entity.ModBlockEntities;
+import com.thewheatking.minecraftfarmertechmod.component.ModDataComponents;
 import com.thewheatking.minecraftfarmertechmod.fluid.ModFluidTypes;
 import com.thewheatking.minecraftfarmertechmod.fluid.ModFluids;
 import com.thewheatking.minecraftfarmertechmod.item.ModCreativeModeTabs;
@@ -49,6 +50,7 @@ public class MinecraftFarmerTechMod {
 
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
+        ModDataComponents.register(modEventBus);
         // Register the new block entities and menu types
         ModBlockEntities.register(modEventBus);
         ModMenuTypes.register(modEventBus);
