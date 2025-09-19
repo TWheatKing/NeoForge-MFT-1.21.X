@@ -95,6 +95,8 @@ public class ModCreativeModeTabs {
 
                         output.accept(ModBlocks.ZINC_LAMP.get());
 
+                        output.accept(ModItems.ZINC_DRILL);
+
                     }).build());
 
 

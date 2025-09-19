@@ -59,6 +59,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         handheldItem(ModItems.ZINC_SHOVEL);
         handheldItem(ModItems.ZINC_AXE);
         handheldItem(ModItems.ZINC_HOE);
+        handheldItem(ModItems.ZINC_DRILL);
+
 
 
 

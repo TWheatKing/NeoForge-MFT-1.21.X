@@ -90,21 +90,25 @@ public class ModItems {
     public static final DeferredItem<Item> BURGER = ITEMS.register("burger",
             () -> new Item(new Item.Properties().food(ModFoodProperties.BURGER)));
 
-    public static final DeferredItem<SwordItem> ZINC_SWORD = ITEMS.register("bismuth_sword",
+    public static final DeferredItem<SwordItem> ZINC_SWORD = ITEMS.register("zinc_sword",
             () -> new SwordItem(ModToolTiers.ZINC, new Item.Properties()
                     .attributes(SwordItem.createAttributes(ModToolTiers.ZINC, 5, -2.4f))));
-    public static final DeferredItem<PickaxeItem> ZINC_PICKAXE = ITEMS.register("bismuth_pickaxe",
+    public static final DeferredItem<PickaxeItem> ZINC_PICKAXE = ITEMS.register("zinc_pickaxe",
             () -> new PickaxeItem(ModToolTiers.ZINC, new Item.Properties()
                     .attributes(PickaxeItem.createAttributes(ModToolTiers.ZINC, 1.0F, -2.8f))));
-    public static final DeferredItem<ShovelItem> ZINC_SHOVEL = ITEMS.register("bismuth_shovel",
+    public static final DeferredItem<ShovelItem> ZINC_SHOVEL = ITEMS.register("zinc_shovel",
             () -> new ShovelItem(ModToolTiers.ZINC, new Item.Properties()
                     .attributes(ShovelItem.createAttributes(ModToolTiers.ZINC, 1.5F, -3.0f))));
-    public static final DeferredItem<AxeItem> ZINC_AXE = ITEMS.register("bismuth_axe",
+    public static final DeferredItem<AxeItem> ZINC_AXE = ITEMS.register("zinc_axe",
             () -> new AxeItem(ModToolTiers.ZINC, new Item.Properties()
                     .attributes(AxeItem.createAttributes(ModToolTiers.ZINC, 6.0F, -3.2f))));
-    public static final DeferredItem<HoeItem> ZINC_HOE = ITEMS.register("bismuth_hoe",
+    public static final DeferredItem<HoeItem> ZINC_HOE = ITEMS.register("zinc_hoe",
             () -> new HoeItem(ModToolTiers.ZINC, new Item.Properties()
                     .attributes(HoeItem.createAttributes(ModToolTiers.ZINC, 0F, -3.0f))));
+
+    public static final DeferredItem<ManualDrillItem> ZINC_DRILL = ITEMS.register("zinc_drill",
+            () -> new ManualDrillItem(ModToolTiers.ZINC, new Item.Properties()
+                    .attributes(PickaxeItem.createAttributes(ModToolTiers.ZINC, 6F, -2.5f))));
 
 
     public static void register(IEventBus eventBus){
