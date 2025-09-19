@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "minecraftfarmertechmod:item/chisel"
+    "layer0": "minecraftfarmertechmod:item/zinc_horse_armor"
   }
 }

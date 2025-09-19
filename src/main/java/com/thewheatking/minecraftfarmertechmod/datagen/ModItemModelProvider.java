@@ -54,7 +54,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.COPPER_BIT.get());
         basicItem(ModItems.DIAMOND_BIT.get());
         basicItem(ModItems.NETHERITE_BIT.get());
-        basicItem(ModItems.CHISEL.get());
+        //basicItem(ModItems.CHISEL.get());
         basicItem(ModItems.WRENCH.get());
         basicItem(ModItems.FUSION_CIRCUIT_BOARD.get());
         basicItem(ModItems.WISK.get());
@@ -88,6 +88,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         trimmedArmorItem(ModItems.ZINC_CHESTPLATE);
         trimmedArmorItem(ModItems.ZINC_LEGGINGS);
         trimmedArmorItem(ModItems.ZINC_BOOTS);
+        basicItem(ModItems.ZINC_HORSE_ARMOR.get());
 
 
         buttonItem(ModBlocks.ZINC_BUTTON, ModBlocks.ZINC_BLOCK);
@@ -95,6 +96,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         wallItem(ModBlocks.ZINC_WALL, ModBlocks.ZINC_BLOCK);
 
         basicItem(ModBlocks.ZINC_DOOR.asItem());
+        basicItem(ModItems.ZINC_SMITHING_TEMPLATE.get());
     }
 
     // Shoutout to El_Redstoniano for making this

@@ -6,6 +6,7 @@ import com.thewheatking.minecraftfarmertechmod.item.ModItems;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.ItemLike;
 import net.neoforged.neoforge.common.conditions.IConditionBuilder;
@@ -61,6 +62,8 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_zinc_ingot", has(ModItems.ZINC_INGOT.get())).save(recipeOutput);
         trapdoorBuilder(ModBlocks.ZINC_TRAPDOOR.get(), Ingredient.of(ModItems.ZINC_INGOT.get())).group("zinc")
                 .unlockedBy("has_zinc_ingot", has(ModItems.ZINC_INGOT.get())).save(recipeOutput);
+
+        trimSmithing(recipeOutput, ModItems.ZINC_SMITHING_TEMPLATE.get(), ResourceLocation.fromNamespaceAndPath(MinecraftFarmerTechMod.MOD_ID, "zinc"));
     }
 
     protected static void oreSmelting(RecipeOutput recipeOutput, List<ItemLike> pIngredients, RecipeCategory pCategory, ItemLike pResult,

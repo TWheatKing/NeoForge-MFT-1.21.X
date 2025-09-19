@@ -1,0 +1,14 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "minecraftfarmertechmod:item/chisel"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "minecraftfarmertechmod:used": 1
+      },
+      "model": "minecraftfarmertechmod:item/chisel_used"
+    }
+  ]
+}

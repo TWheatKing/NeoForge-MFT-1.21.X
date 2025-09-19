@@ -1,0 +1,6 @@
+{
+    "parent": "minecraftfarmertechmod:item/zinc_bow",
+    "textures": {
+        "layer0": "minecraftfarmertechmod:item/zinc_bow_pulling_0"
+    }
+}

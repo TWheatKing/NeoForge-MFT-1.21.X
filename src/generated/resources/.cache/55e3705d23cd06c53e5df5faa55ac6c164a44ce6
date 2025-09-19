@@ -1,4 +1,4 @@
-// 1.21	2025-09-19T21:46:23.1610528	Tags for minecraft:item mod id minecraftfarmertechmod
+// 1.21	2025-09-19T22:47:25.0118476	Tags for minecraft:item mod id minecraftfarmertechmod
 1ade1a798754f992b8a68a46a112cce95c400a34 data/minecraftfarmertechmod/tags/item/transformable_items.json
 af9508cdece4ac84a9121d3118b1cbc9114dcdba data/minecraft/tags/item/axes.json
 da995ef7f9282a7fece4ee12f3a93b9b6623646c data/minecraft/tags/item/hoes.json
@@ -6,3 +6,5 @@ da995ef7f9282a7fece4ee12f3a93b9b6623646c data/minecraft/tags/item/hoes.json
 5d0ac6e2c63aae4e6d06122de63d8b0ba96de44a data/minecraft/tags/item/shovels.json
 d3a905cef9f380853bbc862ec20c6b85ae73b8b1 data/minecraft/tags/item/swords.json
 5855f301bd3d795c5e145ce988867dcecfb07904 data/minecraft/tags/item/trimmable_armor.json
+2e7f8894c5499ff5541c96320393800330af23b9 data/minecraft/tags/item/trim_materials.json
+e8ebacfcaed5d0bfbbdd30f6826000626d08d8d3 data/minecraft/tags/item/trim_templates.json

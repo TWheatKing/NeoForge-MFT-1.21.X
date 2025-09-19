@@ -4,6 +4,7 @@ import com.thewheatking.minecraftfarmertechmod.MinecraftFarmerTechMod;
 import com.thewheatking.minecraftfarmertechmod.block.ModBlocks;
 import com.thewheatking.minecraftfarmertechmod.fluid.ModFluids;
 import com.thewheatking.minecraftfarmertechmod.item.custom.*;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.*;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredHolder;
@@ -123,6 +124,17 @@ public class ModItems {
     public static final DeferredItem<ArmorItem> ZINC_BOOTS = ITEMS.register("zinc_boots",
             () -> new ArmorItem(ModArmorMaterials.ZINC_ARMOR_MATERIAL, ArmorItem.Type.BOOTS,
                     new Item.Properties().durability(ArmorItem.Type.BOOTS.getDurability(19))));
+
+    public static final DeferredItem<Item> ZINC_HORSE_ARMOR = ITEMS.register("zinc_horse_armor",
+            () -> new AnimalArmorItem(ModArmorMaterials.ZINC_ARMOR_MATERIAL, AnimalArmorItem.BodyType.EQUESTRIAN,
+                    false, new Item.Properties().stacksTo(1)));
+
+    public static final DeferredItem<Item> ZINC_SMITHING_TEMPLATE = ITEMS.register("zinc_armor_trim_smithing_template",
+            () -> SmithingTemplateItem.createArmorTrimTemplate(ResourceLocation.fromNamespaceAndPath(MinecraftFarmerTechMod.MOD_ID, "zinc")));
+
+    public static final DeferredItem<Item> ZINC_BOW = ITEMS.register("zinc_bow",
+            () -> new BowItem(new Item.Properties().durability(500)));
+
 
     public static void register(IEventBus eventBus){
         ITEMS.register(eventBus);

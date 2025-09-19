@@ -8,6 +8,7 @@ import com.thewheatking.minecraftfarmertechmod.fluid.ModFluids;
 import com.thewheatking.minecraftfarmertechmod.item.ModCreativeModeTabs;
 import com.thewheatking.minecraftfarmertechmod.item.ModItems;
 import com.thewheatking.minecraftfarmertechmod.screen.ModMenuTypes;
+import com.thewheatking.minecraftfarmertechmod.util.ModItemProperties;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.item.CreativeModeTabs;
 import org.slf4j.Logger;
@@ -123,6 +124,7 @@ public class MinecraftFarmerTechMod {
              //Some client setup code
             LOGGER.info("HELLO FROM CLIENT SETUP");
             LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
+            ModItemProperties.addCustomItemProperties();
         }
     }
 }

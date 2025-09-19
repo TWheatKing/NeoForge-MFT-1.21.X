@@ -67,11 +67,17 @@
   "item.minecraftfarmertechmod.zinc_axe": "Zinc Axe",
   "item.minecraftfarmertechmod.zinc_hoe": "Zinc Hoe",
   "item.minecraftfarmertechmod.zinc_drill": "Zinc Drill",
+  "item.minecraftfarmertechmod.zinc_bow": "Zinc Bow",
+
 
   "item.minecraftfarmertechmod.zinc_helmet": "Zinc Helmet",
   "item.minecraftfarmertechmod.zinc_chestplate": "Zinc Chestplate",
   "item.minecraftfarmertechmod.zinc_leggings": "Zinc Leggings",
   "item.minecraftfarmertechmod.zinc_boots": "Zinc Boots",
+
+  "item.minecraftfarmertechmod.zinc_horse_armor": "Zinc Horse Armor",
+
+  "item.minecraftfarmertechmod.wheat_smithing_template": "Wheat Smithing Template",
 
 
 
@@ -88,5 +94,8 @@
   "death.attack.bio_fuel_drowning": "%1$s died taking in too much green",
   "death.attack.bio_fuel_drowning.player": "%1$s died taking in too much green whilst trying to escape %2$s",
   "advancement.minecraftfarmertechmod.green_plunged": "Green Plunged",
-  "advancement.minecraftfarmertechmod.green_plunged.description": "Drown in bio fuel"
+  "advancement.minecraftfarmertechmod.green_plunged.description": "Drown in bio fuel",
+
+  "trim_pattern.minecraftfarmertechmod.zinc": "Zinc Armor Trim",
+  "trim_material.minecraftfarmertechmod.zinc": "Zinc Material"
 }

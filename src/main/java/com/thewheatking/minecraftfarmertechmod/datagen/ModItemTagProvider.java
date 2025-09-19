@@ -45,5 +45,12 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 .add(ModItems.ZINC_CHESTPLATE.get())
                 .add(ModItems.ZINC_LEGGINGS.get())
                 .add(ModItems.ZINC_BOOTS.get());
+
+        this.tag(ItemTags.TRIM_MATERIALS)
+                .add(ModItems.ZINC_INGOT.get());
+
+        this.tag(ItemTags.TRIM_TEMPLATES)
+                .add(ModItems.ZINC_SMITHING_TEMPLATE.get());
+
     }
 }

@@ -1,0 +1,8 @@
+{
+  "asset_id": "minecraftfarmertechmod:zinc",
+  "decal": false,
+  "description": {
+    "translate": "trim_pattern.minecraftfarmertechmod.zinc"
+  },
+  "template_item": "minecraftfarmertechmod:zinc_armor_trim_smithing_template"
+}
