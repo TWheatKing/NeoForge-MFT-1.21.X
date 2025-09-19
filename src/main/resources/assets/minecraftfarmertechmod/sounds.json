@@ -34,5 +34,13 @@
     "sounds": [
       "minecraftfarmertechmod:zinc_block_fall"
     ]
+  },
+  "bar_brawl": {
+    "sounds": [
+      {
+        "name": "minecraftfarmertechmod:bar_brawl",
+        "stream": true
+      }
+    ]
   }
 }

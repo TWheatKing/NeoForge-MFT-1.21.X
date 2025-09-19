@@ -4,6 +4,7 @@ import com.thewheatking.minecraftfarmertechmod.MinecraftFarmerTechMod;
 import com.thewheatking.minecraftfarmertechmod.block.ModBlocks;
 import com.thewheatking.minecraftfarmertechmod.fluid.ModFluids;
 import com.thewheatking.minecraftfarmertechmod.item.custom.*;
+import com.thewheatking.minecraftfarmertechmod.sound.ModSounds;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.*;
 import net.neoforged.bus.api.IEventBus;
@@ -134,6 +135,9 @@ public class ModItems {
 
     public static final DeferredItem<Item> ZINC_BOW = ITEMS.register("zinc_bow",
             () -> new BowItem(new Item.Properties().durability(500)));
+
+    public static final DeferredItem<Item> BAR_BRAWL_MUSIC_DISC = ITEMS.register("bar_brawl_music_disc",
+            () -> new Item(new Item.Properties().jukeboxPlayable(ModSounds.BAR_BRAWL_KEY).stacksTo(1)));
 
 
     public static void register(IEventBus eventBus){

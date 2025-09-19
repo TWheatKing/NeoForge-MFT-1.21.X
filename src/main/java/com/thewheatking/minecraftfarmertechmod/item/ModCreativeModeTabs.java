@@ -109,6 +109,8 @@ public class ModCreativeModeTabs {
 
                         output.accept(ModItems.ZINC_DRILL);
 
+                        output.accept(ModItems.BAR_BRAWL_MUSIC_DISC);
+
                     }).build());
 
 
