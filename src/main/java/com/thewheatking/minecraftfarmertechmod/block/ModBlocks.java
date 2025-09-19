@@ -4,6 +4,7 @@ import com.thewheatking.minecraftfarmertechmod.MinecraftFarmerTechMod;
 import com.thewheatking.minecraftfarmertechmod.block.custom.*;
 import com.thewheatking.minecraftfarmertechmod.fluid.ModFluids;
 import com.thewheatking.minecraftfarmertechmod.item.ModItems;
+import com.thewheatking.minecraftfarmertechmod.sound.ModSounds;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -62,6 +63,7 @@ public class ModBlocks {
                             .requiresCorrectToolForDrops()
                             .randomTicks()
                             .strength(3.0F, 3.0F)
+                            .sound(ModSounds.ZINC_BLOCK_SOUNDS)
             )
     );
     public static final DeferredBlock<StairBlock> ZINC_STAIRS = registerBlock("zinc_stairs",

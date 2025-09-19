@@ -1,0 +1,38 @@
+{
+  "chisel_use": {
+    "subtitle": "sounds.minecraftfarmertechmod.chisel_use",
+    "sounds": [
+      "minecraftfarmertechmod:chisel_use"
+    ]
+  },
+  "zinc_block_break": {
+    "subtitle": "sounds.minecraftfarmertechmod.zinc_block_break",
+    "sounds": [
+      "minecraftfarmertechmod:zinc_block_break"
+    ]
+  },
+  "zinc_block_step": {
+    "subtitle": "sounds.minecraftfarmertechmod.zinc_block_step",
+    "sounds": [
+      "minecraftfarmertechmod:zinc_block_step"
+    ]
+  },
+  "zinc_block_place": {
+    "subtitle": "sounds.minecraftfarmertechmod.zinc_block_place",
+    "sounds": [
+      "minecraftfarmertechmod:zinc_block_place"
+    ]
+  },
+  "zinc_block_hit": {
+    "subtitle": "sounds.minecraftfarmertechmod.zinc_block_hit",
+    "sounds": [
+      "minecraftfarmertechmod:zinc_block_hit"
+    ]
+  },
+  "zinc_block_fall": {
+    "subtitle": "sounds.minecraftfarmertechmod.zinc_block_fall",
+    "sounds": [
+      "minecraftfarmertechmod:zinc_block_fall"
+    ]
+  }
+}

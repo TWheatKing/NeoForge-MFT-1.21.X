@@ -8,6 +8,7 @@ import com.thewheatking.minecraftfarmertechmod.fluid.ModFluids;
 import com.thewheatking.minecraftfarmertechmod.item.ModCreativeModeTabs;
 import com.thewheatking.minecraftfarmertechmod.item.ModItems;
 import com.thewheatking.minecraftfarmertechmod.screen.ModMenuTypes;
+import com.thewheatking.minecraftfarmertechmod.sound.ModSounds;
 import com.thewheatking.minecraftfarmertechmod.util.ModItemProperties;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.item.CreativeModeTabs;
@@ -52,6 +53,8 @@ public class MinecraftFarmerTechMod {
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
         ModDataComponents.register(modEventBus);
+        ModSounds.register(modEventBus);
+
         // Register the new block entities and menu types
         ModBlockEntities.register(modEventBus);
         ModMenuTypes.register(modEventBus);
