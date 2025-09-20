@@ -74,6 +74,9 @@ public class ModCreativeModeTabs {
                         //blocks
                         output.accept(ModBlocks.ZINC_ORE.get());
                         output.accept(ModBlocks.ZINC_DEEPSLATE_ORE.get());
+                        output.accept(ModBlocks.ZINC_END_ORE.get());
+                        output.accept(ModBlocks.ZINC_NETHER_ORE.get());
+
                         output.accept(ModBlocks.WHEAT_INGOT_BLOCK.get());
                         output.accept(ModBlocks.ZINC_BLOCK.get());
                         //custom items

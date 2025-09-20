@@ -48,6 +48,15 @@ public class ModBlocks {
                     .strength(4.0F, 3.0F)
             )
     );
+
+    public static final DeferredBlock<Block> ZINC_END_ORE = registerBlock("zinc_end_ore",
+            () -> new DropExperienceBlock(UniformInt.of(5, 9),
+                    BlockBehaviour.Properties.of().strength(7f).requiresCorrectToolForDrops()));
+
+    public static final DeferredBlock<Block> ZINC_NETHER_ORE = registerBlock("zinc_nether_ore",
+            () -> new DropExperienceBlock(UniformInt.of(1, 5),
+                    BlockBehaviour.Properties.of().strength(3f).requiresCorrectToolForDrops()));
+
     public static final DeferredBlock<Block> WHEAT_INGOT_BLOCK = registerBlock("wheat_ingot_block",
             () -> new DropExperienceBlock(UniformInt.of(2,4),
                     BlockBehaviour.Properties.of()

@@ -62,6 +62,11 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         add(ModBlocks.ZINC_DEEPSLATE_ORE.get(),
                 block -> createMultipleOreDrops(ModBlocks.ZINC_DEEPSLATE_ORE.get(), ModItems.RAW_ZINC.get(), 2, 5));
 
+        add(ModBlocks.ZINC_END_ORE.get(),
+                block -> createMultipleOreDrops(ModBlocks.ZINC_END_ORE.get(), ModItems.RAW_ZINC.get(), 3, 6));
+        add(ModBlocks.ZINC_NETHER_ORE.get(),
+                block -> createMultipleOreDrops(ModBlocks.ZINC_NETHER_ORE.get(), ModItems.RAW_ZINC.get(), 4, 8));
+
         dropSelf(ModBlocks.ZINC_LAMP.get());
 
         LootItemCondition.Builder lootItemConditionBuilder = LootItemBlockStatePropertyCondition.hasBlockStateProperties(ModBlocks.CORN_CROP.get())

@@ -29,6 +29,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
     protected void registerStatesAndModels() {
         blockWithItem(ModBlocks.ZINC_ORE);
         blockWithItem(ModBlocks.ZINC_DEEPSLATE_ORE);
+        blockWithItem(ModBlocks.ZINC_END_ORE);
+        blockWithItem(ModBlocks.ZINC_NETHER_ORE);
         blockWithItem(ModBlocks.ZINC_BLOCK);
         blockWithItem(ModBlocks.ZINC_CASING);
         blockWithItem(ModBlocks.ANDESITE_CASING);
