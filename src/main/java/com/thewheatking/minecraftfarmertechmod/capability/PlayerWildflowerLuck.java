@@ -8,7 +8,7 @@ public class PlayerWildflowerLuck implements INBTSerializable<CompoundTag> {
     private int consecutiveFailures = 0;
     private static final float BASE_CHANCE = 0.1f; // 10%
     private static final float BONUS_PER_FAILURE = 0.05f; // 5% per failure
-    private static final int MAX_FAILURES = 20; // Cap at 20 failures (110% max chance)
+    private static final int MAX_FAILURES = 18; // Cap at 18 failures (100% max chance)
 
     public void incrementFailures() {
         if (consecutiveFailures < MAX_FAILURES) {
