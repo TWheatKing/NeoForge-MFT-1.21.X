@@ -19,7 +19,9 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
-
+import net.minecraft.world.level.material.MapColor;
+import net.minecraft.world.level.material.PushReaction;
+import net.minecraft.world.level.block.SoundType;
 import java.util.function.Supplier;
 
 public class ModBlocks {
@@ -134,6 +136,15 @@ public class ModBlocks {
 
     public static final DeferredBlock<Block> STRAWBERRY_BUSH = BLOCKS.register("strawberry_bush",
             () -> new StrawberryBushBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SWEET_BERRY_BUSH)));
+
+    public static final DeferredBlock<Block> WILDFLOWER_BUSH = registerBlock("wildflower_bush",
+            () -> new WildFlowerBushBlock(BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.PLANT)
+                    .randomTicks()
+                    .noCollission()
+                    .sound(SoundType.SWEET_BERRY_BUSH)
+                    .strength(0.2F)
+                    .pushReaction(PushReaction.DESTROY)));
 
 
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {

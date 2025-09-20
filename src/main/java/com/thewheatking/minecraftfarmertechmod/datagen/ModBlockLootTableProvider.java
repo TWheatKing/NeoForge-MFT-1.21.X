@@ -2,6 +2,7 @@ package com.thewheatking.minecraftfarmertechmod.datagen;
 
 import com.thewheatking.minecraftfarmertechmod.block.ModBlocks;
 import com.thewheatking.minecraftfarmertechmod.block.custom.CornCropBlock;
+import com.thewheatking.minecraftfarmertechmod.block.custom.WildFlowerBushBlock;
 import com.thewheatking.minecraftfarmertechmod.item.ModItems;
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.core.Holder;
@@ -21,6 +22,7 @@ import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
+import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 
 import java.util.Set;
@@ -55,7 +57,6 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         add(ModBlocks.ZINC_DOOR.get(),
                 block -> createDoorTable(ModBlocks.ZINC_DOOR.get()));
 
-
         add(ModBlocks.ZINC_ORE.get(),
                 block -> createOreDrop(ModBlocks.ZINC_ORE.get(), ModItems.RAW_ZINC.get()));
         add(ModBlocks.ZINC_DEEPSLATE_ORE.get(),
@@ -82,6 +83,23 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
                                         LootItemBlockStatePropertyCondition.hasBlockStateProperties(ModBlocks.STRAWBERRY_BUSH.get())
                                                 .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(SweetBerryBushBlock.AGE, 2))
                                 ).add(LootItem.lootTableItem(ModItems.STRAWBERRIES.get()))
+                                .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F)))
+                                .apply(ApplyBonusCount.addUniformBonusCount(registrylookup.getOrThrow(Enchantments.FORTUNE)))
+                )));
+
+        // FIXED: Proper wildflower bush loot table - only cotton swabs, no wildflower drops here
+        // (wildflowers will be handled by the interaction system)
+        this.add(ModBlocks.WILDFLOWER_BUSH.get(), block -> this.applyExplosionDecay(
+                block, LootTable.lootTable().withPool(LootPool.lootPool().when(
+                                        LootItemBlockStatePropertyCondition.hasBlockStateProperties(ModBlocks.WILDFLOWER_BUSH.get())
+                                                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(WildFlowerBushBlock.AGE, 3))
+                                ).add(LootItem.lootTableItem(ModItems.COTTON_SWAB.get()))
+                                .apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 3.0F)))
+                                .apply(ApplyBonusCount.addUniformBonusCount(registrylookup.getOrThrow(Enchantments.FORTUNE)))
+                ).withPool(LootPool.lootPool().when(
+                                        LootItemBlockStatePropertyCondition.hasBlockStateProperties(ModBlocks.WILDFLOWER_BUSH.get())
+                                                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(WildFlowerBushBlock.AGE, 2))
+                                ).add(LootItem.lootTableItem(ModItems.COTTON_SWAB.get()))
                                 .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F)))
                                 .apply(ApplyBonusCount.addUniformBonusCount(registrylookup.getOrThrow(Enchantments.FORTUNE)))
                 )));

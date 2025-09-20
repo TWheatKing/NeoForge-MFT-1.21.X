@@ -1,4 +1,4 @@
-// 1.21	2025-09-19T22:47:25.0168485	Recipes
+// 1.21	2025-09-20T19:14:40.4708832	Recipes
 760796fcf1494e8ef8944e7a0391209945b4dd40 data/minecraftfarmertechmod/advancement/recipes/building_blocks/zinc_slab.json
 cb4a16160d480a57ecaef671ee2749c9bc082ade data/minecraftfarmertechmod/advancement/recipes/building_blocks/zinc_stairs.json
 da0fa7bbf6e5a434187d68d5c8071465219870d8 data/minecraftfarmertechmod/advancement/recipes/building_blocks/zinc_wall.json
@@ -35,3 +35,5 @@ d2da4ce9696dfea7dc80930f0f72c41af49c7e50 data/minecraftfarmertechmod/recipe/zinc
 bc3916130c7a06bfd12de4bb985b65f28a839533 data/minecraftfarmertechmod/recipe/zinc_stairs.json
 1eb55b63f5e227df0315f5d0ac212115786e3461 data/minecraftfarmertechmod/recipe/zinc_trapdoor.json
 ba4b98c45182516391fe9b26d2dc814e519781b9 data/minecraftfarmertechmod/recipe/zinc_wall.json
+3205da0a30368956bda5c917d6edc6f8d3dbf028 data/minecraft/advancement/recipes/misc/string.json
+515c28b4abcca6804553bfe139d4d59f622c3bdd data/minecraft/recipe/string.json

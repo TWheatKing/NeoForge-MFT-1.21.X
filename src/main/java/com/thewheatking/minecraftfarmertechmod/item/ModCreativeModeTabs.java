@@ -114,6 +114,8 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.CORN_SEEDS);
                         output.accept(ModItems.CORN);
                         output.accept(ModItems.STRAWBERRIES);
+                        output.accept(ModItems.COTTON_SWAB);
+                        output.accept(ModItems.WILDFLOWER);
 
                     }).build());
 

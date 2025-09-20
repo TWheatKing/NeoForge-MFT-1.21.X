@@ -148,6 +148,11 @@ public class ModItems {
     public static final DeferredItem<Item> STRAWBERRIES = ITEMS.register("strawberries",
             () -> new ItemNameBlockItem(ModBlocks.STRAWBERRY_BUSH.get(), new Item.Properties().food(ModFoodProperties.STRAWBERRY)));
 
+    public static final DeferredItem<Item> COTTON_SWAB = ITEMS.register("cotton_swab",
+            () -> new Item(new Item.Properties()));
+
+    public static final DeferredItem<Item> WILDFLOWER = ITEMS.register("wildflower",
+            () -> new ItemNameBlockItem(ModBlocks.WILDFLOWER_BUSH.get(), new Item.Properties()));
 
     public static void register(IEventBus eventBus){
         ITEMS.register(eventBus);

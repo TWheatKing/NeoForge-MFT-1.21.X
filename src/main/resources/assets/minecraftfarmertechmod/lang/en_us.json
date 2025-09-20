@@ -39,8 +39,8 @@
   "item.minecraftfarmertechmod.corn": "Corn",
   "item.minecraftfarmertechmod.corn_seeds": "Corn Seeds",
   "item.minecraftfarmertechmod.strawberries": "Strawberries",
-
-
+  "item.minecraftfarmertechmod.cotton_swab": "Cotton Swab",
+  "item.minecraftfarmertechmod.wildflower": "Wildflower",
 
 
   "block.minecraftfarmertechmod.zinc_ore": "Zinc Ore",
@@ -56,6 +56,7 @@
   "block.minecraftfarmertechmod.liquifier": "Liquifier",
   "block.minecraftfarmertechmod.corn_crop": "Corn Crop",
   "block.minecraftfarmertechmod.strawberry_bush": "Strawberry Bush",
+  "block.minecraftfarmertechmod.wildflower_bush": "Wildflower Bush",
 
   "block.minecraftfarmertechmod.zinc_block": "Zinc Block",
   "block.minecraftfarmertechmod.zinc_stairs": "Zinc Stairs",

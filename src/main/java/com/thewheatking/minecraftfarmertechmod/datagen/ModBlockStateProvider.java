@@ -249,6 +249,24 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
         makeCrop(((CropBlock) ModBlocks.CORN_CROP.get()), "corn_crop_stage", "corn_crop_stage");
         makeBush(((SweetBerryBushBlock) ModBlocks.STRAWBERRY_BUSH.get()), "strawberry_bush_stage", "strawberry_bush_stage");
+        // Add this to your registerStatesAndModels() method
+        makeWildflowerBush();
+    }
+
+    private void makeWildflowerBush() {
+        Function<BlockState, ConfiguredModel[]> function = state -> wildflowerBushStates(state);
+        getVariantBuilder(ModBlocks.WILDFLOWER_BUSH.get()).forAllStates(function);
+    }
+
+    private ConfiguredModel[] wildflowerBushStates(BlockState state) {
+        ConfiguredModel[] models = new ConfiguredModel[1];
+        int age = state.getValue(WildFlowerBushBlock.AGE);
+
+        models[0] = new ConfiguredModel(models().cross("wildflower_bush_stage" + age,
+                ResourceLocation.fromNamespaceAndPath(MinecraftFarmerTechMod.MOD_ID,
+                        "block/wildflower_bush_stage" + age)).renderType("cutout"));
+
+        return models;
     }
 
     public void makeBush(SweetBerryBushBlock block, String modelName, String textureName) {

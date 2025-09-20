@@ -1,5 +1,6 @@
 package com.thewheatking.minecraftfarmertechmod;
 
+import com.thewheatking.minecraftfarmertechmod.attachment.ModAttachments;
 import com.thewheatking.minecraftfarmertechmod.block.ModBlocks;
 import com.thewheatking.minecraftfarmertechmod.block.entity.ModBlockEntities;
 import com.thewheatking.minecraftfarmertechmod.component.ModDataComponents;
@@ -61,6 +62,7 @@ public class MinecraftFarmerTechMod {
         ModEffects.register(modEventBus);
         ModPotions.register(modEventBus);
         ModEnchantmentEffects.register(modEventBus);
+        ModAttachments.ATTACHMENT_TYPES.register(modEventBus);
 
         // Register the new block entities and menu types
         ModBlockEntities.register(modEventBus);
