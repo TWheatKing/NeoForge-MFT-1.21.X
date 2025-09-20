@@ -1,4 +1,4 @@
-// 1.21	2025-09-19T18:59:36.9682391	Loot Tables
+// 1.21	2025-09-20T17:45:18.4755979	Loot Tables
 98fc95b5cf526cd8882d33841edc2a467283dc9d data/minecraftfarmertechmod/loot_table/blocks/andesite_casing.json
 18f31184e4422bc256a2642d650d697e62e0b0b8 data/minecraftfarmertechmod/loot_table/blocks/bio_generator.json
 b50519717ab1b60316949312463d2d627ae7c828 data/minecraftfarmertechmod/loot_table/blocks/coal_generator.json
@@ -6,6 +6,8 @@ b50519717ab1b60316949312463d2d627ae7c828 data/minecraftfarmertechmod/loot_table/
 d48bff6e12b5d0be25bf41bf1bf70ef8d411b18d data/minecraftfarmertechmod/loot_table/blocks/energy_cable.json
 88c4c9b2b38a32223266b0a2eb2aa696062d2274 data/minecraftfarmertechmod/loot_table/blocks/iron_furnace.json
 fbc31f63368e32d283277325befd6173ea315aa1 data/minecraftfarmertechmod/loot_table/blocks/liquifier.json
+15d02da9d536c1804431ff2524b99fd5b7175d82 data/minecraftfarmertechmod/loot_table/blocks/radish_crop.json
+60efd679d8340e0bd1d42db9d7d3adc99bba948e data/minecraftfarmertechmod/loot_table/blocks/strawberry_bush.json
 a3c12eccd6ca09e350c735f52752eba51f48ff26 data/minecraftfarmertechmod/loot_table/blocks/wheat_ingot_block.json
 788869e328271e029a1d31175095b422da3b658e data/minecraftfarmertechmod/loot_table/blocks/zinc_block.json
 f7db93c69e4918126b358a0ee78a5d90c9c7cdd6 data/minecraftfarmertechmod/loot_table/blocks/zinc_button.json

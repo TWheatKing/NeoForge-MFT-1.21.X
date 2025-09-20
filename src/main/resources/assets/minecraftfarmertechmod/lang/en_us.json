@@ -36,6 +36,12 @@
   "item.minecraftfarmertechmod.chisel": "Chisel",
   "item.minecraftfarmertechmod.bio_fuel_bucket": "Bio Fuel",
   "item.minecraftfarmertechmod.burger": "Burger",
+  "item.minecraftfarmertechmod.corn": "Corn",
+  "item.minecraftfarmertechmod.corn_seeds": "Corn Seeds",
+  "item.minecraftfarmertechmod.strawberries": "Strawberries",
+
+
+
 
   "block.minecraftfarmertechmod.zinc_ore": "Zinc Ore",
   "block.minecraftfarmertechmod.zinc_deepslate_ore": "Zinc Deepslate Ore",
@@ -48,6 +54,8 @@
   "block.minecraftfarmertechmod.energy_battery": "Energy Battery",
   "block.minecraftfarmertechmod.bio_generator": "Bio Generator",
   "block.minecraftfarmertechmod.liquifier": "Liquifier",
+  "block.minecraftfarmertechmod.corn_crop": "Corn Crop",
+  "block.minecraftfarmertechmod.strawberry_bush": "Strawberry Bush",
 
   "block.minecraftfarmertechmod.zinc_block": "Zinc Block",
   "block.minecraftfarmertechmod.zinc_stairs": "Zinc Stairs",

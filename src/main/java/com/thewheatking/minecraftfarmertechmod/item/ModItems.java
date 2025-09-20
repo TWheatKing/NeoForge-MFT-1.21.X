@@ -139,6 +139,15 @@ public class ModItems {
     public static final DeferredItem<Item> BAR_BRAWL_MUSIC_DISC = ITEMS.register("bar_brawl_music_disc",
             () -> new Item(new Item.Properties().jukeboxPlayable(ModSounds.BAR_BRAWL_KEY).stacksTo(1)));
 
+    public static final DeferredItem<Item> CORN = ITEMS.register("corn",
+            () -> new CornItem(new Item.Properties().food(ModFoodProperties.CORN)));
+
+    public static final DeferredItem<Item> CORN_SEEDS = ITEMS.register("corn_seeds",
+            () -> new ItemNameBlockItem(ModBlocks.CORN_CROP.get(), new Item.Properties()));
+
+    public static final DeferredItem<Item> STRAWBERRIES = ITEMS.register("strawberries",
+            () -> new ItemNameBlockItem(ModBlocks.STRAWBERRY_BUSH.get(), new Item.Properties().food(ModFoodProperties.STRAWBERRY)));
+
 
     public static void register(IEventBus eventBus){
         ITEMS.register(eventBus);

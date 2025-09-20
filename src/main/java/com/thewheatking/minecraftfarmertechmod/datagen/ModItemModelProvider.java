@@ -74,6 +74,9 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.ANDESITE_ALLOY.get());
         basicItem(ModItems.ZINC_ALLOY.get());
         basicItem(ModItems.BURGER.get());
+        basicItem(ModItems.CORN.get());
+        basicItem(ModItems.CORN_SEEDS.get());
+        basicItem(ModItems.STRAWBERRIES.get());
         basicItem(ModItems.BAR_BRAWL_MUSIC_DISC.get());
 
         //tools

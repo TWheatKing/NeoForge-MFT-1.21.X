@@ -1,0 +1,10 @@
+{
+  "values": {
+    "minecraftfarmertechmod:corn": {
+      "chance": 0.25
+    },
+    "minecraftfarmertechmod:corn_seeds": {
+      "chance": 0.45
+    }
+  }
+}

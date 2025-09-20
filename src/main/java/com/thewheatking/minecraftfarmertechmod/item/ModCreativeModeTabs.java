@@ -111,6 +111,10 @@ public class ModCreativeModeTabs {
 
                         output.accept(ModItems.BAR_BRAWL_MUSIC_DISC);
 
+                        output.accept(ModItems.CORN_SEEDS);
+                        output.accept(ModItems.CORN);
+                        output.accept(ModItems.STRAWBERRIES);
+
                     }).build());
 
 
