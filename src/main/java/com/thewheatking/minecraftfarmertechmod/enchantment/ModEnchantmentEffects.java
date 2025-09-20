@@ -2,6 +2,7 @@ package com.thewheatking.minecraftfarmertechmod.enchantment;
 
 import com.mojang.serialization.MapCodec;
 import com.thewheatking.minecraftfarmertechmod.MinecraftFarmerTechMod;
+import com.thewheatking.minecraftfarmertechmod.enchantment.custom.BreedingParticlesEffect;
 import com.thewheatking.minecraftfarmertechmod.enchantment.custom.LightningStrikerEnchantmentEffect;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.enchantment.effects.EnchantmentEntityEffect;
@@ -16,6 +17,9 @@ public class ModEnchantmentEffects {
 
     public static final Supplier<MapCodec<? extends EnchantmentEntityEffect>> LIGHTNING_STRIKER =
             ENTITY_ENCHANTMENT_EFFECTS.register("lightning_striker", () -> LightningStrikerEnchantmentEffect.CODEC);
+
+    public static final Supplier<MapCodec<? extends EnchantmentEntityEffect>> BREEDING_PARTICLES =
+            ENTITY_ENCHANTMENT_EFFECTS.register("breeding_particles", () -> BreedingParticlesEffect.CODEC);
 
     public static void register(IEventBus eventBus) {
         ENTITY_ENCHANTMENT_EFFECTS.register(eventBus);

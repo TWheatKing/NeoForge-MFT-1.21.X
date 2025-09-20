@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "minecraftfarmertechmod:lightning_striker"
+    "minecraftfarmertechmod:lightning_striker",
+    "minecraftfarmertechmod:breeding"
   ]
 }
