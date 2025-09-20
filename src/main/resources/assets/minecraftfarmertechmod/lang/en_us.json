@@ -81,6 +81,11 @@
   "item.minecraftfarmertechmod.bar_brawl_music_disc": "Bar Brawl Music Disc",
   "item.minecraftfarmertechmod.bar_brawl_music_disc.desc": "Bryan Tech - Bar Brawl (CC0)",
 
+  "effect.minecraftfarmertechmod.attraction": "Animal Attraction",
+  "item.minecraft.potion.effect.attraction_potion": "Animal Attraction Potion",
+  "item.minecraft.splash_potion.effect.attraction_potion": "Animal Attraction Splash Potion",
+  "item.minecraft.lingering_potion.effect.attraction_potion": "Animal Attraction Lingering Potion",
+
 
   "creativetab.minecraftfarmertechmod.minecraft_farmer_tech": "Minecraft Farmer Tech",
 
