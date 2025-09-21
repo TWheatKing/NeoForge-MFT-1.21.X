@@ -1,7 +1,7 @@
 package com.thewheatking.minecraftfarmertechmod.hybrid;
 
 import com.thewheatking.minecraftfarmertechmod.MinecraftFarmerTechMod;
-import com.thewheatking.minecraftfarmertechmod.common.blockentity.machines.CoalGeneratorBlockEntity;
+import com.thewheatking.minecraftfarmertechmod.common.blockentity.machines.*;
 import com.thewheatking.minecraftfarmertechmod.common.blockentity.storage.*;
 import com.thewheatking.minecraftfarmertechmod.common.blockentity.transmission.*;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -248,158 +248,8 @@ public class HybridBlockEntities {
      */
 
     // Control System Block Entities (need to be created)
-    public static class EnergyControllerBlockEntity extends com.thewheatking.minecraftfarmertechmod.common.blockentity.base.BaseMachineBlockEntity {
-        public EnergyControllerBlockEntity(net.minecraft.core.BlockPos pos, net.minecraft.world.level.block.state.BlockState state) {
-            super(ENERGY_CONTROLLER.get(), pos, state, 100000, 5000, 5000, 27);
-            // Implementation needed
-        }
-
-        @Override
-        public net.minecraft.network.chat.Component getDisplayName() {
-            return net.minecraft.network.chat.Component.translatable("block.minecraftfarmertechmod.energy_controller");
-        }
-
-        @Override
-        public net.minecraft.world.inventory.AbstractContainerMenu createMenu(int containerId, net.minecraft.world.entity.player.Inventory playerInventory, net.minecraft.world.entity.player.Player player) {
-            return null; // TODO: Implement menu
-        }
-    }
-
-    public static class EnergyMonitorBlockEntity extends com.thewheatking.minecraftfarmertechmod.common.blockentity.base.BaseMachineBlockEntity {
-        public EnergyMonitorBlockEntity(net.minecraft.core.BlockPos pos, net.minecraft.world.level.block.state.BlockState state) {
-            super(ENERGY_MONITOR.get(), pos, state, 50000, 1000, 1000, 9);
-            // Implementation needed
-        }
-
-        @Override
-        public net.minecraft.network.chat.Component getDisplayName() {
-            return net.minecraft.network.chat.Component.translatable("block.minecraftfarmertechmod.energy_monitor");
-        }
-
-        @Override
-        public net.minecraft.world.inventory.AbstractContainerMenu createMenu(int containerId, net.minecraft.world.entity.player.Inventory playerInventory, net.minecraft.world.entity.player.Player player) {
-            return null; // TODO: Implement menu
-        }
-    }
-
-    public static class EnergyConverterBlockEntity extends com.thewheatking.minecraftfarmertechmod.common.blockentity.base.BaseMachineBlockEntity {
-        public EnergyConverterBlockEntity(net.minecraft.core.BlockPos pos, net.minecraft.world.level.block.state.BlockState state) {
-            super(ENERGY_CONVERTER.get(), pos, state, 75000, 2500, 2500, 18);
-            // Implementation needed
-        }
-
-        @Override
-        public net.minecraft.network.chat.Component getDisplayName() {
-            return net.minecraft.network.chat.Component.translatable("block.minecraftfarmertechmod.energy_converter");
-        }
-
-        @Override
-        public net.minecraft.world.inventory.AbstractContainerMenu createMenu(int containerId, net.minecraft.world.entity.player.Inventory playerInventory, net.minecraft.world.entity.player.Player player) {
-            return null; // TODO: Implement menu
-        }
-    }
 
     // Network Infrastructure Block Entities (need to be created)
-    public static class NetworkRelayBlockEntity extends com.thewheatking.minecraftfarmertechmod.common.blockentity.base.BaseMachineBlockEntity {
-        public NetworkRelayBlockEntity(net.minecraft.core.BlockPos pos, net.minecraft.world.level.block.state.BlockState state) {
-            super(NETWORK_RELAY.get(), pos, state, 25000, 10000, 10000, 9);
-            // Implementation needed
-        }
-
-        @Override
-        public net.minecraft.network.chat.Component getDisplayName() {
-            return net.minecraft.network.chat.Component.translatable("block.minecraftfarmertechmod.network_relay");
-        }
-
-        @Override
-        public net.minecraft.world.inventory.AbstractContainerMenu createMenu(int containerId, net.minecraft.world.entity.player.Inventory playerInventory, net.minecraft.world.entity.player.Player player) {
-            return null; // TODO: Implement menu
-        }
-    }
-
-    public static class NetworkAmplifierBlockEntity extends com.thewheatking.minecraftfarmertechmod.common.blockentity.base.BaseMachineBlockEntity {
-        public NetworkAmplifierBlockEntity(net.minecraft.core.BlockPos pos, net.minecraft.world.level.block.state.BlockState state) {
-            super(NETWORK_AMPLIFIER.get(), pos, state, 50000, 15000, 15000, 18);
-            // Implementation needed
-        }
-
-        @Override
-        public net.minecraft.network.chat.Component getDisplayName() {
-            return net.minecraft.network.chat.Component.translatable("block.minecraftfarmertechmod.network_amplifier");
-        }
-
-        @Override
-        public net.minecraft.world.inventory.AbstractContainerMenu createMenu(int containerId, net.minecraft.world.entity.player.Inventory playerInventory, net.minecraft.world.entity.player.Player player) {
-            return null; // TODO: Implement menu
-        }
-    }
-
-    public static class NetworkBridgeBlockEntity extends com.thewheatking.minecraftfarmertechmod.common.blockentity.base.BaseMachineBlockEntity {
-        public NetworkBridgeBlockEntity(net.minecraft.core.BlockPos pos, net.minecraft.world.level.block.state.BlockState state) {
-            super(NETWORK_BRIDGE.get(), pos, state, 100000, 20000, 20000, 27);
-            // Implementation needed
-        }
-
-        @Override
-        public net.minecraft.network.chat.Component getDisplayName() {
-            return net.minecraft.network.chat.Component.translatable("block.minecraftfarmertechmod.network_bridge");
-        }
-
-        @Override
-        public net.minecraft.world.inventory.AbstractContainerMenu createMenu(int containerId, net.minecraft.world.entity.player.Inventory playerInventory, net.minecraft.world.entity.player.Player player) {
-            return null; // TODO: Implement menu
-        }
-    }
 
     // Specialized Interface Block Entities (need to be created)
-    public static class EnergyAnalyzerBlockEntity extends com.thewheatking.minecraftfarmertechmod.common.blockentity.base.BaseMachineBlockEntity {
-        public EnergyAnalyzerBlockEntity(net.minecraft.core.BlockPos pos, net.minecraft.world.level.block.state.BlockState state) {
-            super(ENERGY_ANALYZER.get(), pos, state, 10000, 1000, 1000, 9);
-            // Implementation needed
-        }
-
-        @Override
-        public net.minecraft.network.chat.Component getDisplayName() {
-            return net.minecraft.network.chat.Component.translatable("block.minecraftfarmertechmod.energy_analyzer");
-        }
-
-        @Override
-        public net.minecraft.world.inventory.AbstractContainerMenu createMenu(int containerId, net.minecraft.world.entity.player.Inventory playerInventory, net.minecraft.world.entity.player.Player player) {
-            return null; // TODO: Implement menu
-        }
-    }
-
-    public static class NetworkDashboardBlockEntity extends com.thewheatking.minecraftfarmertechmod.common.blockentity.base.BaseMachineBlockEntity {
-        public NetworkDashboardBlockEntity(net.minecraft.core.BlockPos pos, net.minecraft.world.level.block.state.BlockState state) {
-            super(NETWORK_DASHBOARD.get(), pos, state, 25000, 2000, 2000, 18);
-            // Implementation needed
-        }
-
-        @Override
-        public net.minecraft.network.chat.Component getDisplayName() {
-            return net.minecraft.network.chat.Component.translatable("block.minecraftfarmertechmod.network_dashboard");
-        }
-
-        @Override
-        public net.minecraft.world.inventory.AbstractContainerMenu createMenu(int containerId, net.minecraft.world.entity.player.Inventory playerInventory, net.minecraft.world.entity.player.Player player) {
-            return null; // TODO: Implement menu
-        }
-    }
-
-    public static class HybridConfiguratorBlockEntity extends com.thewheatking.minecraftfarmertechmod.common.blockentity.base.BaseMachineBlockEntity {
-        public HybridConfiguratorBlockEntity(net.minecraft.core.BlockPos pos, net.minecraft.world.level.block.state.BlockState state) {
-            super(HYBRID_CONFIGURATOR.get(), pos, state, 5000, 500, 500, 9);
-            // Implementation needed
-        }
-
-        @Override
-        public net.minecraft.network.chat.Component getDisplayName() {
-            return net.minecraft.network.chat.Component.translatable("block.minecraftfarmertechmod.hybrid_configurator");
-        }
-
-        @Override
-        public net.minecraft.world.inventory.AbstractContainerMenu createMenu(int containerId, net.minecraft.world.entity.player.Inventory playerInventory, net.minecraft.world.entity.player.Player player) {
-            return null; // TODO: Implement menu
-        }
-    }
 }

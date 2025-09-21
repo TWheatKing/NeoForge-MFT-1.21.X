@@ -20,7 +20,7 @@ import java.util.concurrent.CompletableFuture;
 public class DataGenerators {
 
     // Feature flag for hybrid system
-    private static final boolean ENABLE_HYBRID_SYSTEM = true;
+    private static final boolean ENABLE_HYBRID_SYSTEM = false;
 
     @SubscribeEvent
     public static void gatherData(GatherDataEvent event){
@@ -62,16 +62,16 @@ public class DataGenerators {
         if (event.includeClient()) {
             // Item Models - choose between original and hybrid
             if (ENABLE_HYBRID_SYSTEM) {
-                generator.addProvider(true, new EnhancedModItemModelProvider(packOutput, existingFileHelper));
+                generator.addProvider(true, new EnhancedModItemModelProvider(packOutput, MinecraftFarmerTechMod.MOD_ID, existingFileHelper));
             } else {
-                generator.addProvider(true, new ModItemModelProvider(packOutput, existingFileHelper));
+                generator.addProvider(true, new ModItemModelProvider(packOutput, MinecraftFarmerTechMod.MOD_ID, existingFileHelper));
             }
 
             // Block States - choose between original and hybrid
             if (ENABLE_HYBRID_SYSTEM) {
-                generator.addProvider(true, new EnhancedModBlockStateProvider(packOutput, existingFileHelper));
+                generator.addProvider(true, new EnhancedModBlockStateProvider(packOutput, MinecraftFarmerTechMod.MOD_ID, existingFileHelper));
             } else {
-                generator.addProvider(true, new ModBlockStateProvider(packOutput, existingFileHelper));
+                generator.addProvider(true, new ModBlockStateProvider(packOutput, MinecraftFarmerTechMod.MOD_ID, existingFileHelper));
             }
         }
 

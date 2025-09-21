@@ -327,9 +327,7 @@ public class HybridEnergyCapabilityProviders {
                                            Class<T> blockEntityClass) {
 
             // Register for standard Forge Energy capability
-            event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK,
-                    blockEntityType.get(),
-                    createForgeEnergyProvider(blockEntityClass));
+            event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK, blockEntityType.get(), createForgeEnergyProvider(blockEntityClass));
         }
 
         /**
@@ -341,9 +339,7 @@ public class HybridEnergyCapabilityProviders {
                                          Class<T> blockEntityClass) {
 
             // Register for MFT Energy capability
-            event.registerBlockEntity(MFT_ENERGY_CAPABILITY,
-                    blockEntityType.get(),
-                    createMftEnergyProvider(blockEntityClass));
+            event.registerBlockEntity(MFT_ENERGY_CAPABILITY, blockEntityType.get(), createMftEnergyProvider(blockEntityClass));
         }
 
         /**
@@ -367,14 +363,10 @@ public class HybridEnergyCapabilityProviders {
                                      Class<T> blockEntityClass) {
 
             // Register smart provider for Forge Energy
-            event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK,
-                    blockEntityType.get(),
-                    createSmartProvider(blockEntityClass));
+            event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK, blockEntityType.get(), createSmartProvider(blockEntityClass));
 
             // Register smart provider for MFT Energy
-            event.registerBlockEntity(MFT_ENERGY_CAPABILITY,
-                    blockEntityType.get(),
-                    createSmartProvider(blockEntityClass));
+            event.registerBlockEntity(MFT_ENERGY_CAPABILITY, blockEntityType.get(), createSmartProvider(blockEntityClass));
         }
 
         /**
