@@ -86,6 +86,12 @@ public class HybridBlockEntities {
                                     HybridBlocks.DIAMOND_CABLE.get())
                             .build(null));
 
+    public static final Supplier<BlockEntityType<GoldCableInsulatedBlockEntity>> DIAMOND_CABLE_INSULATED =
+            BLOCK_ENTITIES.register("diamond_cable_insulated", () ->
+                    BlockEntityType.Builder.of(GoldCableInsulatedBlockEntity::new,
+                                    HybridBlocks.DIAMOND_CABLE_INSULATED.get())
+                            .build(null));
+
     // Machine Block Entities
     public static final Supplier<BlockEntityType<CoalGeneratorBlockEntity>> HYBRID_COAL_GENERATOR =
             BLOCK_ENTITIES.register("hybrid_coal_generator", () ->

@@ -6,6 +6,15 @@ import net.minecraft.world.inventory.MenuType;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.common.extensions.IMenuTypeExtension;
 import net.neoforged.neoforge.registries.DeferredRegister;
+import com.thewheatking.minecraftfarmertechmod.menu.EnergyControllerMenu;
+import com.thewheatking.minecraftfarmertechmod.menu.EnergyMonitorMenu;
+import com.thewheatking.minecraftfarmertechmod.menu.EnergyConverterMenu;
+import com.thewheatking.minecraftfarmertechmod.menu.NetworkRelayMenu;
+import com.thewheatking.minecraftfarmertechmod.menu.NetworkAmplifierMenu;
+import com.thewheatking.minecraftfarmertechmod.menu.NetworkBridgeMenu;
+import com.thewheatking.minecraftfarmertechmod.menu.EnergyAnalyzerMenu;
+import com.thewheatking.minecraftfarmertechmod.menu.NetworkDashboardMenu;
+import com.thewheatking.minecraftfarmertechmod.menu.HybridConfiguratorMenu;
 
 import java.util.function.Supplier;
 
@@ -49,41 +58,41 @@ public class HybridMenuTypes {
                     IMenuTypeExtension.create(HybridCoalGeneratorMenu::new));
 
     // Control System Menu Types
-    public static final Supplier<MenuType<EnergyControllerMenu>> ENERGY_CONTROLLER =
+    public static final Supplier<MenuType<HybridCoalGeneratorMenu.EnergyControllerMenu>> ENERGY_CONTROLLER =
             MENU_TYPES.register("energy_controller", () ->
                     IMenuTypeExtension.create(EnergyControllerMenu::new));
 
-    public static final Supplier<MenuType<EnergyMonitorMenu>> ENERGY_MONITOR =
+    public static final Supplier<MenuType<HybridCoalGeneratorMenu.EnergyMonitorMenu>> ENERGY_MONITOR =
             MENU_TYPES.register("energy_monitor", () ->
                     IMenuTypeExtension.create(EnergyMonitorMenu::new));
 
-    public static final Supplier<MenuType<EnergyConverterMenu>> ENERGY_CONVERTER =
+    public static final Supplier<MenuType<HybridCoalGeneratorMenu.EnergyConverterMenu>> ENERGY_CONVERTER =
             MENU_TYPES.register("energy_converter", () ->
                     IMenuTypeExtension.create(EnergyConverterMenu::new));
 
     // Network Infrastructure Menu Types
-    public static final Supplier<MenuType<NetworkRelayMenu>> NETWORK_RELAY =
+    public static final Supplier<MenuType<HybridCoalGeneratorMenu.NetworkRelayMenu>> NETWORK_RELAY =
             MENU_TYPES.register("network_relay", () ->
                     IMenuTypeExtension.create(NetworkRelayMenu::new));
 
-    public static final Supplier<MenuType<NetworkAmplifierMenu>> NETWORK_AMPLIFIER =
+    public static final Supplier<MenuType<HybridCoalGeneratorMenu.NetworkAmplifierMenu>> NETWORK_AMPLIFIER =
             MENU_TYPES.register("network_amplifier", () ->
                     IMenuTypeExtension.create(NetworkAmplifierMenu::new));
 
-    public static final Supplier<MenuType<NetworkBridgeMenu>> NETWORK_BRIDGE =
+    public static final Supplier<MenuType<HybridCoalGeneratorMenu.NetworkBridgeMenu>> NETWORK_BRIDGE =
             MENU_TYPES.register("network_bridge", () ->
                     IMenuTypeExtension.create(NetworkBridgeMenu::new));
 
     // Specialized Interface Menu Types
-    public static final Supplier<MenuType<EnergyAnalyzerMenu>> ENERGY_ANALYZER =
+    public static final Supplier<MenuType<HybridCoalGeneratorMenu.EnergyAnalyzerMenu>> ENERGY_ANALYZER =
             MENU_TYPES.register("energy_analyzer", () ->
                     IMenuTypeExtension.create(EnergyAnalyzerMenu::new));
 
-    public static final Supplier<MenuType<NetworkDashboardMenu>> NETWORK_DASHBOARD =
+    public static final Supplier<MenuType<HybridCoalGeneratorMenu.NetworkDashboardMenu>> NETWORK_DASHBOARD =
             MENU_TYPES.register("network_dashboard", () ->
                     IMenuTypeExtension.create(NetworkDashboardMenu::new));
 
-    public static final Supplier<MenuType<HybridConfiguratorMenu>> HYBRID_CONFIGURATOR =
+    public static final Supplier<MenuType<HybridCoalGeneratorMenu.HybridConfiguratorMenu>> HYBRID_CONFIGURATOR =
             MENU_TYPES.register("hybrid_configurator", () ->
                     IMenuTypeExtension.create(HybridConfiguratorMenu::new));
 
@@ -189,8 +198,8 @@ public class HybridMenuTypes {
                                        net.minecraft.network.FriendlyByteBuf extraData) {
             super(HYBRID_COAL_GENERATOR.get(), containerId, playerInventory, extraData);
 
-            // Add fuel slot
-            addSlot(new net.minecraft.world.inventory.Slot(
+            // Change from Slot to SlotItemHandler
+            addSlot(new net.neoforged.neoforge.items.SlotItemHandler(
                     ((com.thewheatking.minecraftfarmertechmod.common.blockentity.machines.CoalGeneratorBlockEntity) blockEntity).getInventory(),
                     0, 80, 36));
         }
@@ -211,7 +220,8 @@ public class HybridMenuTypes {
                     }
                 } else {
                     // Moving from player inventory to machine
-                    if (net.neoforged.neoforge.common.CommonHooks.getBurnTime(stackInSlot, null) > 0) {
+                    // Fix: Use the correct getBurnTime method signature
+                    if (stackInSlot.getBurnTime(net.minecraft.world.item.crafting.RecipeType.SMELTING) > 0) {
                         if (!moveItemStackTo(stackInSlot, 0, 1, false)) {
                             return net.minecraft.world.item.ItemStack.EMPTY;
                         }
@@ -229,7 +239,6 @@ public class HybridMenuTypes {
 
             return itemStack;
         }
-    }
 
     // Control System Menu Implementations
     public static class EnergyControllerMenu extends BaseEnergyStorageMenu {

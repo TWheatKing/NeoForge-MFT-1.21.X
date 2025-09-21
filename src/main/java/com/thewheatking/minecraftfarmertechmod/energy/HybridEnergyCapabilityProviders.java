@@ -3,12 +3,14 @@ package com.thewheatking.minecraftfarmertechmod.energy;
 import com.thewheatking.minecraftfarmertechmod.common.capabilities.energy.AdaptiveEnergyStorage;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.capabilities.BlockCapability;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.capabilities.ICapabilityProvider;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import net.neoforged.neoforge.energy.IEnergyStorage;
+import net.neoforged.neoforge.registries.DeferredHolder;
 
 import javax.annotation.Nullable;
 import java.util.Map;
@@ -321,10 +323,10 @@ public class HybridEnergyCapabilityProviders {
         /**
          * FIXED: Registers standard Forge Energy capability for a hybrid block entity
          */
-        public static <T extends BlockEntity & IHybridEnergyBlockEntity>
-        void registerForgeEnergyCapability(RegisterCapabilitiesEvent event,
-                                           net.neoforged.neoforge.registries.DeferredHolder<?, ? extends T> blockEntityType,
-                                           Class<T> blockEntityClass) {
+        public static <T extends BlockEntity & IHybridEnergyBlockEntity> void registerForgeEnergyCapability(
+                RegisterCapabilitiesEvent event,
+                DeferredHolder<BlockEntityType<?>, BlockEntityType<T>> blockEntityType,  // Fixed type
+                Class<T> blockEntityClass) {
 
             // Register for standard Forge Energy capability
             event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK, blockEntityType.get(), createForgeEnergyProvider(blockEntityClass));
@@ -333,10 +335,10 @@ public class HybridEnergyCapabilityProviders {
         /**
          * FIXED: Registers MFT Energy capability for a hybrid block entity
          */
-        public static <T extends BlockEntity & IHybridEnergyBlockEntity>
-        void registerMftEnergyCapability(RegisterCapabilitiesEvent event,
-                                         net.neoforged.neoforge.registries.DeferredHolder<?, ? extends T> blockEntityType,
-                                         Class<T> blockEntityClass) {
+        public static <T extends BlockEntity & IHybridEnergyBlockEntity> void registerMftEnergyCapability(
+                RegisterCapabilitiesEvent event,
+                DeferredHolder<BlockEntityType<?>, BlockEntityType<T>> blockEntityType,  // Fixed type
+                Class<T> blockEntityClass) {
 
             // Register for MFT Energy capability
             event.registerBlockEntity(MFT_ENERGY_CAPABILITY, blockEntityType.get(), createMftEnergyProvider(blockEntityClass));
@@ -345,10 +347,10 @@ public class HybridEnergyCapabilityProviders {
         /**
          * FIXED: Registers both energy capabilities for a hybrid block entity
          */
-        public static <T extends BlockEntity & IHybridEnergyBlockEntity>
-        void registerHybridCapabilities(RegisterCapabilitiesEvent event,
-                                        net.neoforged.neoforge.registries.DeferredHolder<?, ? extends T> blockEntityType,
-                                        Class<T> blockEntityClass) {
+        public static <T extends BlockEntity & IHybridEnergyBlockEntity> void registerHybridCapabilities(
+                RegisterCapabilitiesEvent event,
+                DeferredHolder<BlockEntityType<?>, BlockEntityType<T>> blockEntityType,  // Fixed type
+                Class<T> blockEntityClass) {
 
             registerForgeEnergyCapability(event, blockEntityType, blockEntityClass);
             registerMftEnergyCapability(event, blockEntityType, blockEntityClass);
@@ -357,10 +359,10 @@ public class HybridEnergyCapabilityProviders {
         /**
          * FIXED: Registers smart capability that automatically chooses the best energy type
          */
-        public static <T extends BlockEntity & IHybridEnergyBlockEntity>
-        void registerSmartCapability(RegisterCapabilitiesEvent event,
-                                     net.neoforged.neoforge.registries.DeferredHolder<?, ? extends T> blockEntityType,
-                                     Class<T> blockEntityClass) {
+        public static <T extends BlockEntity & IHybridEnergyBlockEntity> void registerSmartCapability(
+                RegisterCapabilitiesEvent event,
+                DeferredHolder<BlockEntityType<?>, BlockEntityType<T>> blockEntityType,  // Fixed type
+                Class<T> blockEntityClass) {
 
             // Register smart provider for Forge Energy
             event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK, blockEntityType.get(), createSmartProvider(blockEntityClass));
@@ -372,14 +374,14 @@ public class HybridEnergyCapabilityProviders {
         /**
          * FIXED: Registers sided capability with different modes per side
          */
-        public static <T extends BlockEntity & IHybridEnergyBlockEntity>
-        void registerSidedCapability(RegisterCapabilitiesEvent event,
-                                     net.neoforged.neoforge.registries.DeferredHolder<?, ? extends T> blockEntityType,
-                                     Class<T> blockEntityClass,
-                                     Map<Direction, AdaptiveEnergyStorage.EnergyMode> sideModes) {
+        public static <T extends BlockEntity & IHybridEnergyBlockEntity> void registerSidedCapability(
+                RegisterCapabilitiesEvent event,
+                DeferredHolder<BlockEntityType<?>, BlockEntityType<T>> blockEntityType,  // Fixed type
+                Class<T> blockEntityClass,
+                Map<Direction, AdaptiveEnergyStorage.EnergyMode> sideConfig) {
 
             ICapabilityProvider<BlockEntity, Direction, IEnergyStorage> provider =
-                    createSidedProvider(blockEntityClass, sideModes);
+                    createSidedProvider(blockEntityClass, sideConfig);
 
             // Register for both capability types
             event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK, blockEntityType.get(), provider);

@@ -123,6 +123,16 @@ public class HybridBlocks {
                     .lightLevel(blockState -> 4)
             ));
 
+    public static final Supplier<Block> DIAMOND_CABLE_INSULATED = BLOCKS.register("diamond_cable_insulated",
+            () -> new Block(BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.COLOR_LIGHT_BLUE)
+                    .requiresCorrectToolForDrops()
+                    .strength(2.0F, 4.0F)
+                    .sound(SoundType.WOOL)
+                    .noOcclusion()
+                    .lightLevel(blockState -> 3)
+            ));
+
     // Machine Blocks
     public static final Supplier<Block> HYBRID_COAL_GENERATOR = BLOCKS.register("hybrid_coal_generator",
             () -> new Block(BlockBehaviour.Properties.of()
