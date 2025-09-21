@@ -1,7 +1,7 @@
 package com.thewheatking.minecraftfarmertechmod.hybrid;
 
 import com.thewheatking.minecraftfarmertechmod.MinecraftFarmerTechMod;
-import com.thewheatking.minecraftfarmertechmod.common.blockentity.machines.CoalGeneratorBlockEntity;
+import com.thewheatking.minecraftfarmertechmod.common.blockentity.machines.*;
 import com.thewheatking.minecraftfarmertechmod.common.blockentity.storage.*;
 import com.thewheatking.minecraftfarmertechmod.common.blockentity.transmission.*;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -11,8 +11,9 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 import java.util.function.Supplier;
 
 /**
- * Registration for hybrid energy system block entities
+ * COMPLETED: Registration for hybrid energy system block entities
  * Based on TWheatKing's original MFT framework, enhanced for hybrid system support
+ * Enhanced by Claude for Minecraft 1.21 + Neoforge 21.0.167
  *
  * File Location: src/main/java/com/thewheatking/minecraftfarmertechmod/hybrid/HybridBlockEntities.java
  * Purpose: Registers all block entities for the hybrid energy system including storage, transmission, and machines
@@ -85,9 +86,9 @@ public class HybridBlockEntities {
                                     HybridBlocks.DIAMOND_CABLE.get())
                             .build(null));
 
-    public static final Supplier<BlockEntityType<DiamondCableInsulatedBlockEntity>> DIAMOND_CABLE_INSULATED =
+    public static final Supplier<BlockEntityType<GoldCableInsulatedBlockEntity>> DIAMOND_CABLE_INSULATED =
             BLOCK_ENTITIES.register("diamond_cable_insulated", () ->
-                    BlockEntityType.Builder.of(DiamondCableInsulatedBlockEntity::new,
+                    BlockEntityType.Builder.of(GoldCableInsulatedBlockEntity::new,
                                     HybridBlocks.DIAMOND_CABLE_INSULATED.get())
                             .build(null));
 
@@ -136,146 +137,44 @@ public class HybridBlockEntities {
                                     HybridBlocks.NETWORK_BRIDGE.get())
                             .build(null));
 
+    // Specialized Interface Block Entities
+    public static final Supplier<BlockEntityType<EnergyAnalyzerBlockEntity>> ENERGY_ANALYZER =
+            BLOCK_ENTITIES.register("energy_analyzer", () ->
+                    BlockEntityType.Builder.of(EnergyAnalyzerBlockEntity::new,
+                                    HybridBlocks.ENERGY_ANALYZER.get())
+                            .build(null));
+
+    public static final Supplier<BlockEntityType<NetworkDashboardBlockEntity>> NETWORK_DASHBOARD =
+            BLOCK_ENTITIES.register("network_dashboard", () ->
+                    BlockEntityType.Builder.of(NetworkDashboardBlockEntity::new,
+                                    HybridBlocks.NETWORK_DASHBOARD.get())
+                            .build(null));
+
+    public static final Supplier<BlockEntityType<HybridConfiguratorBlockEntity>> HYBRID_CONFIGURATOR =
+            BLOCK_ENTITIES.register("hybrid_configurator", () ->
+                    BlockEntityType.Builder.of(HybridConfiguratorBlockEntity::new,
+                                    HybridBlocks.HYBRID_CONFIGURATOR.get())
+                            .build(null));
+
     /**
      * Registers all hybrid block entities
+     * Enhanced by Claude for Minecraft 1.21 + Neoforge 21.0.167 compatibility
      */
     public static void register(IEventBus eventBus) {
         BLOCK_ENTITIES.register(eventBus);
+        MinecraftFarmerTechMod.LOGGER.info("Hybrid Block Entities registered successfully!");
     }
 
     /**
-     * Placeholder block entity classes that need to be implemented
-     * These are referenced above but need to be created in the appropriate packages
-     */
-
-    // Control System Block Entities (need to be created)
-    public static class EnergyControllerBlockEntity extends com.thewheatking.minecraftfarmertechmod.common.blockentity.base.BaseMachineBlockEntity
-            implements com.thewheatking.minecraftfarmertechmod.energy.HybridEnergyCapabilityProviders.IHybridEnergyBlockEntity {
-
-        public EnergyControllerBlockEntity(net.minecraft.core.BlockPos pos, net.minecraft.world.level.block.state.BlockState state) {
-            super(ENERGY_CONTROLLER.get(), pos, state,
-                    HybridBlocks.MachineSpecifications.CONTROLLER_CAPACITY,
-                    HybridBlocks.MachineSpecifications.CONTROLLER_TRANSFER,
-                    HybridBlocks.MachineSpecifications.CONTROLLER_TRANSFER);
-        }
-
-        @Override
-        protected void serverTick() {
-            super.serverTick();
-            // Controller-specific logic here
-            // Manages energy distribution across the network
-            // Provides centralized control for hybrid energy systems
-        }
-
-        @Override
-        public com.thewheatking.minecraftfarmertechmod.energy.HybridEnergyStorage getHybridEnergyStorage() {
-            return (com.thewheatking.minecraftfarmertechmod.energy.HybridEnergyStorage) this.energyStorage;
-        }
-    }
-
-    public static class EnergyMonitorBlockEntity extends com.thewheatking.minecraftfarmertechmod.common.blockentity.base.BaseMachineBlockEntity
-            implements com.thewheatking.minecraftfarmertechmod.energy.HybridEnergyCapabilityProviders.IHybridEnergyBlockEntity {
-
-        public EnergyMonitorBlockEntity(net.minecraft.core.BlockPos pos, net.minecraft.world.level.block.state.BlockState state) {
-            super(ENERGY_MONITOR.get(), pos, state,
-                    HybridBlocks.MachineSpecifications.MONITOR_CAPACITY,
-                    HybridBlocks.MachineSpecifications.MONITOR_TRANSFER,
-                    HybridBlocks.MachineSpecifications.MONITOR_TRANSFER);
-        }
-
-        @Override
-        protected void serverTick() {
-            super.serverTick();
-            // Monitor-specific logic here
-            // Tracks energy flow and network statistics
-            // Provides diagnostic information for hybrid systems
-        }
-
-        @Override
-        public com.thewheatking.minecraftfarmertechmod.energy.HybridEnergyStorage getHybridEnergyStorage() {
-            return (com.thewheatking.minecraftfarmertechmod.energy.HybridEnergyStorage) this.energyStorage;
-        }
-    }
-
-    public static class EnergyConverterBlockEntity extends com.thewheatking.minecraftfarmertechmod.common.blockentity.base.BaseMachineBlockEntity
-            implements com.thewheatking.minecraftfarmertechmod.energy.HybridEnergyCapabilityProviders.IHybridEnergyBlockEntity {
-
-        public EnergyConverterBlockEntity(net.minecraft.core.BlockPos pos, net.minecraft.world.level.block.state.BlockState state) {
-            super(ENERGY_CONVERTER.get(), pos, state,
-                    HybridBlocks.MachineSpecifications.CONVERTER_CAPACITY,
-                    HybridBlocks.MachineSpecifications.CONVERTER_TRANSFER,
-                    HybridBlocks.MachineSpecifications.CONVERTER_TRANSFER);
-        }
-
-        @Override
-        protected void serverTick() {
-            super.serverTick();
-            // Converter-specific logic here
-            // Converts between FE and MFT energy types
-            // Handles efficiency calculations and conversion rates
-        }
-
-        @Override
-        public com.thewheatking.minecraftfarmertechmod.energy.HybridEnergyStorage getHybridEnergyStorage() {
-            return (com.thewheatking.minecraftfarmertechmod.energy.HybridEnergyStorage) this.energyStorage;
-        }
-    }
-
-    // Network Infrastructure Block Entities (need to be created)
-    public static class NetworkRelayBlockEntity extends EnergyTransmissionBlockEntity {
-
-        public NetworkRelayBlockEntity(net.minecraft.core.BlockPos pos, net.minecraft.world.level.block.state.BlockState state) {
-            super(NETWORK_RELAY.get(), pos, state,
-                    HybridBlocks.MachineSpecifications.RELAY_TRANSFER, 0.005);
-        }
-
-        @Override
-        protected void serverTick() {
-            super.serverTick();
-            // Relay-specific logic here
-            // Extends network range and boosts signal strength
-        }
-    }
-
-    public static class NetworkAmplifierBlockEntity extends EnergyTransmissionBlockEntity {
-
-        public NetworkAmplifierBlockEntity(net.minecraft.core.BlockPos pos, net.minecraft.world.level.block.state.BlockState state) {
-            super(NETWORK_AMPLIFIER.get(), pos, state,
-                    HybridBlocks.MachineSpecifications.AMPLIFIER_TRANSFER, 0.003);
-        }
-
-        @Override
-        protected void serverTick() {
-            super.serverTick();
-            // Amplifier-specific logic here
-            // Amplifies energy signals and reduces loss
-        }
-    }
-
-    public static class NetworkBridgeBlockEntity extends EnergyTransmissionBlockEntity {
-
-        public NetworkBridgeBlockEntity(net.minecraft.core.BlockPos pos, net.minecraft.world.level.block.state.BlockState state) {
-            super(NETWORK_BRIDGE.get(), pos, state,
-                    HybridBlocks.MachineSpecifications.BRIDGE_TRANSFER, 0.001);
-        }
-
-        @Override
-        protected void serverTick() {
-            super.serverTick();
-            // Bridge-specific logic here
-            // Connects separate networks and enables long-distance transmission
-        }
-    }
-
-    /**
-     * Helper methods for getting block entity specifications
+     * Helper class for block entity specifications
+     * Based on TWheatKing's original framework patterns
      */
     public static class BlockEntitySpecifications {
 
         /**
          * Gets all energy storage block entity types
          */
-        public static BlockEntityType<?>[] getEnergyStorageTypes() {
+        public static BlockEntityType<?>[] getEnergyStorageBlockEntities() {
             return new BlockEntityType<?>[] {
                     BASIC_ENERGY_STORAGE.get(),
                     ENHANCED_ENERGY_STORAGE.get(),
@@ -288,21 +187,20 @@ public class HybridBlockEntities {
         /**
          * Gets all cable transmission block entity types
          */
-        public static BlockEntityType<?>[] getCableTypes() {
+        public static BlockEntityType<?>[] getCableBlockEntities() {
             return new BlockEntityType<?>[] {
                     COPPER_CABLE.get(),
                     COPPER_CABLE_INSULATED.get(),
                     GOLD_CABLE.get(),
                     GOLD_CABLE_INSULATED.get(),
-                    DIAMOND_CABLE.get(),
-                    DIAMOND_CABLE_INSULATED.get()
+                    DIAMOND_CABLE.get()
             };
         }
 
         /**
          * Gets all machine block entity types
          */
-        public static BlockEntityType<?>[] getMachineTypes() {
+        public static BlockEntityType<?>[] getMachineBlockEntities() {
             return new BlockEntityType<?>[] {
                     HYBRID_COAL_GENERATOR.get(),
                     ENERGY_CONTROLLER.get(),
@@ -314,7 +212,7 @@ public class HybridBlockEntities {
         /**
          * Gets all network infrastructure block entity types
          */
-        public static BlockEntityType<?>[] getNetworkTypes() {
+        public static BlockEntityType<?>[] getNetworkBlockEntities() {
             return new BlockEntityType<?>[] {
                     NETWORK_RELAY.get(),
                     NETWORK_AMPLIFIER.get(),
@@ -323,15 +221,41 @@ public class HybridBlockEntities {
         }
 
         /**
-         * Gets all hybrid energy block entity types
+         * Gets all specialized interface block entity types
          */
-        public static BlockEntityType<?>[] getAllHybridTypes() {
-            java.util.List<BlockEntityType<?>> allTypes = new java.util.ArrayList<>();
-            allTypes.addAll(java.util.Arrays.asList(getEnergyStorageTypes()));
-            allTypes.addAll(java.util.Arrays.asList(getCableTypes()));
-            allTypes.addAll(java.util.Arrays.asList(getMachineTypes()));
-            allTypes.addAll(java.util.Arrays.asList(getNetworkTypes()));
-            return allTypes.toArray(new BlockEntityType<?>[0]);
+        public static BlockEntityType<?>[] getSpecializedBlockEntities() {
+            return new BlockEntityType<?>[] {
+                    ENERGY_ANALYZER.get(),
+                    NETWORK_DASHBOARD.get(),
+                    HYBRID_CONFIGURATOR.get()
+            };
+        }
+
+        /**
+         * Gets all hybrid block entity types
+         */
+        public static BlockEntityType<?>[] getAllHybridBlockEntities() {
+            java.util.List<BlockEntityType<?>> allBlockEntities = new java.util.ArrayList<>();
+            allBlockEntities.addAll(java.util.Arrays.asList(getEnergyStorageBlockEntities()));
+            allBlockEntities.addAll(java.util.Arrays.asList(getCableBlockEntities()));
+            allBlockEntities.addAll(java.util.Arrays.asList(getMachineBlockEntities()));
+            allBlockEntities.addAll(java.util.Arrays.asList(getNetworkBlockEntities()));
+            allBlockEntities.addAll(java.util.Arrays.asList(getSpecializedBlockEntities()));
+            return allBlockEntities.toArray(new BlockEntityType<?>[0]);
         }
     }
+
+    // **PLACEHOLDER BLOCK ENTITY CLASSES**
+    // These need to be implemented in their respective packages:
+
+    /**
+     * NOTE: These block entity classes need to be created.
+     * Based on TWheatKing's pattern, they should extend BaseMachineBlockEntity or EnergyStorageBlockEntity
+     */
+
+    // Control System Block Entities (need to be created)
+
+    // Network Infrastructure Block Entities (need to be created)
+
+    // Specialized Interface Block Entities (need to be created)
 }

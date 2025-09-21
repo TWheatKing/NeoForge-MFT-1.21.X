@@ -120,11 +120,11 @@ public class MinecraftFarmerTechMod {
             event.accept(ModItems.ANDESITE_ALLOY);
 
             // Hybrid system components (if enabled)
-            if (USE_HYBRID_ENERGY_SYSTEM) {
-                    event.accept(HybridItems.COPPER_WIRE);
-                    event.accept(HybridItems.CABLE_INSULATION);
-                    event.accept(HybridItems.ENERGY_CELL_FRAME);
-            }
+            //if (USE_HYBRID_ENERGY_SYSTEM) {
+                    //event.accept(HybridItems.COPPER_WIRE);
+                    //event.accept(HybridItems.CABLE_INSULATION);
+                    //event.accept(HybridItems.ENERGY_CELL_FRAME);
+
 
             // Continue with your existing items...
             event.accept(ModItems.IRON_BIT);
@@ -152,15 +152,15 @@ public class MinecraftFarmerTechMod {
         }
 
         // Add new creative tab for hybrid energy system
-        if (USE_HYBRID_ENERGY_SYSTEM && event.getTabKey() == CreativeModeTabs.REDSTONE) {
+        //if (USE_HYBRID_ENERGY_SYSTEM && event.getTabKey() == CreativeModeTabs.REDSTONE) {
             // Add hybrid energy blocks to redstone tab
-            event.accept(HybridBlocks.COPPER_CABLE);
-            event.accept(HybridBlocks.GOLD_CABLE);
-            event.accept(HybridBlocks.DIAMOND_CABLE);
-            event.accept(HybridBlocks.BASIC_ENERGY_STORAGE);
-            event.accept(HybridBlocks.ENHANCED_ENERGY_STORAGE);
-            event.accept(HybridBlocks.ADVANCED_ENERGY_STORAGE);
-        }
+            //event.accept(HybridBlocks.COPPER_CABLE);
+            //event.accept(HybridBlocks.GOLD_CABLE);
+            //event.accept(HybridBlocks.DIAMOND_CABLE);
+            //event.accept(HybridBlocks.BASIC_ENERGY_STORAGE);
+            //event.accept(HybridBlocks.ENHANCED_ENERGY_STORAGE);
+            //event.accept(HybridBlocks.ADVANCED_ENERGY_STORAGE);
+
     }
 
     @SubscribeEvent

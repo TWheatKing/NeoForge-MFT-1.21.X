@@ -102,7 +102,7 @@ public class CoalGeneratorBlockEntity extends BaseMachineBlockEntity {
         // Try to start burning new fuel
         if (!isBurning && !inventory.getStackInSlot(FUEL_SLOT).isEmpty()) {
             ItemStack fuelStack = inventory.getStackInSlot(FUEL_SLOT);
-            int fuelBurnTime = getFuelBurnTime(fuelStack);
+            int fuelBurnTime = getBurnTime(fuelStack.getItem());
 
             if (fuelBurnTime > 0) {
                 // Start burning

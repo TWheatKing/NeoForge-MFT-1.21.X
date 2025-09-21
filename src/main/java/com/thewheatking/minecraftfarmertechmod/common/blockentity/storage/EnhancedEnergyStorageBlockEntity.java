@@ -25,8 +25,10 @@ public class EnhancedEnergyStorageBlockEntity extends EnergyStorageBlockEntity {
 
     @Override
     public AbstractContainerMenu createMenu(int containerId, Inventory playerInventory, Player player) {
-        // return new EnhancedEnergyStorageMenu(containerId, playerInventory, this);
-        return null; // Placeholder until menu is implemented
+        return new com.thewheatking.minecraftfarmertechmod.hybrid.HybridMenuTypes.EnhancedEnergyStorageMenu(
+                containerId, playerInventory,
+                new net.minecraft.network.FriendlyByteBuf(io.netty.buffer.Unpooled.buffer())
+                        .writeBlockPos(this.getBlockPos()));
     }
 
     @Override
