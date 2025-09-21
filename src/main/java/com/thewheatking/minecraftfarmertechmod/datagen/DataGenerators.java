@@ -18,6 +18,10 @@ import java.util.concurrent.CompletableFuture;
 
 @EventBusSubscriber(modid = MinecraftFarmerTechMod.MOD_ID, bus = EventBusSubscriber.Bus.MOD)
 public class DataGenerators {
+
+    // Feature flag for hybrid system
+    private static final boolean ENABLE_HYBRID_SYSTEM = true;
+
     @SubscribeEvent
     public static void gatherData(GatherDataEvent event){
         DataGenerator generator = event.getGenerator();
@@ -25,20 +29,56 @@ public class DataGenerators {
         ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
         CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
 
-        generator.addProvider(event.includeServer(), new LootTableProvider(packOutput, Collections.emptySet(),
-                List.of(new LootTableProvider.SubProviderEntry(ModBlockLootTableProvider::new, LootContextParamSets.BLOCK)), lookupProvider));
-        generator.addProvider(event.includeServer(), new ModRecipeProvider(packOutput, lookupProvider));
+        // Server-side data generation
+        if (event.includeServer()) {
+            // Loot Tables (keep your existing + add hybrid)
+            generator.addProvider(true, new LootTableProvider(packOutput, Collections.emptySet(),
+                    List.of(new LootTableProvider.SubProviderEntry(ModBlockLootTableProvider::new, LootContextParamSets.BLOCK)), lookupProvider));
 
-        BlockTagsProvider blockTagsProvider = new ModBlockTagProvider(packOutput, lookupProvider, existingFileHelper);
-        generator.addProvider(event.includeServer(), blockTagsProvider);
-        generator.addProvider(event.includeServer(), new ModItemTagProvider(packOutput, lookupProvider, blockTagsProvider.contentsGetter(), existingFileHelper));
+            // Recipes - choose between original and hybrid
+            if (ENABLE_HYBRID_SYSTEM) {
+                generator.addProvider(true, new HybridRecipeProvider(packOutput, lookupProvider));
+            } else {
+                generator.addProvider(true, new ModRecipeProvider(packOutput, lookupProvider));
+            }
 
-        generator.addProvider(event.includeServer(), new ModDataMapProvider(packOutput, lookupProvider));
+            // Block Tags - choose between original and hybrid
+            BlockTagsProvider blockTagsProvider;
+            if (ENABLE_HYBRID_SYSTEM) {
+                blockTagsProvider = new HybridBlockTagProvider(packOutput, lookupProvider, existingFileHelper);
+            } else {
+                blockTagsProvider = new ModBlockTagProvider(packOutput, lookupProvider, existingFileHelper);
+            }
+            generator.addProvider(true, blockTagsProvider);
 
+            // Item Tags (will build on the block tags)
+            generator.addProvider(true, new ModItemTagProvider(packOutput, lookupProvider, blockTagsProvider.contentsGetter(), existingFileHelper));
 
-        generator.addProvider(event.includeClient(), new ModItemModelProvider(packOutput, existingFileHelper));
-        generator.addProvider(event.includeClient(), new ModBlockStateProvider(packOutput, existingFileHelper));
+            // Data Maps (keep existing)
+            generator.addProvider(true, new ModDataMapProvider(packOutput, lookupProvider));
+        }
 
+        // Client-side data generation
+        if (event.includeClient()) {
+            // Item Models - choose between original and hybrid
+            if (ENABLE_HYBRID_SYSTEM) {
+                generator.addProvider(true, new EnhancedModItemModelProvider(packOutput, existingFileHelper));
+            } else {
+                generator.addProvider(true, new ModItemModelProvider(packOutput, existingFileHelper));
+            }
+
+            // Block States - choose between original and hybrid
+            if (ENABLE_HYBRID_SYSTEM) {
+                generator.addProvider(true, new EnhancedModBlockStateProvider(packOutput, existingFileHelper));
+            } else {
+                generator.addProvider(true, new ModBlockStateProvider(packOutput, existingFileHelper));
+            }
+        }
+
+        // Datapack content (keep existing)
         generator.addProvider(event.includeClient(), new ModDatapackProvider(packOutput, lookupProvider));
+
+        // Log which system is being used
+        MinecraftFarmerTechMod.LOGGER.info("Data Generation using " + (ENABLE_HYBRID_SYSTEM ? "Hybrid" : "Original") + " Energy System");
     }
 }
