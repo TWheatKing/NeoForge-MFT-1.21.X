@@ -1,6 +1,7 @@
 package com.thewheatking.minecraftfarmertechmod.event;
 
 import com.thewheatking.minecraftfarmertechmod.MinecraftFarmerTechMod;
+import com.thewheatking.minecraftfarmertechmod.hybrid.HybridMenuTypes;
 import com.thewheatking.minecraftfarmertechmod.item.ModItems;
 import com.thewheatking.minecraftfarmertechmod.screen.CoalGeneratorScreen;
 import com.thewheatking.minecraftfarmertechmod.screen.IronFurnaceScreen;
@@ -38,5 +39,20 @@ public class ClientModEvents {
         event.register(ModMenuTypes.BIO_GENERATOR_MENU.get(), BioGeneratorScreen::new);
         event.register(ModMenuTypes.LIQUIFIER_MENU.get(), LiquifierScreen::new);
         event.register(ModMenuTypes.SIDE_CONFIG_MENU.get(), SideConfigScreen::new);
+        event.register(HybridMenuTypes.BASIC_ENERGY_STORAGE.get(), BasicEnergyStorageScreen::new);
+        event.register(HybridMenuTypes.ENHANCED_ENERGY_STORAGE.get(), EnhancedEnergyStorageScreen::new);
+        event.register(HybridMenuTypes.ADVANCED_ENERGY_STORAGE.get(), AdvancedEnergyStorageScreen::new);
+        event.register(HybridMenuTypes.SUPERIOR_ENERGY_STORAGE.get(), SuperiorEnergyStorageScreen::new);
+        event.register(HybridMenuTypes.QUANTUM_ENERGY_STORAGE.get(), QuantumEnergyStorageScreen::new);
+        event.register(HybridMenuTypes.HYBRID_COAL_GENERATOR.get(), HybridCoalGeneratorScreen::new);
+        event.register(HybridMenuTypes.ENERGY_CONTROLLER.get(), EnergyControllerScreen::new);
+        event.register(HybridMenuTypes.ENERGY_MONITOR.get(), EnergyMonitorScreen::new);
+        event.register(HybridMenuTypes.ENERGY_CONVERTER.get(), EnergyConverterScreen::new);
+        event.register(HybridMenuTypes.NETWORK_RELAY.get(), NetworkRelayScreen::new);
+        event.register(HybridMenuTypes.NETWORK_AMPLIFIER.get(), NetworkAmplifierScreen::new);
+        event.register(HybridMenuTypes.NETWORK_BRIDGE.get(), NetworkBridgeScreen::new);
+        event.register(HybridMenuTypes.ENERGY_ANALYZER.get(), EnergyAnalyzerScreen::new);
+        event.register(HybridMenuTypes.NETWORK_DASHBOARD.get(), NetworkDashboardScreen::new);
+        event.register(HybridMenuTypes.HYBRID_CONFIGURATOR.get(), HybridConfiguratorScreen::new);
     }
 }
