@@ -1,18 +1,18 @@
 package com.thewheatking.minecraftfarmertechmod.screen;
 
 import com.thewheatking.minecraftfarmertechmod.MinecraftFarmerTechMod;
-import com.thewheatking.minecraftfarmertechmod.menu.NetworkRelayMenu;  // FIXED: Now correctly imports from menu package
+import com.thewheatking.minecraftfarmertechmod.hybrid.HybridMenuTypes;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 
-public class NetworkRelayScreen extends AbstractContainerScreen<NetworkRelayMenu> {
+public class NetworkRelayScreen extends AbstractContainerScreen<HybridMenuTypes.NetworkRelayMenu> {
     private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(
             MinecraftFarmerTechMod.MOD_ID, "textures/gui/network_relay_gui.png");
 
-    public NetworkRelayScreen(NetworkRelayMenu menu, Inventory playerInventory, Component title) {
+    public NetworkRelayScreen(HybridMenuTypes.NetworkRelayMenu menu, Inventory playerInventory, Component title) {
         super(menu, playerInventory, title);
     }
 

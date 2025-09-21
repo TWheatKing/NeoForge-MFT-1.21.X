@@ -2,18 +2,9 @@ package com.thewheatking.minecraftfarmertechmod.hybrid;
 
 import com.thewheatking.minecraftfarmertechmod.MinecraftFarmerTechMod;
 import com.thewheatking.minecraftfarmertechmod.menu.base.BaseEnergyStorageMenu;
-import com.thewheatking.minecraftfarmertechmod.screen.EnergyControllerMenu;
-import com.thewheatking.minecraftfarmertechmod.screen.EnergyMonitorMenu;
-import com.thewheatking.minecraftfarmertechmod.screen.EnergyConverterMenu;
-import com.thewheatking.minecraftfarmertechmod.screen.NetworkRelayMenu;
-import com.thewheatking.minecraftfarmertechmod.screen.NetworkAmplifierMenu;
-import com.thewheatking.minecraftfarmertechmod.screen.NetworkBridgeMenu;
-import com.thewheatking.minecraftfarmertechmod.screen.EnergyAnalyzerMenu;
-import com.thewheatking.minecraftfarmertechmod.screen.NetworkDashboardMenu;
-import com.thewheatking.minecraftfarmertechmod.screen.HybridConfiguratorMenu;
-
-import net.minecraft.world.inventory.MenuType;
+import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
+import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.inventory.SimpleContainerData;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
@@ -29,12 +20,13 @@ import net.neoforged.neoforge.items.SlotItemHandler;
 import java.util.function.Supplier;
 
 /**
- * FIXED: Registration for hybrid energy system menu types
- * Based on TWheatKing's original MFT framework, enhanced for hybrid system support
+ * CORRECTED: Registration for hybrid energy system menu types
+ * Based on TWheatKing's original MFT framework - keeping the centralized design pattern
+ * All menu classes are inner classes to maintain the HybridMenuTypes.MenuClass reference pattern
  * Fixed by Claude for Minecraft 1.21 + Neoforge 21.0.167
  *
  * File Location: src/main/java/com/thewheatking/minecraftfarmertechmod/hybrid/HybridMenuTypes.java
- * Purpose: Registers all menu types for the hybrid energy system GUIs
+ * Purpose: Centralized registration of all hybrid menu types with inner class implementations
  */
 public class HybridMenuTypes {
 
@@ -114,18 +106,17 @@ public class HybridMenuTypes {
         MENU_TYPES.register(eventBus);
     }
 
-    // ========== MENU IMPLEMENTATION CLASSES ==========
+    // ========== INNER MENU CLASS IMPLEMENTATIONS ==========
+    // All menu classes are inner classes to maintain HybridMenuTypes.MenuClass pattern
 
     /**
-     * Basic Energy Storage Menu - simplest energy storage interface
+     * Basic Energy Storage Menu
      */
     public static class BasicEnergyStorageMenu extends BaseEnergyStorageMenu {
         private final ContainerData data;
 
         public BasicEnergyStorageMenu(int containerId, Inventory playerInventory, FriendlyByteBuf extraData) {
             super(BASIC_ENERGY_STORAGE.get(), containerId, playerInventory, extraData);
-
-            // Create basic energy data provider
             if (blockEntity instanceof com.thewheatking.minecraftfarmertechmod.common.blockentity.storage.BasicEnergyStorageBlockEntity basicStorage) {
                 this.data = new BasicEnergyStorageDataProvider(basicStorage);
                 addDataSlots(data);
@@ -134,7 +125,6 @@ public class HybridMenuTypes {
             }
         }
 
-        // Server-side constructor
         public BasicEnergyStorageMenu(int containerId, Inventory playerInventory, BlockEntity blockEntity) {
             super(BASIC_ENERGY_STORAGE.get(), containerId, playerInventory, blockEntity);
             if (blockEntity instanceof com.thewheatking.minecraftfarmertechmod.common.blockentity.storage.BasicEnergyStorageBlockEntity basicStorage) {
@@ -145,7 +135,6 @@ public class HybridMenuTypes {
             }
         }
 
-        // Energy status methods for GUI
         public int getCurrentEnergy() { return data.get(0); }
         public int getMaxEnergy() { return data.get(1); }
         public float getEnergyPercentage() {
@@ -160,14 +149,13 @@ public class HybridMenuTypes {
     }
 
     /**
-     * Enhanced Energy Storage Menu - improved storage interface
+     * Enhanced Energy Storage Menu
      */
     public static class EnhancedEnergyStorageMenu extends BaseEnergyStorageMenu {
         private final ContainerData data;
 
         public EnhancedEnergyStorageMenu(int containerId, Inventory playerInventory, FriendlyByteBuf extraData) {
             super(ENHANCED_ENERGY_STORAGE.get(), containerId, playerInventory, extraData);
-
             if (blockEntity instanceof com.thewheatking.minecraftfarmertechmod.common.blockentity.storage.EnhancedEnergyStorageBlockEntity enhancedStorage) {
                 this.data = new EnhancedEnergyStorageDataProvider(enhancedStorage);
                 addDataSlots(data);
@@ -200,14 +188,13 @@ public class HybridMenuTypes {
     }
 
     /**
-     * Advanced Energy Storage Menu - high-capacity storage interface
+     * Advanced Energy Storage Menu
      */
     public static class AdvancedEnergyStorageMenu extends BaseEnergyStorageMenu {
         private final ContainerData data;
 
         public AdvancedEnergyStorageMenu(int containerId, Inventory playerInventory, FriendlyByteBuf extraData) {
             super(ADVANCED_ENERGY_STORAGE.get(), containerId, playerInventory, extraData);
-
             if (blockEntity instanceof com.thewheatking.minecraftfarmertechmod.common.blockentity.storage.AdvancedEnergyStorageBlockEntity advancedStorage) {
                 this.data = new AdvancedEnergyStorageDataProvider(advancedStorage);
                 addDataSlots(data);
@@ -240,14 +227,13 @@ public class HybridMenuTypes {
     }
 
     /**
-     * Superior Energy Storage Menu - very high capacity storage interface
+     * Superior Energy Storage Menu
      */
     public static class SuperiorEnergyStorageMenu extends BaseEnergyStorageMenu {
         private final ContainerData data;
 
         public SuperiorEnergyStorageMenu(int containerId, Inventory playerInventory, FriendlyByteBuf extraData) {
             super(SUPERIOR_ENERGY_STORAGE.get(), containerId, playerInventory, extraData);
-
             if (blockEntity instanceof com.thewheatking.minecraftfarmertechmod.common.blockentity.storage.SuperiorEnergyStorageBlockEntity superiorStorage) {
                 this.data = new SuperiorEnergyStorageDataProvider(superiorStorage);
                 addDataSlots(data);
@@ -280,14 +266,13 @@ public class HybridMenuTypes {
     }
 
     /**
-     * Quantum Energy Storage Menu - ultimate storage interface
+     * Quantum Energy Storage Menu
      */
     public static class QuantumEnergyStorageMenu extends BaseEnergyStorageMenu {
         private final ContainerData data;
 
         public QuantumEnergyStorageMenu(int containerId, Inventory playerInventory, FriendlyByteBuf extraData) {
             super(QUANTUM_ENERGY_STORAGE.get(), containerId, playerInventory, extraData);
-
             if (blockEntity instanceof com.thewheatking.minecraftfarmertechmod.common.blockentity.storage.QuantumEnergyStorageBlockEntity quantumStorage) {
                 this.data = new QuantumEnergyStorageDataProvider(quantumStorage);
                 addDataSlots(data);
@@ -320,28 +305,21 @@ public class HybridMenuTypes {
     }
 
     /**
-     * Hybrid Coal Generator Menu - coal-powered generator interface
+     * Hybrid Coal Generator Menu
      */
     public static class HybridCoalGeneratorMenu extends BaseEnergyStorageMenu {
 
         public HybridCoalGeneratorMenu(int containerId, Inventory playerInventory, FriendlyByteBuf extraData) {
             super(HYBRID_COAL_GENERATOR.get(), containerId, playerInventory, extraData);
-
-            // Add coal input slot
             if (blockEntity instanceof com.thewheatking.minecraftfarmertechmod.common.blockentity.machines.CoalGeneratorBlockEntity coalGen) {
-                addSlot(new SlotItemHandler(
-                        coalGen.getInventory(),
-                        0, 80, 35)); // Coal input slot position
+                addSlot(new SlotItemHandler(coalGen.getInventory(), 0, 80, 35));
             }
         }
 
         public HybridCoalGeneratorMenu(int containerId, Inventory playerInventory, BlockEntity blockEntity) {
             super(HYBRID_COAL_GENERATOR.get(), containerId, playerInventory, blockEntity);
-
             if (blockEntity instanceof com.thewheatking.minecraftfarmertechmod.common.blockentity.machines.CoalGeneratorBlockEntity coalGen) {
-                addSlot(new SlotItemHandler(
-                        coalGen.getInventory(),
-                        0, 80, 35));
+                addSlot(new SlotItemHandler(coalGen.getInventory(), 0, 80, 35));
             }
         }
 
@@ -354,14 +332,11 @@ public class HybridMenuTypes {
                 ItemStack stackInSlot = slot.getItem();
                 itemStack = stackInSlot.copy();
 
-                // Handle item movement between inventories
                 if (index == 0) {
-                    // Moving from machine to player inventory
                     if (!moveItemStackTo(stackInSlot, 1, slots.size(), true)) {
                         return ItemStack.EMPTY;
                     }
                 } else {
-                    // Moving from player inventory to machine
                     if (net.neoforged.neoforge.common.CommonHooks.getBurnTime(stackInSlot, null) > 0) {
                         if (!moveItemStackTo(stackInSlot, 0, 1, false)) {
                             return ItemStack.EMPTY;
@@ -379,6 +354,240 @@ public class HybridMenuTypes {
             }
 
             return itemStack;
+        }
+    }
+
+    /**
+     * Energy Controller Menu
+     */
+    public static class EnergyControllerMenu extends BaseEnergyStorageMenu {
+        private final com.thewheatking.minecraftfarmertechmod.common.blockentity.machines.EnergyControllerBlockEntity controllerBlockEntity;
+
+        public EnergyControllerMenu(int containerId, Inventory playerInventory, FriendlyByteBuf extraData) {
+            super(ENERGY_CONTROLLER.get(), containerId, playerInventory, extraData);
+            this.controllerBlockEntity = (com.thewheatking.minecraftfarmertechmod.common.blockentity.machines.EnergyControllerBlockEntity) blockEntity;
+        }
+
+        public EnergyControllerMenu(int containerId, Inventory playerInventory, BlockEntity blockEntity) {
+            super(ENERGY_CONTROLLER.get(), containerId, playerInventory, blockEntity);
+            this.controllerBlockEntity = (com.thewheatking.minecraftfarmertechmod.common.blockentity.machines.EnergyControllerBlockEntity) blockEntity;
+        }
+
+        @Override
+        public ItemStack quickMoveStack(Player player, int index) {
+            return ItemStack.EMPTY;
+        }
+
+        public com.thewheatking.minecraftfarmertechmod.common.blockentity.machines.EnergyControllerBlockEntity getControllerBlockEntity() {
+            return controllerBlockEntity;
+        }
+    }
+
+    /**
+     * Energy Monitor Menu
+     */
+    public static class EnergyMonitorMenu extends BaseEnergyStorageMenu {
+        private final com.thewheatking.minecraftfarmertechmod.common.blockentity.machines.EnergyMonitorBlockEntity monitorBlockEntity;
+
+        public EnergyMonitorMenu(int containerId, Inventory playerInventory, FriendlyByteBuf extraData) {
+            super(ENERGY_MONITOR.get(), containerId, playerInventory, extraData);
+            this.monitorBlockEntity = (com.thewheatking.minecraftfarmertechmod.common.blockentity.machines.EnergyMonitorBlockEntity) blockEntity;
+        }
+
+        public EnergyMonitorMenu(int containerId, Inventory playerInventory, BlockEntity blockEntity) {
+            super(ENERGY_MONITOR.get(), containerId, playerInventory, blockEntity);
+            this.monitorBlockEntity = (com.thewheatking.minecraftfarmertechmod.common.blockentity.machines.EnergyMonitorBlockEntity) blockEntity;
+        }
+
+        @Override
+        public ItemStack quickMoveStack(Player player, int index) {
+            return ItemStack.EMPTY;
+        }
+
+        public com.thewheatking.minecraftfarmertechmod.common.blockentity.machines.EnergyMonitorBlockEntity getMonitorBlockEntity() {
+            return monitorBlockEntity;
+        }
+    }
+
+    /**
+     * Energy Converter Menu
+     */
+    public static class EnergyConverterMenu extends BaseEnergyStorageMenu {
+        private final com.thewheatking.minecraftfarmertechmod.common.blockentity.machines.EnergyConverterBlockEntity converterBlockEntity;
+
+        public EnergyConverterMenu(int containerId, Inventory playerInventory, FriendlyByteBuf extraData) {
+            super(ENERGY_CONVERTER.get(), containerId, playerInventory, extraData);
+            this.converterBlockEntity = (com.thewheatking.minecraftfarmertechmod.common.blockentity.machines.EnergyConverterBlockEntity) blockEntity;
+        }
+
+        public EnergyConverterMenu(int containerId, Inventory playerInventory, BlockEntity blockEntity) {
+            super(ENERGY_CONVERTER.get(), containerId, playerInventory, blockEntity);
+            this.converterBlockEntity = (com.thewheatking.minecraftfarmertechmod.common.blockentity.machines.EnergyConverterBlockEntity) blockEntity;
+        }
+
+        @Override
+        public ItemStack quickMoveStack(Player player, int index) {
+            return ItemStack.EMPTY;
+        }
+
+        public com.thewheatking.minecraftfarmertechmod.common.blockentity.machines.EnergyConverterBlockEntity getConverterBlockEntity() {
+            return converterBlockEntity;
+        }
+    }
+
+    /**
+     * Network Relay Menu
+     */
+    public static class NetworkRelayMenu extends BaseEnergyStorageMenu {
+        private final com.thewheatking.minecraftfarmertechmod.common.blockentity.transmission.NetworkRelayBlockEntity relayBlockEntity;
+
+        public NetworkRelayMenu(int containerId, Inventory playerInventory, FriendlyByteBuf extraData) {
+            super(NETWORK_RELAY.get(), containerId, playerInventory, extraData);
+            this.relayBlockEntity = (com.thewheatking.minecraftfarmertechmod.common.blockentity.transmission.NetworkRelayBlockEntity) blockEntity;
+        }
+
+        public NetworkRelayMenu(int containerId, Inventory playerInventory, BlockEntity blockEntity) {
+            super(NETWORK_RELAY.get(), containerId, playerInventory, blockEntity);
+            this.relayBlockEntity = (com.thewheatking.minecraftfarmertechmod.common.blockentity.transmission.NetworkRelayBlockEntity) blockEntity;
+        }
+
+        @Override
+        public ItemStack quickMoveStack(Player player, int index) {
+            return ItemStack.EMPTY;
+        }
+
+        public com.thewheatking.minecraftfarmertechmod.common.blockentity.transmission.NetworkRelayBlockEntity getRelayBlockEntity() {
+            return relayBlockEntity;
+        }
+    }
+
+    /**
+     * Network Amplifier Menu
+     */
+    public static class NetworkAmplifierMenu extends BaseEnergyStorageMenu {
+        private final com.thewheatking.minecraftfarmertechmod.common.blockentity.transmission.NetworkAmplifierBlockEntity amplifierBlockEntity;
+
+        public NetworkAmplifierMenu(int containerId, Inventory playerInventory, FriendlyByteBuf extraData) {
+            super(NETWORK_AMPLIFIER.get(), containerId, playerInventory, extraData);
+            this.amplifierBlockEntity = (com.thewheatking.minecraftfarmertechmod.common.blockentity.transmission.NetworkAmplifierBlockEntity) blockEntity;
+        }
+
+        public NetworkAmplifierMenu(int containerId, Inventory playerInventory, BlockEntity blockEntity) {
+            super(NETWORK_AMPLIFIER.get(), containerId, playerInventory, blockEntity);
+            this.amplifierBlockEntity = (com.thewheatking.minecraftfarmertechmod.common.blockentity.transmission.NetworkAmplifierBlockEntity) blockEntity;
+        }
+
+        @Override
+        public ItemStack quickMoveStack(Player player, int index) {
+            return ItemStack.EMPTY;
+        }
+
+        public com.thewheatking.minecraftfarmertechmod.common.blockentity.transmission.NetworkAmplifierBlockEntity getAmplifierBlockEntity() {
+            return amplifierBlockEntity;
+        }
+    }
+
+    /**
+     * Network Bridge Menu
+     */
+    public static class NetworkBridgeMenu extends BaseEnergyStorageMenu {
+        private final com.thewheatking.minecraftfarmertechmod.common.blockentity.transmission.NetworkBridgeBlockEntity bridgeBlockEntity;
+
+        public NetworkBridgeMenu(int containerId, Inventory playerInventory, FriendlyByteBuf extraData) {
+            super(NETWORK_BRIDGE.get(), containerId, playerInventory, extraData);
+            this.bridgeBlockEntity = (com.thewheatking.minecraftfarmertechmod.common.blockentity.transmission.NetworkBridgeBlockEntity) blockEntity;
+        }
+
+        public NetworkBridgeMenu(int containerId, Inventory playerInventory, BlockEntity blockEntity) {
+            super(NETWORK_BRIDGE.get(), containerId, playerInventory, blockEntity);
+            this.bridgeBlockEntity = (com.thewheatking.minecraftfarmertechmod.common.blockentity.transmission.NetworkBridgeBlockEntity) blockEntity;
+        }
+
+        @Override
+        public ItemStack quickMoveStack(Player player, int index) {
+            return ItemStack.EMPTY;
+        }
+
+        public com.thewheatking.minecraftfarmertechmod.common.blockentity.transmission.NetworkBridgeBlockEntity getBridgeBlockEntity() {
+            return bridgeBlockEntity;
+        }
+    }
+
+    /**
+     * Energy Analyzer Menu
+     */
+    public static class EnergyAnalyzerMenu extends BaseEnergyStorageMenu {
+        private final com.thewheatking.minecraftfarmertechmod.common.blockentity.machines.EnergyAnalyzerBlockEntity analyzerBlockEntity;
+
+        public EnergyAnalyzerMenu(int containerId, Inventory playerInventory, FriendlyByteBuf extraData) {
+            super(ENERGY_ANALYZER.get(), containerId, playerInventory, extraData);
+            this.analyzerBlockEntity = (com.thewheatking.minecraftfarmertechmod.common.blockentity.machines.EnergyAnalyzerBlockEntity) blockEntity;
+        }
+
+        public EnergyAnalyzerMenu(int containerId, Inventory playerInventory, BlockEntity blockEntity) {
+            super(ENERGY_ANALYZER.get(), containerId, playerInventory, blockEntity);
+            this.analyzerBlockEntity = (com.thewheatking.minecraftfarmertechmod.common.blockentity.machines.EnergyAnalyzerBlockEntity) blockEntity;
+        }
+
+        @Override
+        public ItemStack quickMoveStack(Player player, int index) {
+            return ItemStack.EMPTY;
+        }
+
+        public com.thewheatking.minecraftfarmertechmod.common.blockentity.machines.EnergyAnalyzerBlockEntity getAnalyzerBlockEntity() {
+            return analyzerBlockEntity;
+        }
+    }
+
+    /**
+     * Network Dashboard Menu
+     */
+    public static class NetworkDashboardMenu extends BaseEnergyStorageMenu {
+        private final com.thewheatking.minecraftfarmertechmod.common.blockentity.machines.NetworkDashboardBlockEntity dashboardBlockEntity;
+
+        public NetworkDashboardMenu(int containerId, Inventory playerInventory, FriendlyByteBuf extraData) {
+            super(NETWORK_DASHBOARD.get(), containerId, playerInventory, extraData);
+            this.dashboardBlockEntity = (com.thewheatking.minecraftfarmertechmod.common.blockentity.machines.NetworkDashboardBlockEntity) blockEntity;
+        }
+
+        public NetworkDashboardMenu(int containerId, Inventory playerInventory, BlockEntity blockEntity) {
+            super(NETWORK_DASHBOARD.get(), containerId, playerInventory, blockEntity);
+            this.dashboardBlockEntity = (com.thewheatking.minecraftfarmertechmod.common.blockentity.machines.NetworkDashboardBlockEntity) blockEntity;
+        }
+
+        @Override
+        public ItemStack quickMoveStack(Player player, int index) {
+            return ItemStack.EMPTY;
+        }
+
+        public com.thewheatking.minecraftfarmertechmod.common.blockentity.machines.NetworkDashboardBlockEntity getDashboardBlockEntity() {
+            return dashboardBlockEntity;
+        }
+    }
+
+    /**
+     * Hybrid Configurator Menu
+     */
+    public static class HybridConfiguratorMenu extends BaseEnergyStorageMenu {
+        private final com.thewheatking.minecraftfarmertechmod.common.blockentity.machines.HybridConfiguratorBlockEntity configuratorBlockEntity;
+
+        public HybridConfiguratorMenu(int containerId, Inventory playerInventory, FriendlyByteBuf extraData) {
+            super(HYBRID_CONFIGURATOR.get(), containerId, playerInventory, extraData);
+            this.configuratorBlockEntity = (com.thewheatking.minecraftfarmertechmod.common.blockentity.machines.HybridConfiguratorBlockEntity) blockEntity;
+        }
+
+        public HybridConfiguratorMenu(int containerId, Inventory playerInventory, BlockEntity blockEntity) {
+            super(HYBRID_CONFIGURATOR.get(), containerId, playerInventory, blockEntity);
+            this.configuratorBlockEntity = (com.thewheatking.minecraftfarmertechmod.common.blockentity.machines.HybridConfiguratorBlockEntity) blockEntity;
+        }
+
+        @Override
+        public ItemStack quickMoveStack(Player player, int index) {
+            return ItemStack.EMPTY;
+        }
+
+        public com.thewheatking.minecraftfarmertechmod.common.blockentity.machines.HybridConfiguratorBlockEntity getConfiguratorBlockEntity() {
+            return configuratorBlockEntity;
         }
     }
 

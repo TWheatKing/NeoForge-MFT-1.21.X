@@ -1,18 +1,18 @@
 package com.thewheatking.minecraftfarmertechmod.screen;
 
 import com.thewheatking.minecraftfarmertechmod.MinecraftFarmerTechMod;
-import com.thewheatking.minecraftfarmertechmod.menu.EnergyConverterMenu;  // FIXED: Now correctly imports from menu package
+import com.thewheatking.minecraftfarmertechmod.hybrid.HybridMenuTypes;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 
-public class EnergyConverterScreen extends AbstractContainerScreen<EnergyConverterMenu> {
+public class EnergyConverterScreen extends AbstractContainerScreen<HybridMenuTypes.EnergyConverterMenu> {
     private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(
             MinecraftFarmerTechMod.MOD_ID, "textures/gui/energy_converter_gui.png");
 
-    public EnergyConverterScreen(EnergyConverterMenu menu, Inventory playerInventory, Component title) {
+    public EnergyConverterScreen(HybridMenuTypes.EnergyConverterMenu menu, Inventory playerInventory, Component title) {
         super(menu, playerInventory, title);
     }
 

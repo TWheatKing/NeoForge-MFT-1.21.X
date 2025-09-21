@@ -1,18 +1,18 @@
 package com.thewheatking.minecraftfarmertechmod.screen;
 
 import com.thewheatking.minecraftfarmertechmod.MinecraftFarmerTechMod;
-import com.thewheatking.minecraftfarmertechmod.screen.EnergyControllerMenu;  // FIXED: Direct import
+import com.thewheatking.minecraftfarmertechmod.hybrid.HybridMenuTypes;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 
-public class EnergyControllerScreen extends AbstractContainerScreen<EnergyControllerMenu> {  // FIXED: Direct reference
+public class EnergyControllerScreen extends AbstractContainerScreen<HybridMenuTypes.EnergyControllerMenu> {
     private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(
             MinecraftFarmerTechMod.MOD_ID, "textures/gui/energy_controller_gui.png");
 
-    public EnergyControllerScreen(EnergyControllerMenu menu,  // FIXED: Direct reference
+    public EnergyControllerScreen(HybridMenuTypes.EnergyControllerMenu menu,
                                   Inventory playerInventory, Component title) {
         super(menu, playerInventory, title);
     }
