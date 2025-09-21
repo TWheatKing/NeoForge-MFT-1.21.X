@@ -64,14 +64,14 @@ public class DataGenerators {
             if (ENABLE_HYBRID_SYSTEM) {
                 generator.addProvider(true, new EnhancedModItemModelProvider(packOutput, MinecraftFarmerTechMod.MOD_ID, existingFileHelper));
             } else {
-                generator.addProvider(true, new ModItemModelProvider(packOutput, MinecraftFarmerTechMod.MOD_ID, existingFileHelper));
+                generator.addProvider(true, new ModItemModelProvider(packOutput, existingFileHelper));
             }
 
             // Block States - choose between original and hybrid
             if (ENABLE_HYBRID_SYSTEM) {
                 generator.addProvider(true, new EnhancedModBlockStateProvider(packOutput, MinecraftFarmerTechMod.MOD_ID, existingFileHelper));
             } else {
-                generator.addProvider(true, new ModBlockStateProvider(packOutput, MinecraftFarmerTechMod.MOD_ID, existingFileHelper));
+                generator.addProvider(true, new ModBlockStateProvider(packOutput, existingFileHelper));
             }
         }
 

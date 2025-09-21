@@ -5,6 +5,7 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.MenuType;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.common.extensions.IMenuTypeExtension;
+import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import com.thewheatking.minecraftfarmertechmod.menu.EnergyControllerMenu;
 import com.thewheatking.minecraftfarmertechmod.menu.EnergyMonitorMenu;
@@ -58,7 +59,7 @@ public class HybridMenuTypes {
                     IMenuTypeExtension.create(HybridCoalGeneratorMenu::new));
 
     // Control System Menu Types
-    public static final Supplier<MenuType<HybridCoalGeneratorMenu.EnergyControllerMenu>> ENERGY_CONTROLLER =
+    public static final DeferredHolder<MenuType<?>, MenuType<EnergyControllerMenu>> ENERGY_CONTROLLER =
             MENU_TYPES.register("energy_controller", () ->
                     IMenuTypeExtension.create(EnergyControllerMenu::new));
 
@@ -240,134 +241,135 @@ public class HybridMenuTypes {
             return itemStack;
         }
 
-    // Control System Menu Implementations
-    public static class EnergyControllerMenu extends BaseEnergyStorageMenu {
-        public EnergyControllerMenu(int containerId, net.minecraft.world.entity.player.Inventory playerInventory,
+        // Control System Menu Implementations
+        public static class EnergyControllerMenu extends BaseEnergyStorageMenu {
+            public EnergyControllerMenu(int containerId, net.minecraft.world.entity.player.Inventory playerInventory,
+                                        net.minecraft.network.FriendlyByteBuf extraData) {
+                super(ENERGY_CONTROLLER.get(), containerId, playerInventory, extraData);
+            }
+        }
+
+        public static class EnergyMonitorMenu extends BaseEnergyStorageMenu {
+            public EnergyMonitorMenu(int containerId, net.minecraft.world.entity.player.Inventory playerInventory,
+                                     net.minecraft.network.FriendlyByteBuf extraData) {
+                super(ENERGY_MONITOR.get(), containerId, playerInventory, extraData);
+            }
+        }
+
+        public static class EnergyConverterMenu extends BaseEnergyStorageMenu {
+            public EnergyConverterMenu(int containerId, net.minecraft.world.entity.player.Inventory playerInventory,
+                                       net.minecraft.network.FriendlyByteBuf extraData) {
+                super(ENERGY_CONVERTER.get(), containerId, playerInventory, extraData);
+            }
+        }
+
+        // Network Infrastructure Menu Implementations
+        public static class NetworkRelayMenu extends BaseEnergyStorageMenu {
+            public NetworkRelayMenu(int containerId, net.minecraft.world.entity.player.Inventory playerInventory,
                                     net.minecraft.network.FriendlyByteBuf extraData) {
-            super(ENERGY_CONTROLLER.get(), containerId, playerInventory, extraData);
+                super(NETWORK_RELAY.get(), containerId, playerInventory, extraData);
+            }
         }
-    }
 
-    public static class EnergyMonitorMenu extends BaseEnergyStorageMenu {
-        public EnergyMonitorMenu(int containerId, net.minecraft.world.entity.player.Inventory playerInventory,
-                                 net.minecraft.network.FriendlyByteBuf extraData) {
-            super(ENERGY_MONITOR.get(), containerId, playerInventory, extraData);
+        public static class NetworkAmplifierMenu extends BaseEnergyStorageMenu {
+            public NetworkAmplifierMenu(int containerId, net.minecraft.world.entity.player.Inventory playerInventory,
+                                        net.minecraft.network.FriendlyByteBuf extraData) {
+                super(NETWORK_AMPLIFIER.get(), containerId, playerInventory, extraData);
+            }
         }
-    }
 
-    public static class EnergyConverterMenu extends BaseEnergyStorageMenu {
-        public EnergyConverterMenu(int containerId, net.minecraft.world.entity.player.Inventory playerInventory,
-                                   net.minecraft.network.FriendlyByteBuf extraData) {
-            super(ENERGY_CONVERTER.get(), containerId, playerInventory, extraData);
+        public static class NetworkBridgeMenu extends BaseEnergyStorageMenu {
+            public NetworkBridgeMenu(int containerId, net.minecraft.world.entity.player.Inventory playerInventory,
+                                     net.minecraft.network.FriendlyByteBuf extraData) {
+                super(NETWORK_BRIDGE.get(), containerId, playerInventory, extraData);
+            }
         }
-    }
 
-    // Network Infrastructure Menu Implementations
-    public static class NetworkRelayMenu extends BaseEnergyStorageMenu {
-        public NetworkRelayMenu(int containerId, net.minecraft.world.entity.player.Inventory playerInventory,
-                                net.minecraft.network.FriendlyByteBuf extraData) {
-            super(NETWORK_RELAY.get(), containerId, playerInventory, extraData);
-        }
-    }
-
-    public static class NetworkAmplifierMenu extends BaseEnergyStorageMenu {
-        public NetworkAmplifierMenu(int containerId, net.minecraft.world.entity.player.Inventory playerInventory,
-                                    net.minecraft.network.FriendlyByteBuf extraData) {
-            super(NETWORK_AMPLIFIER.get(), containerId, playerInventory, extraData);
-        }
-    }
-
-    public static class NetworkBridgeMenu extends BaseEnergyStorageMenu {
-        public NetworkBridgeMenu(int containerId, net.minecraft.world.entity.player.Inventory playerInventory,
-                                 net.minecraft.network.FriendlyByteBuf extraData) {
-            super(NETWORK_BRIDGE.get(), containerId, playerInventory, extraData);
-        }
-    }
-
-    // Specialized Interface Menu Implementations
-    public static class EnergyAnalyzerMenu extends BaseEnergyStorageMenu {
-        public EnergyAnalyzerMenu(int containerId, net.minecraft.world.entity.player.Inventory playerInventory,
-                                  net.minecraft.network.FriendlyByteBuf extraData) {
-            super(ENERGY_ANALYZER.get(), containerId, playerInventory, extraData);
-        }
-    }
-
-    public static class NetworkDashboardMenu extends BaseEnergyStorageMenu {
-        public NetworkDashboardMenu(int containerId, net.minecraft.world.entity.player.Inventory playerInventory,
-                                    net.minecraft.network.FriendlyByteBuf extraData) {
-            super(NETWORK_DASHBOARD.get(), containerId, playerInventory, extraData);
-        }
-    }
-
-    public static class HybridConfiguratorMenu extends BaseEnergyStorageMenu {
-        public HybridConfiguratorMenu(int containerId, net.minecraft.world.entity.player.Inventory playerInventory,
+        // Specialized Interface Menu Implementations
+        public static class EnergyAnalyzerMenu extends BaseEnergyStorageMenu {
+            public EnergyAnalyzerMenu(int containerId, net.minecraft.world.entity.player.Inventory playerInventory,
                                       net.minecraft.network.FriendlyByteBuf extraData) {
-            super(HYBRID_CONFIGURATOR.get(), containerId, playerInventory, extraData);
+                super(ENERGY_ANALYZER.get(), containerId, playerInventory, extraData);
+            }
         }
-    }
 
-    /**
-     * Helper methods for menu specifications
-     */
-    public static class MenuSpecifications {
+        public static class NetworkDashboardMenu extends BaseEnergyStorageMenu {
+            public NetworkDashboardMenu(int containerId, net.minecraft.world.entity.player.Inventory playerInventory,
+                                        net.minecraft.network.FriendlyByteBuf extraData) {
+                super(NETWORK_DASHBOARD.get(), containerId, playerInventory, extraData);
+            }
+        }
 
-        /**
-         * Gets all energy storage menu types
-         */
-        public static MenuType<?>[] getEnergyStorageMenus() {
-            return new MenuType<?>[] {
-                    BASIC_ENERGY_STORAGE.get(),
-                    ENHANCED_ENERGY_STORAGE.get(),
-                    ADVANCED_ENERGY_STORAGE.get(),
-                    SUPERIOR_ENERGY_STORAGE.get(),
-                    QUANTUM_ENERGY_STORAGE.get()
-            };
+        public static class HybridConfiguratorMenu extends BaseEnergyStorageMenu {
+            public HybridConfiguratorMenu(int containerId, net.minecraft.world.entity.player.Inventory playerInventory,
+                                          net.minecraft.network.FriendlyByteBuf extraData) {
+                super(HYBRID_CONFIGURATOR.get(), containerId, playerInventory, extraData);
+            }
         }
 
         /**
-         * Gets all machine menu types
+         * Helper methods for menu specifications
          */
-        public static MenuType<?>[] getMachineMenus() {
-            return new MenuType<?>[] {
-                    HYBRID_COAL_GENERATOR.get(),
-                    ENERGY_CONTROLLER.get(),
-                    ENERGY_MONITOR.get(),
-                    ENERGY_CONVERTER.get()
-            };
-        }
+        public static class MenuSpecifications {
 
-        /**
-         * Gets all network infrastructure menu types
-         */
-        public static MenuType<?>[] getNetworkMenus() {
-            return new MenuType<?>[] {
-                    NETWORK_RELAY.get(),
-                    NETWORK_AMPLIFIER.get(),
-                    NETWORK_BRIDGE.get()
-            };
-        }
+            /**
+             * Gets all energy storage menu types
+             */
+            public static MenuType<?>[] getEnergyStorageMenus() {
+                return new MenuType<?>[]{
+                        BASIC_ENERGY_STORAGE.get(),
+                        ENHANCED_ENERGY_STORAGE.get(),
+                        ADVANCED_ENERGY_STORAGE.get(),
+                        SUPERIOR_ENERGY_STORAGE.get(),
+                        QUANTUM_ENERGY_STORAGE.get()
+                };
+            }
 
-        /**
-         * Gets all specialized interface menu types
-         */
-        public static MenuType<?>[] getSpecializedMenus() {
-            return new MenuType<?>[] {
-                    ENERGY_ANALYZER.get(),
-                    NETWORK_DASHBOARD.get(),
-                    HYBRID_CONFIGURATOR.get()
-            };
-        }
+            /**
+             * Gets all machine menu types
+             */
+            public static MenuType<?>[] getMachineMenus() {
+                return new MenuType<?>[]{
+                        HYBRID_COAL_GENERATOR.get(),
+                        ENERGY_CONTROLLER.get(),
+                        ENERGY_MONITOR.get(),
+                        ENERGY_CONVERTER.get()
+                };
+            }
 
-        /**
-         * Gets all hybrid menu types
-         */
-        public static MenuType<?>[] getAllHybridMenus() {
-            java.util.List<MenuType<?>> allMenus = new java.util.ArrayList<>();
-            allMenus.addAll(java.util.Arrays.asList(getEnergyStorageMenus()));
-            allMenus.addAll(java.util.Arrays.asList(getMachineMenus()));
-            allMenus.addAll(java.util.Arrays.asList(getNetworkMenus()));
-            allMenus.addAll(java.util.Arrays.asList(getSpecializedMenus()));
-            return allMenus.toArray(new MenuType<?>[0]);
+            /**
+             * Gets all network infrastructure menu types
+             */
+            public static MenuType<?>[] getNetworkMenus() {
+                return new MenuType<?>[]{
+                        NETWORK_RELAY.get(),
+                        NETWORK_AMPLIFIER.get(),
+                        NETWORK_BRIDGE.get()
+                };
+            }
+
+            /**
+             * Gets all specialized interface menu types
+             */
+            public static MenuType<?>[] getSpecializedMenus() {
+                return new MenuType<?>[]{
+                        ENERGY_ANALYZER.get(),
+                        NETWORK_DASHBOARD.get(),
+                        HYBRID_CONFIGURATOR.get()
+                };
+            }
+
+            /**
+             * Gets all hybrid menu types
+             */
+            public static MenuType<?>[] getAllHybridMenus() {
+                java.util.List<MenuType<?>> allMenus = new java.util.ArrayList<>();
+                allMenus.addAll(java.util.Arrays.asList(getEnergyStorageMenus()));
+                allMenus.addAll(java.util.Arrays.asList(getMachineMenus()));
+                allMenus.addAll(java.util.Arrays.asList(getNetworkMenus()));
+                allMenus.addAll(java.util.Arrays.asList(getSpecializedMenus()));
+                return allMenus.toArray(new MenuType<?>[0]);
+            }
         }
     }
 }
