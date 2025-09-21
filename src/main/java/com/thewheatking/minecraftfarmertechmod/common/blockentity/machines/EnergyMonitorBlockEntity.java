@@ -1,7 +1,7 @@
 package com.thewheatking.minecraftfarmertechmod.common.blockentity.machines;
 
 import com.thewheatking.minecraftfarmertechmod.common.blockentity.base.BaseMachineBlockEntity;
-import com.thewheatking.minecraftfarmertechmod.menu.EnergyMonitorMenu;
+import com.thewheatking.minecraftfarmertechmod.screen.EnergyMonitorMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;

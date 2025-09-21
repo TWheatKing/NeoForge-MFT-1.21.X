@@ -2,6 +2,7 @@ package com.thewheatking.minecraftfarmertechmod.common.blockentity.storage;
 
 import com.thewheatking.minecraftfarmertechmod.energy.HybridEnergyStorage;
 import com.thewheatking.minecraftfarmertechmod.hybrid.HybridBlockEntities;
+import com.thewheatking.minecraftfarmertechmod.hybrid.HybridMenuTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
@@ -25,8 +26,10 @@ public class BasicEnergyStorageBlockEntity extends EnergyStorageBlockEntity {
 
     @Override
     public AbstractContainerMenu createMenu(int containerId, Inventory playerInventory, Player player) {
-        // return new BasicEnergyStorageMenu(containerId, playerInventory, this);
-        return null; // Placeholder until menu is implemented
+        return new com.thewheatking.minecraftfarmertechmod.hybrid.HybridMenuTypes.BasicEnergyStorageMenu(
+                containerId, playerInventory,
+                new net.minecraft.network.FriendlyByteBuf(io.netty.buffer.Unpooled.buffer())
+                        .writeBlockPos(this.getBlockPos()));
     }
 
     @Override

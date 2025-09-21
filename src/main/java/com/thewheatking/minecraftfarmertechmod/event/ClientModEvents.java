@@ -2,7 +2,6 @@ package com.thewheatking.minecraftfarmertechmod.event;
 
 import com.thewheatking.minecraftfarmertechmod.MinecraftFarmerTechMod;
 import com.thewheatking.minecraftfarmertechmod.hybrid.HybridMenuTypes;
-import com.thewheatking.minecraftfarmertechmod.item.ModItems;
 import com.thewheatking.minecraftfarmertechmod.screen.CoalGeneratorScreen;
 import com.thewheatking.minecraftfarmertechmod.screen.IronFurnaceScreen;
 import com.thewheatking.minecraftfarmertechmod.screen.ModMenuTypes;
@@ -10,17 +9,25 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
-import net.neoforged.neoforge.client.event.ComputeFovModifierEvent;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
-import net.minecraft.client.gui.screens.MenuScreens;
-import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.bus.api.EventPriority;
-import net.neoforged.fml.common.EventBusSubscriber;
 import com.thewheatking.minecraftfarmertechmod.screen.LiquifierScreen;
 import com.thewheatking.minecraftfarmertechmod.screen.BioGeneratorScreen;
 import com.thewheatking.minecraftfarmertechmod.screen.SideConfigScreen;
+import com.thewheatking.minecraftfarmertechmod.screen.BasicEnergyStorageScreen;
+import com.thewheatking.minecraftfarmertechmod.screen.EnhancedEnergyStorageScreen;
+import com.thewheatking.minecraftfarmertechmod.screen.AdvancedEnergyStorageScreen;
+import com.thewheatking.minecraftfarmertechmod.screen.SuperiorEnergyStorageScreen;
+import com.thewheatking.minecraftfarmertechmod.screen.QuantumEnergyStorageScreen;
+import com.thewheatking.minecraftfarmertechmod.screen.HybridCoalGeneratorScreen;
+import com.thewheatking.minecraftfarmertechmod.screen.EnergyControllerScreen;
+import com.thewheatking.minecraftfarmertechmod.screen.EnergyMonitorScreen;
+import com.thewheatking.minecraftfarmertechmod.screen.EnergyConverterScreen;
+import com.thewheatking.minecraftfarmertechmod.screen.NetworkRelayScreen;
+import com.thewheatking.minecraftfarmertechmod.screen.NetworkAmplifierScreen;
+import com.thewheatking.minecraftfarmertechmod.screen.NetworkBridgeScreen;
+import com.thewheatking.minecraftfarmertechmod.screen.EnergyAnalyzerScreen;
+import com.thewheatking.minecraftfarmertechmod.screen.NetworkDashboardScreen;
+import com.thewheatking.minecraftfarmertechmod.screen.HybridConfiguratorScreen;
 
 @EventBusSubscriber(modid = MinecraftFarmerTechMod.MOD_ID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class ClientModEvents {

@@ -1,4 +1,4 @@
-package com.thewheatking.minecraftfarmertechmod.menu;
+package com.thewheatking.minecraftfarmertechmod.screen;
 
 
 import com.thewheatking.minecraftfarmertechmod.common.blockentity.machines.EnergyMonitorBlockEntity;
