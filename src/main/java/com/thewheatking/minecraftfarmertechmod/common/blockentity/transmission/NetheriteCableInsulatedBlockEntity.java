@@ -5,13 +5,13 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.state.BlockState;
 
 /**
- * Diamond Cable Insulated Block Entity - Tier 3 Safe Energy Transmission
- * Transfer Rate: 10922 FE/tick (33% faster), No electrical damage, Explodes at 32768+ FE/tick
+ * Netherite Cable Insulated Block Entity - Tier 4 Ultimate Safe Energy Transmission
+ * Transfer Rate: 43690 FE/tick (33% faster), No electrical damage, NEVER EXPLODES
  */
-public class DiamondCableInsulatedBlockEntity extends DiamondCableBlockEntity {
-    private static final int INSULATED_TRANSFER_RATE = 10922; // 33% faster than standard diamond
+public class NetheriteCableInsulatedBlockEntity extends NetheriteCableBlockEntity {
+    private static final int INSULATED_TRANSFER_RATE = 43690; // 33% faster than standard netherite
 
-    public DiamondCableInsulatedBlockEntity(BlockPos pos, BlockState state) {
+    public NetheriteCableInsulatedBlockEntity(BlockPos pos, BlockState state) {
         super(pos, state);
     }
 
@@ -30,6 +30,6 @@ public class DiamondCableInsulatedBlockEntity extends DiamondCableBlockEntity {
 
     @Override
     protected void spawnEnergyFlowParticles() {
-        // TODO: Insulated diamond particles (maybe blue-tinted cyan particles)
+        // TODO: Insulated netherite particles (maybe blue-tinted dark purple particles)
     }
 }

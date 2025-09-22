@@ -1,25 +1,35 @@
 package com.thewheatking.minecraftfarmertechmod.common.blockentity.transmission;
 
-import com.thewheatking.minecraftfarmertechmod.energy.HybridEnergyStorage;
 import com.thewheatking.minecraftfarmertechmod.hybrid.HybridBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.state.BlockState;
 
 /**
- * Insulated Gold Cable Block Entity - Tier 2 Enhanced (4096 FE/t)
+ * Gold Cable Insulated Block Entity - Tier 2 Safe Energy Transmission
+ * Transfer Rate: 2730 FE/tick (33% faster), No electrical damage, Explodes at 8192+ FE/tick
  */
-public class GoldCableInsulatedBlockEntity extends EnergyTransmissionBlockEntity {
+public class GoldCableInsulatedBlockEntity extends GoldCableBlockEntity {
+    private static final int INSULATED_TRANSFER_RATE = 2730; // 33% faster than standard gold
 
     public GoldCableInsulatedBlockEntity(BlockPos pos, BlockState state) {
-        super(HybridBlockEntities.GOLD_CABLE_INSULATED.get(), pos, state,
-                HybridEnergyStorage.TransferTier.GOLD_INSULATED);
+        super(pos, state);
     }
 
     @Override
-    protected void spawnTransmissionParticles() {
-        if (level != null && level.isClientSide() && isTransmitting()) {
-            // Spawn dimmer golden particles for insulated gold cables
-            // Implementation would go here for particle effects
-        }
+    protected void initializeEnergyStorage() {
+        energyStorage = createEnergyStorage();
+        energyMaxReceive = INSULATED_TRANSFER_RATE;
+        energyMaxExtract = INSULATED_TRANSFER_RATE;
+    }
+
+    @Override
+    protected boolean canCauseElectricalDamage() { return false; }
+
+    @Override
+    public int getTransferRate() { return INSULATED_TRANSFER_RATE; }
+
+    @Override
+    protected void spawnEnergyFlowParticles() {
+        // TODO: Insulated gold particles (maybe blue-tinted gold particles)
     }
 }
