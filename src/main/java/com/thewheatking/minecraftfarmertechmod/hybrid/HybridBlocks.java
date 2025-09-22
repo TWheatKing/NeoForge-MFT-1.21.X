@@ -274,6 +274,10 @@ public class HybridBlocks {
         HybridItems.registerBlockItem("gold_cable", GOLD_CABLE);
         HybridItems.registerBlockItem("gold_cable_insulated", GOLD_CABLE_INSULATED);
         HybridItems.registerBlockItem("diamond_cable", DIAMOND_CABLE);
+        HybridItems.registerBlockItem("diamond_cable_insulated", DIAMOND_CABLE_INSULATED);
+        HybridItems.registerBlockItem("netherite_cable", NETHERITE_CABLE);
+        HybridItems.registerBlockItem("netherite_cable_insulated", NETHERITE_CABLE_INSULATED);
+
 
         // Machine Block Items
         HybridItems.registerBlockItem("hybrid_coal_generator", HYBRID_COAL_GENERATOR);
@@ -287,10 +291,10 @@ public class HybridBlocks {
         HybridItems.registerBlockItem("network_relay", NETWORK_RELAY);
         HybridItems.registerBlockItem("network_amplifier", NETWORK_AMPLIFIER);
         HybridItems.registerBlockItem("network_bridge", NETWORK_BRIDGE);
+        HybridItems.registerBlockItem("network_dashboard", NETWORK_DASHBOARD);
 
         // Specialized Interface Block Items
         HybridItems.registerBlockItem("energy_analyzer", ENERGY_ANALYZER);
-        HybridItems.registerBlockItem("network_dashboard", NETWORK_DASHBOARD);
         HybridItems.registerBlockItem("hybrid_configurator", HYBRID_CONFIGURATOR);
 
         MinecraftFarmerTechMod.LOGGER.info("Hybrid Block Items registered successfully!");

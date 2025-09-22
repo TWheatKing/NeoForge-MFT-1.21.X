@@ -66,6 +66,14 @@ public class MinecraftFarmerTechMod {
         ModPotions.register(modEventBus);
         ModEnchantmentEffects.register(modEventBus);
         ModAttachments.ATTACHMENT_TYPES.register(modEventBus);
+        // Register hybrid system components
+        HybridBlocks.register(modEventBus);
+        HybridItems.register(modEventBus);
+        HybridBlockEntities.register(modEventBus);
+        HybridMenuTypes.register(modEventBus);
+
+        // Register hybrid energy capabilities
+        HybridEnergyCapabilityProviders.register(modEventBus);
 
         // Register Block Entities and Menus (Always register existing ones)
         ModBlockEntities.register(modEventBus);
@@ -75,25 +83,10 @@ public class MinecraftFarmerTechMod {
         ModFluids.register(modEventBus);
         ModFluidTypes.register(modEventBus);
 
-        // Conditional Energy System Registration
-        if (USE_HYBRID_ENERGY_SYSTEM) {
-            LOGGER.info("Initializing Hybrid Energy System...");
 
-            // Register hybrid system components
-            HybridBlocks.register(modEventBus);
-            HybridItems.register(modEventBus);
-            HybridBlockEntities.register(modEventBus);
-            HybridMenuTypes.register(modEventBus);
+        // Register legacy energy capabilities
+        ModEnergyCapabilities.register(modEventBus);
 
-            // Register hybrid energy capabilities
-            HybridEnergyCapabilityProviders.register(modEventBus);
-
-        } else {
-            LOGGER.info("Using Legacy Energy System...");
-
-            // Register legacy energy capabilities
-            ModEnergyCapabilities.register(modEventBus);
-        }
 
         modEventBus.addListener(this::addCreative);
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
