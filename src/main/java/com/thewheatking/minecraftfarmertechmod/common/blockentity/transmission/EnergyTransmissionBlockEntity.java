@@ -20,8 +20,6 @@ import net.neoforged.neoforge.energy.IEnergyStorage;
 import net.neoforged.neoforge.items.ItemStackHandler;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.sounds.SoundEvents;
@@ -32,9 +30,6 @@ import java.util.*;
 /**
  * CORRECTED: Base energy transmission block entity for cable networks
  * Based on TWheatKing's original MFT framework, enhanced for hybrid system support
- *
- * File Location: src/main/java/com/thewheatking/minecraftfarmertechmod/common/blockentity/transmission/EnergyTransmissionBlockEntity.java
- * Purpose: Provides foundational cable functionality with network management, energy routing, and loss calculation
  */
 public abstract class EnergyTransmissionBlockEntity extends BaseMachineBlockEntity {
 
@@ -56,11 +51,18 @@ public abstract class EnergyTransmissionBlockEntity extends BaseMachineBlockEnti
     // Performance tracking
     protected int energyTransferred = 0;
     protected double currentLoad = 0.0;
-    protected static final int NETWORK_UPDATE_INTERVAL = 20; // Update network every second
+    protected static final int NETWORK_UPDATE_INTERVAL = 20;
 
     // Visual state
     protected boolean isTransmitting = false;
     protected int transmissionAnimation = 0;
+
+    // Explosion/overload system - ALL CONSTANTS DEFINED HERE
+    protected int overloadTicks = 0;
+    protected static final int OVERLOAD_WARNING_TICKS = 60; // 3 seconds warning
+    protected static final int OVERLOAD_EXPLOSION_TICKS = 100; // 5 seconds to explosion
+    protected static final double ELECTRICAL_DAMAGE_RANGE = 3.0; // 3 block radius
+    protected boolean hasWarned = false;
 
     public EnergyTransmissionBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state,
                                          HybridEnergyStorage.TransferTier tier) {
@@ -79,25 +81,21 @@ public abstract class EnergyTransmissionBlockEntity extends BaseMachineBlockEnti
 
     @Override
     protected HybridEnergyStorage createEnergyStorage() {
-        // Cable acts as a small buffer - capacity equals transfer rate for smooth flow
         return new HybridEnergyStorage(transferTier);
     }
 
     @Override
     protected ItemStackHandler createInventory() {
-        // Cables don't have inventory
-        return new ItemStackHandler(0);
+        return new ItemStackHandler(0); // Cables don't have inventory
     }
 
     @Override
     protected boolean canOperate() {
-        // Cables always operate if they have energy to transmit
         return energyStorage.getEnergyStored() > 0 || hasConnectedDevices();
     }
 
     @Override
     protected void performOperation() {
-        // Cable-specific operation: distribute energy to all connected sides
         distributeEnergyToAllSides();
     }
 
@@ -111,10 +109,7 @@ public abstract class EnergyTransmissionBlockEntity extends BaseMachineBlockEnti
             networkDirty = false;
         }
 
-        // Update connections
         updateConnections();
-
-        // Update visual state
         updateTransmissionState();
 
         // Reset counters
@@ -128,9 +123,8 @@ public abstract class EnergyTransmissionBlockEntity extends BaseMachineBlockEnti
     protected void clientTick() {
         super.clientTick();
 
-        // Handle client-side visual effects
         if (isTransmitting) {
-            transmissionAnimation = (transmissionAnimation + 1) % 40; // 2-second cycle
+            transmissionAnimation = (transmissionAnimation + 1) % 40;
             spawnTransmissionParticles();
         } else {
             transmissionAnimation = 0;
@@ -139,11 +133,8 @@ public abstract class EnergyTransmissionBlockEntity extends BaseMachineBlockEnti
 
     protected void updateNetwork() {
         if (level != null) {
-            // Get or create network
             connectedNetwork = EnhancedMftEnergyNetwork.getOrCreateNetwork(level, worldPosition);
             networkId = connectedNetwork.getNetworkId();
-
-            // Mark network as dirty if this cable was modified
             connectedNetwork.markDirty();
         }
     }
@@ -159,12 +150,10 @@ public abstract class EnergyTransmissionBlockEntity extends BaseMachineBlockEnti
             boolean isConnected = false;
 
             if (level.isLoaded(adjacentPos)) {
-                // Check for cables
                 if (CableUtils.isCable(level, adjacentPos)) {
                     isConnected = true;
                     connectedDevices.remove(direction);
                 } else {
-                    // Check for energy devices
                     IEnergyStorage energyStorage = level.getCapability(Capabilities.EnergyStorage.BLOCK,
                             adjacentPos, direction.getOpposite());
 
@@ -191,31 +180,57 @@ public abstract class EnergyTransmissionBlockEntity extends BaseMachineBlockEnti
         }
     }
 
+    /**
+     * EXPLOSION SYSTEM: Enhanced energy transfer with overload protection
+     */
+    @Override
+    protected void handleEnergyDistribution() {
+        if (!canOperate()) return;
+
+        int energyToTransfer = energyStorage.getEnergyStored();
+        if (energyToTransfer <= 0) {
+            if (overloadTicks > 0) {
+                overloadTicks = 0;
+                hasWarned = false;
+            }
+            return;
+        }
+
+        // Check for cable overload BEFORE attempting transfer
+        if (!isEnergyLevelSafe(energyToTransfer)) {
+            handleOverload(energyToTransfer);
+            return; // Don't transfer energy if overloaded
+        } else {
+            if (overloadTicks > 0) {
+                overloadTicks = 0;
+                hasWarned = false;
+            }
+        }
+
+        // Continue with normal energy distribution
+        distributeEnergyToAllSides();
+    }
+
     private void distributeEnergyToAllSides() {
         int totalEnergyToDistribute = energyStorage.getEnergyStored();
         if (totalEnergyToDistribute <= 0) return;
 
-        // Find all valid energy receivers
         var receivers = new ArrayList<IEnergyStorage>();
-        var directions = new ArrayList<Direction>();
 
         for (Direction direction : Direction.values()) {
             if (connectedDevices.containsKey(direction)) {
                 IEnergyStorage device = connectedDevices.get(direction);
                 if (device.canReceive()) {
                     receivers.add(device);
-                    directions.add(direction);
                 }
             }
         }
 
         if (receivers.isEmpty()) return;
 
-        // Distribute energy evenly among receivers
         int energyPerReceiver = Math.min(totalEnergyToDistribute / receivers.size(), transferRate);
 
-        for (int i = 0; i < receivers.size(); i++) {
-            IEnergyStorage receiver = receivers.get(i);
+        for (IEnergyStorage receiver : receivers) {
             int transferAttempt = Math.min(energyPerReceiver, energyStorage.getEnergyStored());
 
             if (transferAttempt > 0) {
@@ -233,14 +248,9 @@ public abstract class EnergyTransmissionBlockEntity extends BaseMachineBlockEnti
     }
 
     protected int transferEnergyWithLoss(int amount, IEnergyStorage target) {
-        // Calculate energy loss
         double lossMultiplier = isInsulated ? energyLossPerBlock * 0.5 : energyLossPerBlock;
         int actualAmount = (int) (amount * (1.0 - lossMultiplier));
-
-        // Transfer energy
         int received = target.receiveEnergy(actualAmount, false);
-
-        // Return the amount that should be extracted from source (before loss)
         return received > 0 ? (int) (received / (1.0 - lossMultiplier)) : 0;
     }
 
@@ -256,9 +266,6 @@ public abstract class EnergyTransmissionBlockEntity extends BaseMachineBlockEnti
 
     protected void spawnTransmissionParticles() {
         // Override in subclasses for specific particle effects
-        if (level != null && level.isClientSide()) {
-            // Example particle spawning logic would go here
-        }
     }
 
     protected boolean hasConnectedDevices() {
@@ -267,103 +274,57 @@ public abstract class EnergyTransmissionBlockEntity extends BaseMachineBlockEnti
 
     @Override
     protected boolean canOutputEnergy(Direction direction) {
-        // Cables can output energy to all connected sides
         return connections.get(direction);
     }
 
     @Override
     protected boolean canInputEnergy(Direction direction) {
-        // Cables can receive energy from all connected sides
         return connections.get(direction);
     }
 
-    /**
-     * Enhanced energy transfer with overload protection
-     * Based on TWheatKing's original cable energy system
-     */
-    @Override
-    protected void handleEnergyDistribution() {
-        if (!canOperate()) return;
+    // ========== EXPLOSION SYSTEM METHODS ==========
 
-        int energyToTransfer = energyStorage.getEnergyStored();
-        if (energyToTransfer <= 0) return;
-
-        // Check for cable overload BEFORE attempting transfer
-        if (!isEnergyLevelSafe(energyToTransfer)) {
-            handleOverload(energyToTransfer);
-            return; // Don't transfer energy if we're overloaded
-        } else {
-            // Reset overload counter if energy is safe
-            if (overloadTicks > 0) {
-                overloadTicks = 0;
-                hasWarned = false;
-            }
-        }
-
-        // Continue with normal energy distribution
-        super.handleEnergyDistribution();
-    }
-
-    /**
-     * Checks if the current energy level is safe for this cable tier
-     * @param energyAmount Current energy being transferred
-     * @return true if safe, false if overloaded
-     */
     protected boolean isEnergyLevelSafe(int energyAmount) {
         return !transferTier.isOverloaded(energyAmount);
     }
 
-    /**
-     * Handles cable overload situations - warnings, damage, and explosion
-     * Based on TWheatKing's electrical damage system concept
-     */
     protected void handleOverload(int energyAmount) {
         overloadTicks++;
 
-        // Warning phase (3 seconds)
         if (overloadTicks >= OVERLOAD_WARNING_TICKS && !hasWarned) {
             sendOverloadWarning();
             hasWarned = true;
         }
 
-        // Spark effects during overload
-        if (overloadTicks % 10 == 0) { // Every half second
+        if (overloadTicks % 10 == 0) {
             spawnOverloadParticles();
             playOverloadSounds();
         }
 
-        // Explosion phase (5 seconds total)
         if (overloadTicks >= OVERLOAD_EXPLOSION_TICKS) {
             explodeCable();
         }
     }
 
-    /**
-     * Warns nearby players about impending cable explosion
-     */
     protected void sendOverloadWarning() {
         if (level == null || level.isClientSide()) return;
 
-        // Find nearby players within 10 blocks
         AABB searchArea = new AABB(worldPosition).inflate(10.0);
         List<Player> nearbyPlayers = level.getEntitiesOfClass(Player.class, searchArea);
 
         for (Player player : nearbyPlayers) {
             player.displayClientMessage(
-                    Component.literal("⚠ WARNING: Cable overload detected! Energy level: " +
-                            energyStorage.getEnergyStored() + " FE/t exceeds safe limit of " +
+                    Component.literal("⚠ WARNING: Cable overload! Energy: " +
+                            energyStorage.getEnergyStored() + " FE/t exceeds limit: " +
                             transferTier.getExplosionThreshold() + " FE/t"),
-                    true // Show in action bar
+                    true
             );
         }
     }
-    /**
-     * Creates electrical spark particle effects during overload
-     */
+
     protected void spawnOverloadParticles() {
         if (level == null || !level.isClientSide()) return;
 
-        // Spawn lightning/electrical particles
         for (int i = 0; i < 5; i++) {
             double offsetX = (level.random.nextDouble() - 0.5) * 2.0;
             double offsetY = (level.random.nextDouble() - 0.5) * 2.0;
@@ -377,40 +338,27 @@ public abstract class EnergyTransmissionBlockEntity extends BaseMachineBlockEnti
         }
     }
 
-    /**
-     * Plays electrical crackling sounds during overload
-     */
     protected void playOverloadSounds() {
         if (level == null) return;
-
         level.playSound(null, worldPosition, SoundEvents.LIGHTNING_BOLT_THUNDER,
-                SoundSource.BLOCKS, 0.3f, 2.0f); // Quiet, high-pitched electrical sound
+                SoundSource.BLOCKS, 0.3f, 2.0f);
     }
 
-    /**
-     * Explodes the cable and damages nearby entities
-     * Based on TWheatKing's electrical damage mechanics
-     */
     protected void explodeCable() {
         if (level == null || level.isClientSide()) return;
 
-        // Create electrical damage area
         AABB damageArea = new AABB(worldPosition).inflate(ELECTRICAL_DAMAGE_RANGE);
         List<LivingEntity> nearbyEntities = level.getEntitiesOfClass(LivingEntity.class, damageArea);
 
-        // Damage all living entities in range
         for (LivingEntity entity : nearbyEntities) {
             double distance = entity.distanceToSqr(worldPosition.getX() + 0.5,
                     worldPosition.getY() + 0.5, worldPosition.getZ() + 0.5);
 
-            // Damage decreases with distance (6 hearts at center, 2 hearts at edge)
-            float damage = (float)(12.0 - (distance * 2.0)); // 12 HP = 6 hearts
-            damage = Math.max(damage, 4.0f); // Minimum 2 hearts damage
+            float damage = (float) (12.0 - (distance * 2.0));
+            damage = Math.max(damage, 4.0f);
 
-            // Apply electrical damage
             entity.hurt(level.damageSources().lightningBolt(), damage);
 
-            // Special message for players
             if (entity instanceof Player player) {
                 player.displayClientMessage(
                         Component.literal("⚡ You were electrocuted by an overloaded cable!"),
@@ -419,24 +367,15 @@ public abstract class EnergyTransmissionBlockEntity extends BaseMachineBlockEnti
             }
         }
 
-        // Create explosion particle effects
         spawnExplosionParticles();
-
-        // Play explosion sound
         level.playSound(null, worldPosition, SoundEvents.LIGHTNING_BOLT_IMPACT,
                 SoundSource.BLOCKS, 1.0f, 1.0f);
-
-        // Destroy the cable block (no drops - it's destroyed by explosion)
         level.destroyBlock(worldPosition, false);
     }
 
-    /**
-     * Creates dramatic explosion particle effects
-     */
     protected void spawnExplosionParticles() {
         if (level == null) return;
 
-        // Large electrical explosion effect
         for (int i = 0; i < 20; i++) {
             double offsetX = (level.random.nextDouble() - 0.5) * 4.0;
             double offsetY = (level.random.nextDouble() - 0.5) * 4.0;
@@ -449,7 +388,6 @@ public abstract class EnergyTransmissionBlockEntity extends BaseMachineBlockEnti
                     offsetX * 0.1, offsetY * 0.1, offsetZ * 0.1);
         }
 
-        // Additional smoke particles
         for (int i = 0; i < 10; i++) {
             double offsetX = (level.random.nextDouble() - 0.5) * 2.0;
             double offsetY = level.random.nextDouble();
@@ -463,68 +401,22 @@ public abstract class EnergyTransmissionBlockEntity extends BaseMachineBlockEnti
         }
     }
 
-    // Enhanced energy distribution for cables - override base class method
-    //@Override
-    //protected void handleEnergyDistribution() {
-        // Cables use their own distribution logic
-    //    distributeEnergyToAllSides();
-    //}
+    // ========== GETTERS AND UTILITY ==========
 
-    // Getters and utility methods
+    public int getTransferRate() { return transferRate; }
+    public double getEnergyLossPerBlock() { return energyLossPerBlock; }
+    public boolean isInsulated() { return isInsulated; }
+    public boolean isConnected(Direction direction) { return connections.get(direction); }
+    public Map<Direction, Boolean> getConnections() { return new HashMap<>(connections); }
+    public boolean isTransmitting() { return isTransmitting; }
+    public double getCurrentLoad() { return currentLoad; }
+    public int getEnergyTransferred() { return energyTransferred; }
+    public String getNetworkId() { return networkId; }
+    public EnhancedMftEnergyNetwork getConnectedNetwork() { return connectedNetwork; }
+    public int getTransmissionAnimation() { return transmissionAnimation; }
+    public HybridEnergyStorage.TransferTier getTransferTier() { return transferTier; }
 
-    public int getTransferRate() {
-        return transferRate;
-    }
-
-    public double getEnergyLossPerBlock() {
-        return energyLossPerBlock;
-    }
-
-    public boolean isInsulated() {
-        return isInsulated;
-    }
-
-    public boolean isConnected(Direction direction) {
-        return connections.get(direction);
-    }
-
-    public Map<Direction, Boolean> getConnections() {
-        return new HashMap<>(connections);
-    }
-
-    public boolean isTransmitting() {
-        return isTransmitting;
-    }
-
-    public double getCurrentLoad() {
-        return currentLoad;
-    }
-
-    public int getEnergyTransferred() {
-        return energyTransferred;
-    }
-
-    public String getNetworkId() {
-        return networkId;
-    }
-
-    public EnhancedMftEnergyNetwork getConnectedNetwork() {
-        return connectedNetwork;
-    }
-
-    public int getTransmissionAnimation() {
-        return transmissionAnimation;
-    }
-
-    public HybridEnergyStorage.TransferTier getTransferTier() {
-        return transferTier;
-    }
-
-    // Network management
-
-    public void onNetworkChanged() {
-        networkDirty = true;
-    }
+    public void onNetworkChanged() { networkDirty = true; }
 
     public void disconnectFromNetwork() {
         if (connectedNetwork != null && networkId != null) {
@@ -541,61 +433,54 @@ public abstract class EnergyTransmissionBlockEntity extends BaseMachineBlockEnti
         return Set.of();
     }
 
-    // NBT serialization
+    // ========== NBT SERIALIZATION ==========
 
     @Override
-    protected void saveAdditionalData(CompoundTag tag, HolderLookup.Provider registries) {
-        super.saveAdditionalData(tag, registries);
+    protected void saveAdditional(CompoundTag pTag, HolderLookup.Provider pRegistries) {
+        super.saveAdditional(pTag, pRegistries);
 
-        // Save cable state
-        tag.putString("TransferTier", transferTier.name());
-        tag.putInt("TransferRate", transferRate);
-        tag.putDouble("EnergyLossPerBlock", energyLossPerBlock);
-        tag.putBoolean("IsInsulated", isInsulated);
-        tag.putBoolean("IsTransmitting", isTransmitting);
-        tag.putDouble("CurrentLoad", currentLoad);
-        tag.putInt("EnergyTransferred", energyTransferred);
-        tag.putInt("overloadTicks", overloadTicks);
-        tag.putBoolean("hasWarned", hasWarned);
+        pTag.putString("TransferTier", transferTier.name());
+        pTag.putInt("TransferRate", transferRate);
+        pTag.putDouble("EnergyLossPerBlock", energyLossPerBlock);
+        pTag.putBoolean("IsInsulated", isInsulated);
+        pTag.putBoolean("IsTransmitting", isTransmitting);
+        pTag.putDouble("CurrentLoad", currentLoad);
+        pTag.putInt("EnergyTransferred", energyTransferred);
+        pTag.putInt("overloadTicks", overloadTicks);
+        pTag.putBoolean("hasWarned", hasWarned);
 
-        // Save connections
         for (int i = 0; i < 6; i++) {
             Direction direction = Direction.from3DDataValue(i);
-            tag.putBoolean("Connection_" + direction.name(), connections.get(direction));
+            pTag.putBoolean("Connection_" + direction.name(), connections.get(direction));
         }
 
-        // Save network info
         if (networkId != null) {
-            tag.putString("NetworkId", networkId);
+            pTag.putString("NetworkId", networkId);
         }
     }
 
     @Override
-    protected void loadAdditionalData(CompoundTag tag, HolderLookup.Provider registries) {
-        super.loadAdditionalData(tag, registries);
+    protected void loadAdditional(CompoundTag pTag, HolderLookup.Provider pRegistries) {
+        super.loadAdditional(pTag, pRegistries);
 
-        // Load cable state
-        isTransmitting = tag.getBoolean("IsTransmitting");
-        currentLoad = tag.getDouble("CurrentLoad");
-        energyTransferred = tag.getInt("EnergyTransferred");
-        overloadTicks = tag.getInt("overloadTicks");
-        hasWarned = tag.getBoolean("hasWarned");
+        isTransmitting = pTag.getBoolean("IsTransmitting");
+        currentLoad = pTag.getDouble("CurrentLoad");
+        energyTransferred = pTag.getInt("EnergyTransferred");
+        overloadTicks = pTag.getInt("overloadTicks");
+        hasWarned = pTag.getBoolean("hasWarned");
 
-        // Load connections
         for (int i = 0; i < 6; i++) {
             Direction direction = Direction.from3DDataValue(i);
-            if (tag.contains("Connection_" + direction.name())) {
-                connections.put(direction, tag.getBoolean("Connection_" + direction.name()));
+            if (pTag.contains("Connection_" + direction.name())) {
+                connections.put(direction, pTag.getBoolean("Connection_" + direction.name()));
             }
         }
 
-        // Load network info
-        if (tag.contains("NetworkId")) {
-            networkId = tag.getString("NetworkId");
+        if (pTag.contains("NetworkId")) {
+            networkId = pTag.getString("NetworkId");
         }
     }
 
-    // Cleanup when block is removed
     @Override
     public void setRemoved() {
         super.setRemoved();
@@ -605,8 +490,7 @@ public abstract class EnergyTransmissionBlockEntity extends BaseMachineBlockEnti
 
     @Override
     public AbstractContainerMenu createMenu(int containerId, Inventory playerInventory, Player player) {
-        // Cables don't have GUIs by default
-        return null;
+        return null; // Cables don't have GUIs
     }
 
     @Override
@@ -625,40 +509,4 @@ public abstract class EnergyTransmissionBlockEntity extends BaseMachineBlockEnti
                 currentLoad * 100,
                 connections.values().stream().mapToInt(b -> b ? 1 : 0).sum());
     }
-
-    /**
-     * Gets energy flow statistics
-     */
-    public EnergyFlowStats getEnergyFlowStats() {
-        return new EnergyFlowStats(
-                energyTransferred,
-                currentLoad,
-                transferRate,
-                energyLossPerBlock,
-                connections.values().stream().mapToInt(b -> b ? 1 : 0).sum(),
-                isTransmitting
-        );
-    }
-
-    /**
-     * Record for energy flow statistics
-     */
-    public record EnergyFlowStats(
-            int energyTransferred,
-            double currentLoad,
-            int maxTransferRate,
-            double energyLoss,
-            int activeConnections,
-            boolean isTransmitting
-    ) {}
-
-    // Explosion/overload system
-    protected int overloadTicks = 0;
-    protected static final int OVERLOAD_WARNING_TICKS = 60; // 3 seconds warning
-    protected static final int OVERLOAD_EXPLOSION_TICKS = 100; // 5 seconds to explosion
-    protected static final double ELECTRICAL_DAMAGE_RANGE = 3.0; // 3 block radius for electrical damage
-    protected boolean hasWarned = false;
-
-
 }
-

@@ -1,6 +1,7 @@
 package com.thewheatking.minecraftfarmertechmod.screen;
 
 import com.thewheatking.minecraftfarmertechmod.common.blockentity.storage.BasicEnergyStorageBlockEntity;
+import com.thewheatking.minecraftfarmertechmod.hybrid.HybridMenuTypes;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -26,7 +27,7 @@ public class BasicEnergyStorageMenu extends AbstractContainerMenu {
 
     // Constructor for direct creation (like your CoalGeneratorMenu)
     public BasicEnergyStorageMenu(int pContainerId, Inventory inv, BlockEntity entity, ContainerData data) {
-        super(ModMenuTypes.BASIC_ENERGY_STORAGE_MENU.get(), pContainerId);
+        super(HybridMenuTypes.BASIC_ENERGY_STORAGE_MENU.get(), pContainerId);
         // Note: Energy storage doesn't need checkContainerSize since it has no item slots
         blockEntity = ((BasicEnergyStorageBlockEntity) entity);
         this.level = inv.player.level();

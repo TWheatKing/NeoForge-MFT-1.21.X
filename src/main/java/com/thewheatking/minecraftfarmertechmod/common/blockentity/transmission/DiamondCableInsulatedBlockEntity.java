@@ -6,31 +6,19 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.state.BlockState;
 
 /**
- * Diamond Cable Insulated Block Entity - Tier 3 Safe Energy Transmission
- * Transfer Rate: 10922 FE/tick (33% faster), No electrical damage, Explodes at 32768+ FE/tick
+ * Insulated Diamond Cable Block Entity - Tier 3 Enhanced (10922 FE/t)
  */
-public class DiamondCableInsulatedBlockEntity extends DiamondCableBlockEntity {
-    private static final int INSULATED_TRANSFER_RATE = 10922; // 33% faster than standard diamond
+public class DiamondCableInsulatedBlockEntity extends EnergyTransmissionBlockEntity {
 
     public DiamondCableInsulatedBlockEntity(BlockPos pos, BlockState state) {
-        super(HybridBlockEntities.DIAMOND_CABLE_INSULATED.get(), pos, state, 0, TRANSFER_RATE, TRANSFER_RATE, 0);
+        super(HybridBlockEntities.DIAMOND_CABLE_INSULATED.get(), pos, state,
+                HybridEnergyStorage.TransferTier.DIAMOND_INSULATED);
     }
 
     @Override
-    protected void initializeEnergyStorage() {
-        energyStorage = createEnergyStorage();
-        energyMaxReceive = INSULATED_TRANSFER_RATE;
-        energyMaxExtract = INSULATED_TRANSFER_RATE;
-    }
-
-    @Override
-    protected boolean canCauseElectricalDamage() { return false; }
-
-    @Override
-    public int getTransferRate() { return INSULATED_TRANSFER_RATE; }
-
-    @Override
-    protected void spawnEnergyFlowParticles() {
-        // TODO: Insulated diamond particles (maybe blue-tinted cyan particles)
+    protected void spawnTransmissionParticles() {
+        if (level != null && level.isClientSide() && isTransmitting()) {
+            // Spawn subtle cyan particles for insulated diamond cables
+        }
     }
 }

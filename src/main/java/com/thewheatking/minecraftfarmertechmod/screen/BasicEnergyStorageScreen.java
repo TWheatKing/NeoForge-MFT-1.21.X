@@ -1,7 +1,6 @@
 package com.thewheatking.minecraftfarmertechmod.screen;
 
 import com.thewheatking.minecraftfarmertechmod.MinecraftFarmerTechMod;
-import com.thewheatking.minecraftfarmertechmod.hybrid.HybridMenuTypes;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
@@ -12,23 +11,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.text.NumberFormat;
 
-public class BasicEnergyStorageScreen extends AbstractContainerScreen<HybridMenuTypes.BasicEnergyStorageMenu> {
+public class BasicEnergyStorageScreen extends AbstractContainerScreen<BasicEnergyStorageMenu> {
     private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(
             MinecraftFarmerTechMod.MOD_ID, "textures/gui/basic_energy_storage_gui.png");
 
-    // Energy bar dimensions (horizontal at top middle)
     private static final int ENERGY_BAR_X = 60;
     private static final int ENERGY_BAR_Y = 20;
     private static final int ENERGY_BAR_WIDTH = 56;
     private static final int ENERGY_BAR_HEIGHT = 8;
-
-    // Status light positions
     private static final int STATUS_LIGHT_X = 130;
     private static final int STATUS_LIGHT_Y = 18;
     private static final int STATUS_LIGHT_SIZE = 12;
 
-    public BasicEnergyStorageScreen(HybridMenuTypes.BasicEnergyStorageMenu menu,
-                                    Inventory playerInventory, Component title) {
+    public BasicEnergyStorageScreen(BasicEnergyStorageMenu menu, Inventory playerInventory, Component title) {
         super(menu, playerInventory, title);
         this.imageWidth = 176;
         this.imageHeight = 166;
@@ -60,10 +55,8 @@ public class BasicEnergyStorageScreen extends AbstractContainerScreen<HybridMenu
         int energyColor = menu.getEnergyBarColor();
         int filledWidth = (int) (ENERGY_BAR_WIDTH * energyPercentage);
 
-        // Background
         guiGraphics.fill(barX, barY, barX + ENERGY_BAR_WIDTH, barY + ENERGY_BAR_HEIGHT, 0xFF333333);
 
-        // Energy fill (red/yellow/green based on level)
         if (filledWidth > 0) {
             guiGraphics.fill(barX, barY, barX + filledWidth, barY + ENERGY_BAR_HEIGHT, energyColor);
         }
@@ -76,7 +69,6 @@ public class BasicEnergyStorageScreen extends AbstractContainerScreen<HybridMenu
         guiGraphics.fill(barX + ENERGY_BAR_WIDTH, barY, barX + ENERGY_BAR_WIDTH + 1,
                 barY + ENERGY_BAR_HEIGHT, 0xFF000000);
 
-        // Percentage text
         String percentText = String.format("%.0f%%", energyPercentage * 100);
         int textX = barX + (ENERGY_BAR_WIDTH / 2) - (font.width(percentText) / 2);
         guiGraphics.drawString(font, percentText, textX, barY + 1, 0xFFFFFFFF);
@@ -86,21 +78,19 @@ public class BasicEnergyStorageScreen extends AbstractContainerScreen<HybridMenu
         int lightX = x + STATUS_LIGHT_X;
         int lightY = y + STATUS_LIGHT_Y;
 
-        HybridMenuTypes.BasicEnergyStorageMenu.EnergyStatus status = menu.getEnergyStatus();
+        BasicEnergyStorageMenu.EnergyStatus status = menu.getEnergyStatus();
 
         int statusColor = switch (status) {
-            case CHARGING -> 0xFF00FF00;    // Green
-            case DISCHARGING -> 0xFFFFAA00; // Orange
-            case FULL -> 0xFF0099FF;        // Blue
-            case IDLE -> 0xFF666666;        // Gray
+            case CHARGING -> 0xFF00FF00;
+            case DISCHARGING -> 0xFFFFAA00;
+            case FULL -> 0xFF0099FF;
+            case IDLE -> 0xFF666666;
         };
 
-        // Light background and fill
         guiGraphics.fill(lightX, lightY, lightX + STATUS_LIGHT_SIZE, lightY + STATUS_LIGHT_SIZE, 0xFF222222);
         guiGraphics.fill(lightX + 2, lightY + 2, lightX + STATUS_LIGHT_SIZE - 2,
                 lightY + STATUS_LIGHT_SIZE - 2, statusColor);
 
-        // Light border
         guiGraphics.fill(lightX - 1, lightY - 1, lightX + STATUS_LIGHT_SIZE + 1, lightY, 0xFF000000);
         guiGraphics.fill(lightX - 1, lightY + STATUS_LIGHT_SIZE, lightX + STATUS_LIGHT_SIZE + 1,
                 lightY + STATUS_LIGHT_SIZE + 1, 0xFF000000);
@@ -108,7 +98,6 @@ public class BasicEnergyStorageScreen extends AbstractContainerScreen<HybridMenu
         guiGraphics.fill(lightX + STATUS_LIGHT_SIZE, lightY, lightX + STATUS_LIGHT_SIZE + 1,
                 lightY + STATUS_LIGHT_SIZE, 0xFF000000);
 
-        // Status text
         String statusText = switch (status) {
             case CHARGING -> "Charging";
             case DISCHARGING -> "Discharging";
@@ -124,8 +113,6 @@ public class BasicEnergyStorageScreen extends AbstractContainerScreen<HybridMenu
 
         int x = (width - imageWidth) / 2;
         int y = (height - imageHeight) / 2;
-
-        // Energy bar tooltip
         int barX = x + ENERGY_BAR_X;
         int barY = y + ENERGY_BAR_Y;
 

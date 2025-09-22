@@ -1,7 +1,7 @@
 package com.thewheatking.minecraftfarmertechmod.screen;
 
 import com.thewheatking.minecraftfarmertechmod.menu.base.BaseEnergyStorageMenu;
-import com.thewheatking.minecraftfarmertechmod.common.blockentity.transmission.NetworkBridgeBlockEntity;
+import com.thewheatking.minecraftfarmertechmod.common.blockentity.machines.NetworkBridgeBlockEntity;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;

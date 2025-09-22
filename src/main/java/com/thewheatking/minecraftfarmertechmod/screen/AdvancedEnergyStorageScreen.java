@@ -1,7 +1,6 @@
 package com.thewheatking.minecraftfarmertechmod.screen;
 
 import com.thewheatking.minecraftfarmertechmod.MinecraftFarmerTechMod;
-import com.thewheatking.minecraftfarmertechmod.hybrid.HybridMenuTypes;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
@@ -12,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.text.NumberFormat;
 
-public class AdvancedEnergyStorageScreen extends AbstractContainerScreen<HybridMenuTypes.AdvancedEnergyStorageMenu> {
+public class AdvancedEnergyStorageScreen extends AbstractContainerScreen<AdvancedEnergyStorageMenu> {
     private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(
             MinecraftFarmerTechMod.MOD_ID, "textures/gui/advanced_energy_storage_gui.png");
 
@@ -24,8 +23,7 @@ public class AdvancedEnergyStorageScreen extends AbstractContainerScreen<HybridM
     private static final int STATUS_LIGHT_Y = 18;
     private static final int STATUS_LIGHT_SIZE = 12;
 
-    public AdvancedEnergyStorageScreen(HybridMenuTypes.AdvancedEnergyStorageMenu menu,
-                                       Inventory playerInventory, Component title) {
+    public AdvancedEnergyStorageScreen(AdvancedEnergyStorageMenu menu, Inventory playerInventory, Component title) {
         super(menu, playerInventory, title);
         this.imageWidth = 176;
         this.imageHeight = 166;
@@ -54,10 +52,11 @@ public class AdvancedEnergyStorageScreen extends AbstractContainerScreen<HybridM
         int barY = y + ENERGY_BAR_Y;
 
         float energyPercentage = menu.getEnergyPercentage();
-        int energyColor = menu.getEnergyBarColor(); // Purple shades for Advanced
+        int energyColor = menu.getEnergyBarColor();
         int filledWidth = (int) (ENERGY_BAR_WIDTH * energyPercentage);
 
         guiGraphics.fill(barX, barY, barX + ENERGY_BAR_WIDTH, barY + ENERGY_BAR_HEIGHT, 0xFF333333);
+
         if (filledWidth > 0) {
             guiGraphics.fill(barX, barY, barX + filledWidth, barY + ENERGY_BAR_HEIGHT, energyColor);
         }
@@ -79,7 +78,7 @@ public class AdvancedEnergyStorageScreen extends AbstractContainerScreen<HybridM
         int lightX = x + STATUS_LIGHT_X;
         int lightY = y + STATUS_LIGHT_Y;
 
-        HybridMenuTypes.AdvancedEnergyStorageMenu.EnergyStatus status = menu.getEnergyStatus();
+        AdvancedEnergyStorageMenu.EnergyStatus status = menu.getEnergyStatus();
 
         int statusColor = switch (status) {
             case CHARGING -> 0xFF00FF00;

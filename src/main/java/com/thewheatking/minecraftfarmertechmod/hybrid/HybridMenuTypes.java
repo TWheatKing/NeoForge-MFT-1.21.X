@@ -31,79 +31,79 @@ import java.util.function.Supplier;
 public class HybridMenuTypes {
 
     // Deferred register for menu types
-    public static final DeferredRegister<MenuType<?>> MENU_TYPES =
+    public static final DeferredRegister<MenuType<?>> HYBRID_MENU_TYPES =
             DeferredRegister.create(net.minecraft.core.registries.Registries.MENU, MinecraftFarmerTechMod.MOD_ID);
 
     // Energy Storage Menu Types
     public static final Supplier<MenuType<BasicEnergyStorageMenu>> BASIC_ENERGY_STORAGE =
-            MENU_TYPES.register("basic_energy_storage", () ->
+            HYBRID_MENU_TYPES.register("basic_energy_storage", () ->
                     IMenuTypeExtension.create(BasicEnergyStorageMenu::new));
 
     public static final Supplier<MenuType<EnhancedEnergyStorageMenu>> ENHANCED_ENERGY_STORAGE =
-            MENU_TYPES.register("enhanced_energy_storage", () ->
+            HYBRID_MENU_TYPES.register("enhanced_energy_storage", () ->
                     IMenuTypeExtension.create(EnhancedEnergyStorageMenu::new));
 
     public static final Supplier<MenuType<AdvancedEnergyStorageMenu>> ADVANCED_ENERGY_STORAGE =
-            MENU_TYPES.register("advanced_energy_storage", () ->
+            HYBRID_MENU_TYPES.register("advanced_energy_storage", () ->
                     IMenuTypeExtension.create(AdvancedEnergyStorageMenu::new));
 
     public static final Supplier<MenuType<SuperiorEnergyStorageMenu>> SUPERIOR_ENERGY_STORAGE =
-            MENU_TYPES.register("superior_energy_storage", () ->
+            HYBRID_MENU_TYPES.register("superior_energy_storage", () ->
                     IMenuTypeExtension.create(SuperiorEnergyStorageMenu::new));
 
     public static final Supplier<MenuType<QuantumEnergyStorageMenu>> QUANTUM_ENERGY_STORAGE =
-            MENU_TYPES.register("quantum_energy_storage", () ->
+            HYBRID_MENU_TYPES.register("quantum_energy_storage", () ->
                     IMenuTypeExtension.create(QuantumEnergyStorageMenu::new));
 
     // Machine Menu Types
     public static final Supplier<MenuType<HybridCoalGeneratorMenu>> HYBRID_COAL_GENERATOR =
-            MENU_TYPES.register("hybrid_coal_generator", () ->
+            HYBRID_MENU_TYPES.register("hybrid_coal_generator", () ->
                     IMenuTypeExtension.create(HybridCoalGeneratorMenu::new));
 
     // Control System Menu Types
     public static final Supplier<MenuType<EnergyControllerMenu>> ENERGY_CONTROLLER =
-            MENU_TYPES.register("energy_controller", () ->
+            HYBRID_MENU_TYPES.register("energy_controller", () ->
                     IMenuTypeExtension.create(EnergyControllerMenu::new));
 
     public static final Supplier<MenuType<EnergyMonitorMenu>> ENERGY_MONITOR =
-            MENU_TYPES.register("energy_monitor", () ->
+            HYBRID_MENU_TYPES.register("energy_monitor", () ->
                     IMenuTypeExtension.create(EnergyMonitorMenu::new));
 
     public static final Supplier<MenuType<EnergyConverterMenu>> ENERGY_CONVERTER =
-            MENU_TYPES.register("energy_converter", () ->
+            HYBRID_MENU_TYPES.register("energy_converter", () ->
                     IMenuTypeExtension.create(EnergyConverterMenu::new));
 
     // Network Infrastructure Menu Types
     public static final Supplier<MenuType<NetworkRelayMenu>> NETWORK_RELAY =
-            MENU_TYPES.register("network_relay", () ->
+            HYBRID_MENU_TYPES.register("network_relay", () ->
                     IMenuTypeExtension.create(NetworkRelayMenu::new));
 
     public static final Supplier<MenuType<NetworkAmplifierMenu>> NETWORK_AMPLIFIER =
-            MENU_TYPES.register("network_amplifier", () ->
+            HYBRID_MENU_TYPES.register("network_amplifier", () ->
                     IMenuTypeExtension.create(NetworkAmplifierMenu::new));
 
     public static final Supplier<MenuType<NetworkBridgeMenu>> NETWORK_BRIDGE =
-            MENU_TYPES.register("network_bridge", () ->
+            HYBRID_MENU_TYPES.register("network_bridge", () ->
                     IMenuTypeExtension.create(NetworkBridgeMenu::new));
 
     // Specialized Interface Menu Types
     public static final Supplier<MenuType<EnergyAnalyzerMenu>> ENERGY_ANALYZER =
-            MENU_TYPES.register("energy_analyzer", () ->
+            HYBRID_MENU_TYPES.register("energy_analyzer", () ->
                     IMenuTypeExtension.create(EnergyAnalyzerMenu::new));
 
     public static final Supplier<MenuType<NetworkDashboardMenu>> NETWORK_DASHBOARD =
-            MENU_TYPES.register("network_dashboard", () ->
+            HYBRID_MENU_TYPES.register("network_dashboard", () ->
                     IMenuTypeExtension.create(NetworkDashboardMenu::new));
 
     public static final Supplier<MenuType<HybridConfiguratorMenu>> HYBRID_CONFIGURATOR =
-            MENU_TYPES.register("hybrid_configurator", () ->
+            HYBRID_MENU_TYPES.register("hybrid_configurator", () ->
                     IMenuTypeExtension.create(HybridConfiguratorMenu::new));
 
     /**
      * Registers all hybrid menu types
      */
     public static void register(IEventBus eventBus) {
-        MENU_TYPES.register(eventBus);
+        HYBRID_MENU_TYPES.register(eventBus);
     }
 
     // ========== INNER MENU CLASS IMPLEMENTATIONS ==========
@@ -439,16 +439,16 @@ public class HybridMenuTypes {
      * Network Relay Menu
      */
     public static class NetworkRelayMenu extends BaseEnergyStorageMenu {
-        private final com.thewheatking.minecraftfarmertechmod.common.blockentity.transmission.NetworkRelayBlockEntity relayBlockEntity;
+        private final com.thewheatking.minecraftfarmertechmod.common.blockentity.machines.NetworkRelayBlockEntity relayBlockEntity;
 
         public NetworkRelayMenu(int containerId, Inventory playerInventory, FriendlyByteBuf extraData) {
             super(NETWORK_RELAY.get(), containerId, playerInventory, extraData);
-            this.relayBlockEntity = (com.thewheatking.minecraftfarmertechmod.common.blockentity.transmission.NetworkRelayBlockEntity) blockEntity;
+            this.relayBlockEntity = (com.thewheatking.minecraftfarmertechmod.common.blockentity.machines.NetworkRelayBlockEntity) blockEntity;
         }
 
         public NetworkRelayMenu(int containerId, Inventory playerInventory, BlockEntity blockEntity) {
             super(NETWORK_RELAY.get(), containerId, playerInventory, blockEntity);
-            this.relayBlockEntity = (com.thewheatking.minecraftfarmertechmod.common.blockentity.transmission.NetworkRelayBlockEntity) blockEntity;
+            this.relayBlockEntity = (com.thewheatking.minecraftfarmertechmod.common.blockentity.machines.NetworkRelayBlockEntity) blockEntity;
         }
 
         @Override
@@ -456,7 +456,7 @@ public class HybridMenuTypes {
             return ItemStack.EMPTY;
         }
 
-        public com.thewheatking.minecraftfarmertechmod.common.blockentity.transmission.NetworkRelayBlockEntity getRelayBlockEntity() {
+        public com.thewheatking.minecraftfarmertechmod.common.blockentity.machines.NetworkRelayBlockEntity getRelayBlockEntity() {
             return relayBlockEntity;
         }
     }
@@ -465,16 +465,16 @@ public class HybridMenuTypes {
      * Network Amplifier Menu
      */
     public static class NetworkAmplifierMenu extends BaseEnergyStorageMenu {
-        private final com.thewheatking.minecraftfarmertechmod.common.blockentity.transmission.NetworkAmplifierBlockEntity amplifierBlockEntity;
+        private final com.thewheatking.minecraftfarmertechmod.common.blockentity.machines.NetworkAmplifierBlockEntity amplifierBlockEntity;
 
         public NetworkAmplifierMenu(int containerId, Inventory playerInventory, FriendlyByteBuf extraData) {
             super(NETWORK_AMPLIFIER.get(), containerId, playerInventory, extraData);
-            this.amplifierBlockEntity = (com.thewheatking.minecraftfarmertechmod.common.blockentity.transmission.NetworkAmplifierBlockEntity) blockEntity;
+            this.amplifierBlockEntity = (com.thewheatking.minecraftfarmertechmod.common.blockentity.machines.NetworkAmplifierBlockEntity) blockEntity;
         }
 
         public NetworkAmplifierMenu(int containerId, Inventory playerInventory, BlockEntity blockEntity) {
             super(NETWORK_AMPLIFIER.get(), containerId, playerInventory, blockEntity);
-            this.amplifierBlockEntity = (com.thewheatking.minecraftfarmertechmod.common.blockentity.transmission.NetworkAmplifierBlockEntity) blockEntity;
+            this.amplifierBlockEntity = (com.thewheatking.minecraftfarmertechmod.common.blockentity.machines.NetworkAmplifierBlockEntity) blockEntity;
         }
 
         @Override
@@ -482,7 +482,7 @@ public class HybridMenuTypes {
             return ItemStack.EMPTY;
         }
 
-        public com.thewheatking.minecraftfarmertechmod.common.blockentity.transmission.NetworkAmplifierBlockEntity getAmplifierBlockEntity() {
+        public com.thewheatking.minecraftfarmertechmod.common.blockentity.machines.NetworkAmplifierBlockEntity getAmplifierBlockEntity() {
             return amplifierBlockEntity;
         }
     }
@@ -491,16 +491,16 @@ public class HybridMenuTypes {
      * Network Bridge Menu
      */
     public static class NetworkBridgeMenu extends BaseEnergyStorageMenu {
-        private final com.thewheatking.minecraftfarmertechmod.common.blockentity.transmission.NetworkBridgeBlockEntity bridgeBlockEntity;
+        private final com.thewheatking.minecraftfarmertechmod.common.blockentity.machines.NetworkBridgeBlockEntity bridgeBlockEntity;
 
         public NetworkBridgeMenu(int containerId, Inventory playerInventory, FriendlyByteBuf extraData) {
             super(NETWORK_BRIDGE.get(), containerId, playerInventory, extraData);
-            this.bridgeBlockEntity = (com.thewheatking.minecraftfarmertechmod.common.blockentity.transmission.NetworkBridgeBlockEntity) blockEntity;
+            this.bridgeBlockEntity = (com.thewheatking.minecraftfarmertechmod.common.blockentity.machines.NetworkBridgeBlockEntity) blockEntity;
         }
 
         public NetworkBridgeMenu(int containerId, Inventory playerInventory, BlockEntity blockEntity) {
             super(NETWORK_BRIDGE.get(), containerId, playerInventory, blockEntity);
-            this.bridgeBlockEntity = (com.thewheatking.minecraftfarmertechmod.common.blockentity.transmission.NetworkBridgeBlockEntity) blockEntity;
+            this.bridgeBlockEntity = (com.thewheatking.minecraftfarmertechmod.common.blockentity.machines.NetworkBridgeBlockEntity) blockEntity;
         }
 
         @Override
@@ -508,7 +508,7 @@ public class HybridMenuTypes {
             return ItemStack.EMPTY;
         }
 
-        public com.thewheatking.minecraftfarmertechmod.common.blockentity.transmission.NetworkBridgeBlockEntity getBridgeBlockEntity() {
+        public com.thewheatking.minecraftfarmertechmod.common.blockentity.machines.NetworkBridgeBlockEntity getBridgeBlockEntity() {
             return bridgeBlockEntity;
         }
     }

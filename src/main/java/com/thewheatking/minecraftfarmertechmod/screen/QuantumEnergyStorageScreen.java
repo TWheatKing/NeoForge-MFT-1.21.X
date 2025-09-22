@@ -1,7 +1,6 @@
 package com.thewheatking.minecraftfarmertechmod.screen;
 
 import com.thewheatking.minecraftfarmertechmod.MinecraftFarmerTechMod;
-import com.thewheatking.minecraftfarmertechmod.hybrid.HybridMenuTypes;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
@@ -12,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.text.NumberFormat;
 
-public class QuantumEnergyStorageScreen extends AbstractContainerScreen<HybridMenuTypes.QuantumEnergyStorageMenu> {
+public class QuantumEnergyStorageScreen extends AbstractContainerScreen<QuantumEnergyStorageMenu> {
     private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(
             MinecraftFarmerTechMod.MOD_ID, "textures/gui/quantum_energy_storage_gui.png");
 
@@ -24,8 +23,7 @@ public class QuantumEnergyStorageScreen extends AbstractContainerScreen<HybridMe
     private static final int STATUS_LIGHT_Y = 18;
     private static final int STATUS_LIGHT_SIZE = 12;
 
-    public QuantumEnergyStorageScreen(HybridMenuTypes.QuantumEnergyStorageMenu menu,
-                                      Inventory playerInventory, Component title) {
+    public QuantumEnergyStorageScreen(QuantumEnergyStorageMenu menu, Inventory playerInventory, Component title) {
         super(menu, playerInventory, title);
         this.imageWidth = 176;
         this.imageHeight = 166;
@@ -54,15 +52,16 @@ public class QuantumEnergyStorageScreen extends AbstractContainerScreen<HybridMe
         int barY = y + ENERGY_BAR_Y;
 
         float energyPercentage = menu.getEnergyPercentage();
-        int energyColor = menu.getEnergyBarColor(); // Cyan shades for Quantum
+        int energyColor = menu.getEnergyBarColor();
         int filledWidth = (int) (ENERGY_BAR_WIDTH * energyPercentage);
 
         guiGraphics.fill(barX, barY, barX + ENERGY_BAR_WIDTH, barY + ENERGY_BAR_HEIGHT, 0xFF333333);
+
         if (filledWidth > 0) {
             guiGraphics.fill(barX, barY, barX + filledWidth, barY + ENERGY_BAR_HEIGHT, energyColor);
         }
 
-        // Border (same as others)
+        // Border
         guiGraphics.fill(barX - 1, barY - 1, barX + ENERGY_BAR_WIDTH + 1, barY, 0xFF000000);
         guiGraphics.fill(barX - 1, barY + ENERGY_BAR_HEIGHT, barX + ENERGY_BAR_WIDTH + 1,
                 barY + ENERGY_BAR_HEIGHT + 1, 0xFF000000);
@@ -79,7 +78,7 @@ public class QuantumEnergyStorageScreen extends AbstractContainerScreen<HybridMe
         int lightX = x + STATUS_LIGHT_X;
         int lightY = y + STATUS_LIGHT_Y;
 
-        HybridMenuTypes.QuantumEnergyStorageMenu.EnergyStatus status = menu.getEnergyStatus();
+        QuantumEnergyStorageMenu.EnergyStatus status = menu.getEnergyStatus();
 
         int statusColor = switch (status) {
             case CHARGING -> 0xFF00FF00;
