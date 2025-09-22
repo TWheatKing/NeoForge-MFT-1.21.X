@@ -49,23 +49,64 @@ public class HybridEnergyStorage extends AdaptiveEnergyStorage {
 
     // Transfer tier system for cables
     public enum TransferTier {
-        COPPER(512, 0.02),                    // 512 FE/t, 2% loss
-        COPPER_INSULATED(1024, 0.01),         // 1024 FE/t, 1% loss
-        GOLD(2048, 0.015),                    // 2048 FE/t, 1.5% loss
-        GOLD_INSULATED(4096, 0.005),          // 4096 FE/t, 0.5% loss
-        DIAMOND(8192, 0.01),                  // 8192 FE/t, 1% loss
-        DIAMOND_INSULATED(16384, 0.001);      // 16384 FE/t, 0.1% loss
+        // Copper Tier (Tier 1) - Basic energy transmission
+        COPPER(512, 0.02, 2048),                           // 512 FE/t, 2% loss, explodes at 2048+ FE/t
+        COPPER_INSULATED((int)(512 * 1.33), 0.01, 2048),  // ~682 FE/t, 1% loss, explodes at 2048+ FE/t
+
+        // Gold Tier (Tier 2) - Improved energy transmission
+        GOLD(2048, 0.015, 8192),                           // 2048 FE/t, 1.5% loss, explodes at 8192+ FE/t
+        GOLD_INSULATED((int)(2048 * 1.33), 0.005, 8192),  // ~2730 FE/t, 0.5% loss, explodes at 8192+ FE/t
+
+        // Diamond Tier (Tier 3) - High-end energy transmission
+        DIAMOND(8192, 0.01, 32768),                        // 8192 FE/t, 1% loss, explodes at 32768+ FE/t
+        DIAMOND_INSULATED((int)(8192 * 1.33), 0.001, 32768), // ~10922 FE/t, 0.1% loss, explodes at 32768+ FE/t
+
+        // Netherite Tier (Tier 4) - Ultimate energy transmission - NEVER EXPLODES
+        NETHERITE(32768, 0.005, -1),                       // 32768 FE/t, 0.5% loss, no explosion limit
+        NETHERITE_INSULATED((int)(32768 * 1.33), 0.001, -1); // ~43690 FE/t, 0.1% loss, no explosion limit
 
         private final int transferRate;
         private final double energyLoss;
+        private final int explosionThreshold; // -1 means never explodes
 
-        TransferTier(int transferRate, double energyLoss) {
+        TransferTier(int transferRate, double energyLoss, int explosionThreshold) {
             this.transferRate = transferRate;
             this.energyLoss = energyLoss;
+            this.explosionThreshold = explosionThreshold;
         }
 
-        public int getTransferRate() { return transferRate; }
-        public double getEnergyLoss() { return energyLoss; }
+        public int getTransferRate() {
+            return transferRate;
+        }
+
+        public double getEnergyLoss() {
+            return energyLoss;
+        }
+
+        /**
+         * Gets the explosion threshold for this cable tier
+         * @return Energy threshold in FE/t, or -1 if cable never explodes
+         */
+        public int getExplosionThreshold() {
+            return explosionThreshold;
+        }
+
+        /**
+         * Checks if this cable tier can explode when overloaded
+         * @return true if cable can explode, false if it's explosion-proof
+         */
+        public boolean canExplode() {
+            return explosionThreshold > 0;
+        }
+
+        /**
+         * Checks if the given energy amount would cause this cable to overload
+         * @param energyAmount The energy being transmitted in FE/t
+         * @return true if this energy level would cause explosion
+         */
+        public boolean isOverloaded(int energyAmount) {
+            return canExplode() && energyAmount >= explosionThreshold;
+        }
     }
 
     // Energy buffer zones for optimization

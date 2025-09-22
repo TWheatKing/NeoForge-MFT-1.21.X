@@ -133,6 +133,26 @@ public class HybridBlocks {
                     .lightLevel(blockState -> 3)
             ));
 
+    // Netherite Tier Cables (Tier 4 - 32768 FE/t) - EXPLOSION PROOF
+    public static final Supplier<Block> NETHERITE_CABLE = BLOCKS.register("netherite_cable",
+            () -> new Block(BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.COLOR_BLACK)
+                    .requiresCorrectToolForDrops()
+                    .strength(2.0F, 4.0F)       // Stronger than other cables
+                    .sound(SoundType.NETHERITE_BLOCK)
+                    .noOcclusion()
+            ));
+
+    public static final Supplier<Block> NETHERITE_CABLE_INSULATED = BLOCKS.register("netherite_cable_insulated",
+            () -> new Block(BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.COLOR_BLACK)
+                    .requiresCorrectToolForDrops()
+                    .strength(2.5F, 5.0F)       // Even stronger when insulated
+                    .sound(SoundType.WOOL)      // Insulated sound
+                    .noOcclusion()
+            ));
+
+
     // Machine Blocks
     public static final Supplier<Block> HYBRID_COAL_GENERATOR = BLOCKS.register("hybrid_coal_generator",
             () -> new Block(BlockBehaviour.Properties.of()

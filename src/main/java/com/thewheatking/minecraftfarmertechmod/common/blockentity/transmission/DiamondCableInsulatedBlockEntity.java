@@ -1,5 +1,6 @@
 package com.thewheatking.minecraftfarmertechmod.common.blockentity.transmission;
 
+import com.thewheatking.minecraftfarmertechmod.energy.HybridEnergyStorage;
 import com.thewheatking.minecraftfarmertechmod.hybrid.HybridBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.state.BlockState;
@@ -12,7 +13,7 @@ public class DiamondCableInsulatedBlockEntity extends DiamondCableBlockEntity {
     private static final int INSULATED_TRANSFER_RATE = 10922; // 33% faster than standard diamond
 
     public DiamondCableInsulatedBlockEntity(BlockPos pos, BlockState state) {
-        super(pos, state);
+        super(HybridBlockEntities.DIAMOND_CABLE_INSULATED.get(), pos, state, 0, TRANSFER_RATE, TRANSFER_RATE, 0);
     }
 
     @Override

@@ -86,10 +86,22 @@ public class HybridBlockEntities {
                                     HybridBlocks.DIAMOND_CABLE.get())
                             .build(null));
 
-    public static final Supplier<BlockEntityType<GoldCableInsulatedBlockEntity>> DIAMOND_CABLE_INSULATED =
+    public static final Supplier<BlockEntityType<DiamondCableInsulatedBlockEntity>> DIAMOND_CABLE_INSULATED =
             BLOCK_ENTITIES.register("diamond_cable_insulated", () ->
-                    BlockEntityType.Builder.of(GoldCableInsulatedBlockEntity::new,
+                    BlockEntityType.Builder.of(DiamondCableInsulatedBlockEntity::new,
                                     HybridBlocks.DIAMOND_CABLE_INSULATED.get())
+                            .build(null));
+
+    public static final Supplier<BlockEntityType<NetheriteCableBlockEntity>> NETHERITE_CABLE =
+            BLOCK_ENTITIES.register("netherite_cable", () ->
+                    BlockEntityType.Builder.of(NetheriteCableBlockEntity::new,
+                                    HybridBlocks.NETHERITE_CABLE.get())
+                            .build(null));
+
+    public static final Supplier<BlockEntityType<NetheriteCableInsulatedBlockEntity>> NETHERITE_CABLE_INSULATED =
+            BLOCK_ENTITIES.register("netherite_cable_insulated", () ->
+                    BlockEntityType.Builder.of(NetheriteCableInsulatedBlockEntity::new,
+                                    HybridBlocks.NETHERITE_CABLE_INSULATED.get())
                             .build(null));
 
     // Machine Block Entities
@@ -193,7 +205,10 @@ public class HybridBlockEntities {
                     COPPER_CABLE_INSULATED.get(),
                     GOLD_CABLE.get(),
                     GOLD_CABLE_INSULATED.get(),
-                    DIAMOND_CABLE.get()
+                    DIAMOND_CABLE.get(),
+                    DIAMOND_CABLE_INSULATED.get(),
+                    NETHERITE_CABLE.get(),
+                    NETHERITE_CABLE_INSULATED.get()
             };
         }
 

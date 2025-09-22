@@ -18,6 +18,14 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.energy.IEnergyStorage;
 import net.neoforged.neoforge.items.ItemStackHandler;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.AABB;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 
 import java.util.*;
 
@@ -269,12 +277,198 @@ public abstract class EnergyTransmissionBlockEntity extends BaseMachineBlockEnti
         return connections.get(direction);
     }
 
-    // Enhanced energy distribution for cables - override base class method
+    /**
+     * Enhanced energy transfer with overload protection
+     * Based on TWheatKing's original cable energy system
+     */
     @Override
     protected void handleEnergyDistribution() {
-        // Cables use their own distribution logic
-        distributeEnergyToAllSides();
+        if (!canOperate()) return;
+
+        int energyToTransfer = energyStorage.getEnergyStored();
+        if (energyToTransfer <= 0) return;
+
+        // Check for cable overload BEFORE attempting transfer
+        if (!isEnergyLevelSafe(energyToTransfer)) {
+            handleOverload(energyToTransfer);
+            return; // Don't transfer energy if we're overloaded
+        } else {
+            // Reset overload counter if energy is safe
+            if (overloadTicks > 0) {
+                overloadTicks = 0;
+                hasWarned = false;
+            }
+        }
+
+        // Continue with normal energy distribution
+        super.handleEnergyDistribution();
     }
+
+    /**
+     * Checks if the current energy level is safe for this cable tier
+     * @param energyAmount Current energy being transferred
+     * @return true if safe, false if overloaded
+     */
+    protected boolean isEnergyLevelSafe(int energyAmount) {
+        return !transferTier.isOverloaded(energyAmount);
+    }
+
+    /**
+     * Handles cable overload situations - warnings, damage, and explosion
+     * Based on TWheatKing's electrical damage system concept
+     */
+    protected void handleOverload(int energyAmount) {
+        overloadTicks++;
+
+        // Warning phase (3 seconds)
+        if (overloadTicks >= OVERLOAD_WARNING_TICKS && !hasWarned) {
+            sendOverloadWarning();
+            hasWarned = true;
+        }
+
+        // Spark effects during overload
+        if (overloadTicks % 10 == 0) { // Every half second
+            spawnOverloadParticles();
+            playOverloadSounds();
+        }
+
+        // Explosion phase (5 seconds total)
+        if (overloadTicks >= OVERLOAD_EXPLOSION_TICKS) {
+            explodeCable();
+        }
+    }
+
+    /**
+     * Warns nearby players about impending cable explosion
+     */
+    protected void sendOverloadWarning() {
+        if (level == null || level.isClientSide()) return;
+
+        // Find nearby players within 10 blocks
+        AABB searchArea = new AABB(worldPosition).inflate(10.0);
+        List<Player> nearbyPlayers = level.getEntitiesOfClass(Player.class, searchArea);
+
+        for (Player player : nearbyPlayers) {
+            player.displayClientMessage(
+                    Component.literal("⚠ WARNING: Cable overload detected! Energy level: " +
+                            energyStorage.getEnergyStored() + " FE/t exceeds safe limit of " +
+                            transferTier.getExplosionThreshold() + " FE/t"),
+                    true // Show in action bar
+            );
+        }
+    }
+    /**
+     * Creates electrical spark particle effects during overload
+     */
+    protected void spawnOverloadParticles() {
+        if (level == null || !level.isClientSide()) return;
+
+        // Spawn lightning/electrical particles
+        for (int i = 0; i < 5; i++) {
+            double offsetX = (level.random.nextDouble() - 0.5) * 2.0;
+            double offsetY = (level.random.nextDouble() - 0.5) * 2.0;
+            double offsetZ = (level.random.nextDouble() - 0.5) * 2.0;
+
+            level.addParticle(ParticleTypes.ELECTRIC_SPARK,
+                    worldPosition.getX() + 0.5 + offsetX,
+                    worldPosition.getY() + 0.5 + offsetY,
+                    worldPosition.getZ() + 0.5 + offsetZ,
+                    0, 0.1, 0);
+        }
+    }
+
+    /**
+     * Plays electrical crackling sounds during overload
+     */
+    protected void playOverloadSounds() {
+        if (level == null) return;
+
+        level.playSound(null, worldPosition, SoundEvents.LIGHTNING_BOLT_THUNDER,
+                SoundSource.BLOCKS, 0.3f, 2.0f); // Quiet, high-pitched electrical sound
+    }
+
+    /**
+     * Explodes the cable and damages nearby entities
+     * Based on TWheatKing's electrical damage mechanics
+     */
+    protected void explodeCable() {
+        if (level == null || level.isClientSide()) return;
+
+        // Create electrical damage area
+        AABB damageArea = new AABB(worldPosition).inflate(ELECTRICAL_DAMAGE_RANGE);
+        List<LivingEntity> nearbyEntities = level.getEntitiesOfClass(LivingEntity.class, damageArea);
+
+        // Damage all living entities in range
+        for (LivingEntity entity : nearbyEntities) {
+            double distance = entity.distanceToSqr(worldPosition.getX() + 0.5,
+                    worldPosition.getY() + 0.5, worldPosition.getZ() + 0.5);
+
+            // Damage decreases with distance (6 hearts at center, 2 hearts at edge)
+            float damage = (float)(12.0 - (distance * 2.0)); // 12 HP = 6 hearts
+            damage = Math.max(damage, 4.0f); // Minimum 2 hearts damage
+
+            // Apply electrical damage
+            entity.hurt(level.damageSources().lightningBolt(), damage);
+
+            // Special message for players
+            if (entity instanceof Player player) {
+                player.displayClientMessage(
+                        Component.literal("⚡ You were electrocuted by an overloaded cable!"),
+                        false
+                );
+            }
+        }
+
+        // Create explosion particle effects
+        spawnExplosionParticles();
+
+        // Play explosion sound
+        level.playSound(null, worldPosition, SoundEvents.LIGHTNING_BOLT_IMPACT,
+                SoundSource.BLOCKS, 1.0f, 1.0f);
+
+        // Destroy the cable block (no drops - it's destroyed by explosion)
+        level.destroyBlock(worldPosition, false);
+    }
+
+    /**
+     * Creates dramatic explosion particle effects
+     */
+    protected void spawnExplosionParticles() {
+        if (level == null) return;
+
+        // Large electrical explosion effect
+        for (int i = 0; i < 20; i++) {
+            double offsetX = (level.random.nextDouble() - 0.5) * 4.0;
+            double offsetY = (level.random.nextDouble() - 0.5) * 4.0;
+            double offsetZ = (level.random.nextDouble() - 0.5) * 4.0;
+
+            level.addParticle(ParticleTypes.ELECTRIC_SPARK,
+                    worldPosition.getX() + 0.5 + offsetX,
+                    worldPosition.getY() + 0.5 + offsetY,
+                    worldPosition.getZ() + 0.5 + offsetZ,
+                    offsetX * 0.1, offsetY * 0.1, offsetZ * 0.1);
+        }
+
+        // Additional smoke particles
+        for (int i = 0; i < 10; i++) {
+            double offsetX = (level.random.nextDouble() - 0.5) * 2.0;
+            double offsetY = level.random.nextDouble();
+            double offsetZ = (level.random.nextDouble() - 0.5) * 2.0;
+
+            level.addParticle(ParticleTypes.LARGE_SMOKE,
+                    worldPosition.getX() + 0.5 + offsetX,
+                    worldPosition.getY() + 0.5 + offsetY,
+                    worldPosition.getZ() + 0.5 + offsetZ,
+                    0, 0.1, 0);
+        }
+    }
+
+    // Enhanced energy distribution for cables - override base class method
+    //@Override
+    //protected void handleEnergyDistribution() {
+        // Cables use their own distribution logic
+    //    distributeEnergyToAllSides();
+    //}
 
     // Getters and utility methods
 
@@ -361,6 +555,8 @@ public abstract class EnergyTransmissionBlockEntity extends BaseMachineBlockEnti
         tag.putBoolean("IsTransmitting", isTransmitting);
         tag.putDouble("CurrentLoad", currentLoad);
         tag.putInt("EnergyTransferred", energyTransferred);
+        tag.putInt("overloadTicks", overloadTicks);
+        tag.putBoolean("hasWarned", hasWarned);
 
         // Save connections
         for (int i = 0; i < 6; i++) {
@@ -382,6 +578,8 @@ public abstract class EnergyTransmissionBlockEntity extends BaseMachineBlockEnti
         isTransmitting = tag.getBoolean("IsTransmitting");
         currentLoad = tag.getDouble("CurrentLoad");
         energyTransferred = tag.getInt("EnergyTransferred");
+        overloadTicks = tag.getInt("overloadTicks");
+        hasWarned = tag.getBoolean("hasWarned");
 
         // Load connections
         for (int i = 0; i < 6; i++) {
@@ -453,4 +651,14 @@ public abstract class EnergyTransmissionBlockEntity extends BaseMachineBlockEnti
             int activeConnections,
             boolean isTransmitting
     ) {}
+
+    // Explosion/overload system
+    protected int overloadTicks = 0;
+    protected static final int OVERLOAD_WARNING_TICKS = 60; // 3 seconds warning
+    protected static final int OVERLOAD_EXPLOSION_TICKS = 100; // 5 seconds to explosion
+    protected static final double ELECTRICAL_DAMAGE_RANGE = 3.0; // 3 block radius for electrical damage
+    protected boolean hasWarned = false;
+
+
 }
+
